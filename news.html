@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News & Insights | CSGA Global</title>
+  <meta name="description" content="Latest news, insights, and thought leadership from CSGA on cybersecurity, AI governance, and digital trust.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'csga-dark': '#0B0F17',
+            'csga-dark-secondary': '#0E1420',
+            'csga-cyan': '#2EE9F6',
+            'csga-text': '#F2F5FA',
+            'csga-text-secondary': '#A7B1C6',
+          },
+          fontFamily: {
+            'sans': ['Inter', 'sans-serif'],
+            'heading': ['Space Grotesk', 'sans-serif'],
+            'mono': ['IBM Plex Mono', 'monospace'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #0B0F17; color: #F2F5FA; font-family: 'Inter', sans-serif; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02em; }
+    .label-mono { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.18em; color: #A7B1C6; }
+    .card-cyber { background: rgba(14, 20, 32, 0.8); backdrop-filter: blur(20px); border: 1px solid rgba(242, 245, 250, 0.08); border-radius: 1rem; }
+    .nav-link { position: relative; color: #A7B1C6; transition: color 0.3s; }
+    .nav-link:hover { color: #F2F5FA; }
+    .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: #2EE9F6; transition: width 0.3s; }
+    .nav-link:hover::after { width: 100%; }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .article-card { transition: all 0.4s ease; }
+    .article-card:hover { transform: translateY(-4px); border-color: rgba(46, 233, 246, 0.3); }
+    .partner-slider { animation: slide 30s linear infinite; }
+    @keyframes slide { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .partner-slider:hover { animation-play-state: paused; }
+  </style>
+</head>
+<body class="antialiased">
+  <!-- Navigation -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-[1000] bg-csga-dark/90 backdrop-blur-xl border-b border-[rgba(242,245,250,0.06)]">
+    <div class="w-full px-6 lg:px-12">
+      <div class="flex items-center justify-between h-20 lg:h-24">
+        <a href="index.html" class="flex items-center gap-3 group">
+          <img src="images/logo.png" alt="CSGA Global" class="h-20 w-auto transition-transform duration-300 group-hover:scale-105">
+        </a>
+        <div class="hidden lg:flex items-center gap-8">
+          <a href="about.html" class="nav-link text-sm font-medium">About</a>
+          <a href="education.html" class="nav-link text-sm font-medium">Education</a>
+          <a href="programs.html" class="nav-link text-sm font-medium">Programs</a>
+          <a href="csoai.html" class="nav-link text-sm font-medium">CSOAI</a>
+          <a href="cobol-bridge.html" class="nav-link text-sm font-medium">COBOL Bridge</a>
+          <a href="events.html" class="nav-link text-sm font-medium">Events</a>
+          <a href="news.html" class="nav-link text-sm font-medium text-csga-cyan">News</a>
+          <a href="members.html" class="nav-link text-sm font-medium">Members</a>
+          <a href="contact.html" class="px-5 py-2.5 bg-csga-cyan/10 border border-csga-cyan/30 rounded-lg text-csga-cyan text-sm font-medium hover:bg-csga-cyan/20 hover:border-csga-cyan/50 transition-all duration-300">Join</a>
+        </div>
+        <button id="mobile-menu-btn" class="lg:hidden p-2 text-csga-text hover:text-csga-cyan transition-colors">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="relative w-full min-h-[50vh] overflow-hidden flex items-center bg-gradient-to-b from-csga-dark via-csga-dark-secondary to-csga-dark">
+    <div class="absolute inset-0 opacity-20">
+      <img src="images/news-hero.jpg" alt="CSGA News" class="w-full h-full object-cover">
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-csga-dark/50 to-csga-dark"></div>
+    <div class="relative w-full px-6 lg:px-12 pt-32 pb-20">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="label-mono mb-4 reveal">Latest Updates</div>
+        <h1 class="text-5xl lg:text-6xl font-bold text-csga-text mb-6 reveal" style="transition-delay: 100ms;">News & Insights</h1>
+        <p class="text-xl text-csga-text-secondary reveal" style="transition-delay: 200ms;">Stay informed with the latest developments in cybersecurity, AI governance, and global digital trust initiatives from CSGA and our partners.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Article -->
+  <section class="relative w-full bg-csga-dark py-16">
+    <div class="w-full px-6 lg:px-12">
+      <div class="max-w-6xl mx-auto">
+        <div class="card-cyber overflow-hidden reveal">
+          <div class="grid grid-cols-1 lg:grid-cols-2">
+            <div class="aspect-video lg:aspect-auto bg-gradient-to-br from-csga-cyan/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="award" class="w-24 h-24 text-csga-cyan"></i>
+            </div>
+            <div class="p-8 lg:p-12 flex flex-col justify-center">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="px-3 py-1 bg-csga-cyan/10 border border-csga-cyan/30 rounded-full text-csga-cyan text-xs font-medium">Featured</span>
+                <span class="text-csga-text-secondary text-sm">March 3, 2026</span>
+              </div>
+              <h2 class="text-2xl lg:text-3xl font-bold text-csga-text mb-4">CSGA Acquires ISO 27001:2022 & GDPR Compliant CSOAI</h2>
+              <p class="text-csga-text-secondary leading-relaxed mb-6">Cyber Security Global Alliance officially acquires 100% ownership of the Council for the Safety of Artificial Intelligence (CSOAI), strengthening global leadership in AI governance, AI safety, cyber defense, and international standards development.</p>
+              <div class="flex items-center gap-4">
+                <div class="w-10 h-10 rounded-full bg-csga-cyan/20 flex items-center justify-center">
+                  <i data-lucide="user" class="w-5 h-5 text-csga-cyan"></i>
+                </div>
+                <div>
+                  <p class="text-sm font-medium text-csga-text">James Castle</p>
+                  <p class="text-xs text-csga-text-secondary">Global Chairperson & Founder</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- News Grid -->
+  <section class="relative w-full bg-csga-dark-secondary py-24 lg:py-32">
+    <div class="w-full px-6 lg:px-12">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-12">
+          <div>
+            <div class="label-mono mb-2">All Articles</div>
+            <h2 class="text-3xl font-bold text-csga-text">Latest Stories</h2>
+          </div>
+          <div class="mt-4 md:mt-0 flex gap-2">
+            <button class="px-4 py-2 bg-csga-cyan/10 border border-csga-cyan/30 rounded-lg text-csga-cyan text-sm">All</button>
+            <button class="px-4 py-2 border border-[rgba(242,245,250,0.08)] rounded-lg text-csga-text-secondary text-sm hover:border-csga-cyan/30 hover:text-csga-cyan transition-colors">AI</button>
+            <button class="px-4 py-2 border border-[rgba(242,245,250,0.08)] rounded-lg text-csga-text-secondary text-sm hover:border-csga-cyan/30 hover:text-csga-cyan transition-colors">Cyber</button>
+            <button class="px-4 py-2 border border-[rgba(242,245,250,0.08)] rounded-lg text-csga-text-secondary text-sm hover:border-csga-cyan/30 hover:text-csga-cyan transition-colors">Education</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Article 1 -->
+          <article class="card-cyber article-card overflow-hidden reveal" style="transition-delay: 100ms;">
+            <div class="h-48 bg-gradient-to-br from-purple-500/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="rocket" class="w-16 h-16 text-purple-400/60"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-1 bg-purple-500/10 border border-purple-500/30 rounded text-purple-400 text-xs">Announcement</span>
+                <span class="text-csga-text-secondary text-xs">Mar 3, 2026</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">CSGA Cyber AI Research Institute Officially Opens</h3>
+              <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">Powered by CSOAI Ltd (UK), the world's first independent research body combining AI governance standards with operational cybersecurity testing.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-text-secondary">By James Castle</span>
+                <a href="#" class="text-csga-cyan text-sm flex items-center gap-1">Read <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 2 -->
+          <article class="card-cyber article-card overflow-hidden reveal" style="transition-delay: 150ms;">
+            <div class="h-48 bg-gradient-to-br from-csga-cyan/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="graduation-cap" class="w-16 h-16 text-csga-cyan/60"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-1 bg-csga-cyan/10 border border-csga-cyan/30 rounded text-csga-cyan text-xs">Education</span>
+                <span class="text-csga-text-secondary text-xs">Feb 28, 2026</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">CSGA WhiteHat Program Expanded to 60 Weeks</h3>
+              <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">Major expansion of CSGA's flagship program includes Certified AI Analyst certification and expanded Cyber Range access at no additional cost. Training provided by BMCC.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-text-secondary">By CSGA Team</span>
+                <a href="#" class="text-csga-cyan text-sm flex items-center gap-1">Read <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 3 -->
+          <article class="card-cyber article-card overflow-hidden reveal" style="transition-delay: 200ms;">
+            <div class="h-48 bg-gradient-to-br from-green-500/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="banknote" class="w-16 h-16 text-green-400/60"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-1 bg-green-500/10 border border-green-500/30 rounded text-green-400 text-xs">Funding</span>
+                <span class="text-csga-text-secondary text-xs">Feb 25, 2026</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">Regional Defence Investment Initiative in Southern Ontario</h3>
+              <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">CSGA and Terranova helping Canadian businesses access FedDev funding for defense-related projects starting after April 1, 2026.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-text-secondary">By James Castle</span>
+                <a href="#" class="text-csga-cyan text-sm flex items-center gap-1">Read <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 4 -->
+          <article class="card-cyber article-card overflow-hidden reveal" style="transition-delay: 250ms;">
+            <div class="h-48 bg-gradient-to-br from-amber-500/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="code-2" class="w-16 h-16 text-amber-400/60"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-1 bg-amber-500/10 border border-amber-500/30 rounded text-amber-400 text-xs">Product</span>
+                <span class="text-csga-text-secondary text-xs">Feb 20, 2026</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">COBOL Bridge: MCP-Native Legacy Modernization</h3>
+              <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">New solution enables EU AI Act compliance without rewriting decades of critical COBOL code. Deploy in weeks, not years.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-text-secondary">By CSGA Product Team</span>
+                <a href="cobol-bridge.html" class="text-csga-cyan text-sm flex items-center gap-1">Read <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 5 -->
+          <article class="card-cyber article-card overflow-hidden reveal" style="transition-delay: 300ms;">
+            <div class="h-48 bg-gradient-to-br from-blue-500/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="users" class="w-16 h-16 text-blue-400/60"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-1 bg-blue-500/10 border border-blue-500/30 rounded text-blue-400 text-xs">Leadership</span>
+                <span class="text-csga-text-secondary text-xs">Feb 15, 2026</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">Nicholas Templeman Appointed SVP & Director</h3>
+              <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">Welcome to Nicholas Templeman as Senior Vice President & Director of the CSGA Cyber AI Research Institute and Board Member.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-text-secondary">By James Castle</span>
+                <a href="#" class="text-csga-cyan text-sm flex items-center gap-1">Read <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 6 -->
+          <article class="card-cyber article-card overflow-hidden reveal" style="transition-delay: 350ms;">
+            <div class="h-48 bg-gradient-to-br from-red-500/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="shield-alert" class="w-16 h-16 text-red-400/60"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-1 bg-red-500/10 border border-red-500/30 rounded text-red-400 text-xs">Security</span>
+                <span class="text-csga-text-secondary text-xs">Feb 10, 2026</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">Ransomware Trends: What to Expect in 2026</h3>
+              <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">Analysis of emerging ransomware tactics and defensive strategies organizations should prioritize this year.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-text-secondary">By Dr. Eyal Pinko</span>
+                <a href="#" class="text-csga-cyan text-sm flex items-center gap-1">Read <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 7 -->
+          <article class="card-cyber article-card overflow-hidden reveal" style="transition-delay: 400ms;">
+            <div class="h-48 bg-gradient-to-br from-indigo-500/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="brain-circuit" class="w-16 h-16 text-indigo-400/60"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-1 bg-indigo-500/10 border border-indigo-500/30 rounded text-indigo-400 text-xs">AI</span>
+                <span class="text-csga-text-secondary text-xs">Feb 5, 2026</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">Understanding the EU AI Act: A Practical Guide</h3>
+              <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">Comprehensive breakdown of EU AI Act requirements and how CSGA's 52-Article Framework helps organizations achieve compliance.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-text-secondary">By Samir Azizi</span>
+                <a href="#" class="text-csga-cyan text-sm flex items-center gap-1">Read <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 8 -->
+          <article class="card-cyber article-card overflow-hidden reveal" style="transition-delay: 450ms;">
+            <div class="h-48 bg-gradient-to-br from-teal-500/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="medal" class="w-16 h-16 text-teal-400/60"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-1 bg-teal-500/10 border border-teal-500/30 rounded text-teal-400 text-xs">Veterans</span>
+                <span class="text-csga-text-secondary text-xs">Jan 30, 2026</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">Veterans Program: 500th Graduate Milestone</h3>
+              <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">Celebrating a major milestone as our 500th veteran completes the CSGA cybersecurity training program.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-text-secondary">By Terry Temple</span>
+                <a href="#" class="text-csga-cyan text-sm flex items-center gap-1">Read <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 9 -->
+          <article class="card-cyber article-card overflow-hidden reveal" style="transition-delay: 500ms;">
+            <div class="h-48 bg-gradient-to-br from-pink-500/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="globe" class="w-16 h-16 text-pink-400/60"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-1 bg-pink-500/10 border border-pink-500/30 rounded text-pink-400 text-xs">Partnership</span>
+                <span class="text-csga-text-secondary text-xs">Jan 25, 2026</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">Ontario Aerospace Council Partnership Announced</h3>
+              <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">Formal partnership established for aerospace cybersecurity and defense initiatives in Ontario, Canada.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-text-secondary">By Kathleen Chapman</span>
+                <a href="#" class="text-csga-cyan text-sm flex items-center gap-1">Read <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 10 -->
+          <article class="card-cyber article-card overflow-hidden reveal" style="transition-delay: 550ms;">
+            <div class="h-48 bg-gradient-to-br from-orange-500/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="trending-up" class="w-16 h-16 text-orange-400/60"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-1 bg-orange-500/10 border border-orange-500/30 rounded text-orange-400 text-xs">Growth</span>
+                <span class="text-csga-text-secondary text-xs">Jan 20, 2026</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">CSGA Reaches 2,000 Members Worldwide</h3>
+              <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">Milestone achievement as the Cyber Security Global Alliance continues rapid global expansion.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-text-secondary">By CSGA Communications</span>
+                <a href="#" class="text-csga-cyan text-sm flex items-center gap-1">Read <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 11 -->
+          <article class="card-cyber article-card overflow-hidden reveal" style="transition-delay: 600ms;">
+            <div class="h-48 bg-gradient-to-br from-cyan-500/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="lock" class="w-16 h-16 text-cyan-400/60"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-1 bg-cyan-500/10 border border-cyan-500/30 rounded text-cyan-400 text-xs">Compliance</span>
+                <span class="text-csga-text-secondary text-xs">Jan 15, 2026</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">GDPR Compliance: What Organizations Need to Know</h3>
+              <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">Essential guide to GDPR requirements and how CSGA's compliance framework helps organizations meet standards.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-text-secondary">By Dr. Frumi Barr</span>
+                <a href="#" class="text-csga-cyan text-sm flex items-center gap-1">Read <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 12 -->
+          <article class="card-cyber article-card overflow-hidden reveal" style="transition-delay: 650ms;">
+            <div class="h-48 bg-gradient-to-br from-lime-500/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="zap" class="w-16 h-16 text-lime-400/60"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-1 bg-lime-500/10 border border-lime-500/30 rounded text-lime-400 text-xs">Innovation</span>
+                <span class="text-csga-text-secondary text-xs">Jan 10, 2026</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">Byzantine Council: 33+ AI Models Benchmarked</h3>
+              <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">CSOAI's proprietary system now benchmarks over 33 AI models for governance compliance using independent consensus.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-text-secondary">By Nicholas Templeman</span>
+                <a href="#" class="text-csga-cyan text-sm flex items-center gap-1">Read <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 13 -->
+          <article class="card-cyber article-card overflow-hidden reveal" style="transition-delay: 700ms;">
+            <div class="h-48 bg-gradient-to-br from-violet-500/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="handshake" class="w-16 h-16 text-violet-400/60"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-1 bg-violet-500/10 border border-violet-500/30 rounded text-violet-400 text-xs">Partnership</span>
+                <span class="text-csga-text-secondary text-xs">Jan 5, 2026</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">Applied Technology Academy Joins as Training Partner</h3>
+              <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">Strategic partnership with ATA expands CSGA's training capabilities and global reach.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-text-secondary">By Leigh Cassell</span>
+                <a href="#" class="text-csga-cyan text-sm flex items-center gap-1">Read <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 14 -->
+          <article class="card-cyber article-card overflow-hidden reveal" style="transition-delay: 750ms;">
+            <div class="h-48 bg-gradient-to-br from-rose-500/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="alert-triangle" class="w-16 h-16 text-rose-400/60"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-1 bg-rose-500/10 border border-rose-500/30 rounded text-rose-400 text-xs">Threat Intel</span>
+                <span class="text-csga-text-secondary text-xs">Dec 28, 2025</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">Year in Review: Major Cyber Threats of 2025</h3>
+              <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">Comprehensive analysis of the most significant cyber threats and attacks that shaped the security landscape in 2025.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-text-secondary">By Dr. Eyal Pinko</span>
+                <a href="#" class="text-csga-cyan text-sm flex items-center gap-1">Read <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 15 -->
+          <article class="card-cyber article-card overflow-hidden reveal" style="transition-delay: 800ms;">
+            <div class="h-48 bg-gradient-to-br from-sky-500/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="calendar" class="w-16 h-16 text-sky-400/60"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-1 bg-sky-500/10 border border-sky-500/30 rounded text-sky-400 text-xs">Event</span>
+                <span class="text-csga-text-secondary text-xs">Dec 20, 2025</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">Save the Date: CSGA Global Summit 2026</h3>
+              <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">Join us for our annual global summit bringing together cybersecurity leaders, AI experts, and policymakers.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-text-secondary">By CSGA Events</span>
+                <a href="#" class="text-csga-cyan text-sm flex items-center gap-1">Read <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 16 -->
+          <article class="card-cyber article-card overflow-hidden reveal" style="transition-delay: 850ms;">
+            <div class="h-48 bg-gradient-to-br from-emerald-500/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="check-circle" class="w-16 h-16 text-emerald-400/60"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-1 bg-emerald-500/10 border border-emerald-500/30 rounded text-emerald-400 text-xs">Certification</span>
+                <span class="text-csga-text-secondary text-xs">Dec 15, 2025</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">CASA Certification: First 100 Professionals Certified</h3>
+              <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">Milestone achievement as 100 professionals complete the Certified AI Sector Accreditation program across 22 industries.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-text-secondary">By Samir Azizi</span>
+                <a href="#" class="text-csga-cyan text-sm flex items-center gap-1">Read <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 17 -->
+          <article class="card-cyber article-card overflow-hidden reveal" style="transition-delay: 900ms;">
+            <div class="h-48 bg-gradient-to-br from-fuchsia-500/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="radio" class="w-16 h-16 text-fuchsia-400/60"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-1 bg-fuchsia-500/10 border border-fuchsia-500/30 rounded text-fuchsia-400 text-xs">Media</span>
+                <span class="text-csga-text-secondary text-xs">Dec 10, 2025</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">James Castle Featured in Cybersecurity Today</h3>
+              <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">CSGA Chairperson discusses the future of AI governance and the importance of international collaboration.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-text-secondary">By CSGA Communications</span>
+                <a href="#" class="text-csga-cyan text-sm flex items-center gap-1">Read <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 18 -->
+          <article class="card-cyber article-card overflow-hidden reveal" style="transition-delay: 950ms;">
+            <div class="h-48 bg-gradient-to-br from-yellow-500/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="file-text" class="w-16 h-16 text-yellow-400/60"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-1 bg-yellow-500/10 border border-yellow-500/30 rounded text-yellow-400 text-xs">Research</span>
+                <span class="text-csga-text-secondary text-xs">Dec 5, 2025</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">New Whitepaper: AI Risk Assessment Framework</h3>
+              <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">CSGA releases comprehensive framework for assessing AI risks across enterprise environments.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-text-secondary">By Dr. Frumi Barr</span>
+                <a href="#" class="text-csga-cyan text-sm flex items-center gap-1">Read <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 19 -->
+          <article class="card-cyber article-card overflow-hidden reveal" style="transition-delay: 1000ms;">
+            <div class="h-48 bg-gradient-to-br from-slate-500/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="building" class="w-16 h-16 text-slate-400/60"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-1 bg-slate-500/10 border border-slate-500/30 rounded text-slate-400 text-xs">Government</span>
+                <span class="text-csga-text-secondary text-xs">Nov 30, 2025</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">U.S. Department of Commerce Endorsement Renewed</h3>
+              <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">Continued endorsement reinforces CSGA's commitment to compliance, innovation, and international collaboration.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-text-secondary">By Dr. Daniel Katz</span>
+                <a href="#" class="text-csga-cyan text-sm flex items-center gap-1">Read <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 20 -->
+          <article class="card-cyber article-card overflow-hidden reveal" style="transition-delay: 1050ms;">
+            <div class="h-48 bg-gradient-to-br from-mint-500/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="cpu" class="w-16 h-16 text-emerald-400/60"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-1 bg-emerald-500/10 border border-emerald-500/30 rounded text-emerald-400 text-xs">Technology</span>
+                <span class="text-csga-text-secondary text-xs">Nov 25, 2025</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">4MQ Protocol: Transparent AI Assessment Explained</h3>
+              <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">Deep dive into CSOAI's 4MQ Protocol for standardized AI system evaluation and risk assessment.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-text-secondary">By Nicholas Templeman</span>
+                <a href="#" class="text-csga-cyan text-sm flex items-center gap-1">Read <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 21 -->
+          <article class="card-cyber article-card overflow-hidden reveal" style="transition-delay: 1100ms;">
+            <div class="h-48 bg-gradient-to-br from-warm-gray-500/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="users" class="w-16 h-16 text-orange-400/60"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-1 bg-orange-500/10 border border-orange-500/30 rounded text-orange-400 text-xs">Community</span>
+                <span class="text-csga-text-secondary text-xs">Nov 20, 2025</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">Women in Cybersecurity Initiative Launches</h3>
+              <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">New program aims to increase diversity and support women pursuing careers in cybersecurity.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-text-secondary">By Leigh Cassell</span>
+                <a href="#" class="text-csga-cyan text-sm flex items-center gap-1">Read <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 22 -->
+          <article class="card-cyber article-card overflow-hidden reveal" style="transition-delay: 1150ms;">
+            <div class="h-48 bg-gradient-to-br from-blue-600/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="map" class="w-16 h-16 text-blue-400/60"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-1 bg-blue-500/10 border border-blue-500/30 rounded text-blue-400 text-xs">Expansion</span>
+                <span class="text-csga-text-secondary text-xs">Nov 15, 2025</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">CSGA Expands to Asia-Pacific Region</h3>
+              <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">New regional office in Singapore to serve growing cybersecurity needs across Asia-Pacific markets.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-text-secondary">By Ting Ma</span>
+                <a href="#" class="text-csga-cyan text-sm flex items-center gap-1">Read <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 23 -->
+          <article class="card-cyber article-card overflow-hidden reveal" style="transition-delay: 1200ms;">
+            <div class="h-48 bg-gradient-to-br from-purple-600/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="shield-check" class="w-16 h-16 text-purple-400/60"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-1 bg-purple-500/10 border border-purple-500/30 rounded text-purple-400 text-xs">Security</span>
+                <span class="text-csga-text-secondary text-xs">Nov 10, 2025</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">TSO-CSRT: Incident Response Team Update</h3>
+              <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">Terranova Sabre One Taskforce reports successful recovery operations and threat actor prosecutions.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-text-secondary">By Terry Temple</span>
+                <a href="#" class="text-csga-cyan text-sm flex items-center gap-1">Read <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 24 -->
+          <article class="card-cyber article-card overflow-hidden reveal" style="transition-delay: 1250ms;">
+            <div class="h-48 bg-gradient-to-br from-green-600/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="dollar-sign" class="w-16 h-16 text-green-400/60"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-1 bg-green-500/10 border border-green-500/30 rounded text-green-400 text-xs">Finance</span>
+                <span class="text-csga-text-secondary text-xs">Nov 5, 2025</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">Cybersecurity Investment Trends Q4 2025</h3>
+              <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">Analysis of cybersecurity funding trends and what they mean for the industry's future.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-text-secondary">By Ting Ma</span>
+                <a href="#" class="text-csga-cyan text-sm flex items-center gap-1">Read <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 25 -->
+          <article class="card-cyber article-card overflow-hidden reveal" style="transition-delay: 1300ms;">
+            <div class="h-48 bg-gradient-to-br from-red-600/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="flame" class="w-16 h-16 text-red-400/60"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-1 bg-red-500/10 border border-red-500/30 rounded text-red-400 text-xs">Threat</span>
+                <span class="text-csga-text-secondary text-xs">Oct 30, 2025</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">Sextortion Campaigns: New Tactics Identified</h3>
+              <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">CSGA intelligence team uncovers evolving sextortion tactics and provides protective guidance.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-text-secondary">By Dr. Eyal Pinko</span>
+                <a href="#" class="text-csga-cyan text-sm flex items-center gap-1">Read <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 26 -->
+          <article class="card-cyber article-card overflow-hidden reveal" style="transition-delay: 1350ms;">
+            <div class="h-48 bg-gradient-to-br from-indigo-600/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="book" class="w-16 h-16 text-indigo-400/60"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-1 bg-indigo-500/10 border border-indigo-500/30 rounded text-indigo-400 text-xs">Education</span>
+                <span class="text-csga-text-secondary text-xs">Oct 25, 2025</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">New Course: AI Governance for Executives</h3>
+              <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">Executive-level training program helps C-suite leaders understand AI governance and compliance.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-text-secondary">By Leigh Cassell</span>
+                <a href="#" class="text-csga-cyan text-sm flex items-center gap-1">Read <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 27 -->
+          <article class="card-cyber article-card overflow-hidden reveal" style="transition-delay: 1400ms;">
+            <div class="h-48 bg-gradient-to-br from-teal-600/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="award" class="w-16 h-16 text-teal-400/60"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-1 bg-teal-500/10 border border-teal-500/30 rounded text-teal-400 text-xs">Recognition</span>
+                <span class="text-csga-text-secondary text-xs">Oct 20, 2025</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">CSGA Wins Cybersecurity Excellence Award</h3>
+              <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">Recognized for outstanding contributions to global cybersecurity education and workforce development.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-text-secondary">By CSGA Communications</span>
+                <a href="#" class="text-csga-cyan text-sm flex items-center gap-1">Read <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 28 -->
+          <article class="card-cyber article-card overflow-hidden reveal" style="transition-delay: 1450ms;">
+            <div class="h-48 bg-gradient-to-br from-pink-600/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="heart" class="w-16 h-16 text-pink-400/60"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-1 bg-pink-500/10 border border-pink-500/30 rounded text-pink-400 text-xs">Non-Profit</span>
+                <span class="text-csga-text-secondary text-xs">Oct 15, 2025</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">Cybersecurity for Non-Profits: Free Resources</h3>
+              <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">New toolkit provides essential cybersecurity resources for mission-based organizations at no cost.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-text-secondary">By Kathleen Chapman</span>
+                <a href="#" class="text-csga-cyan text-sm flex items-center gap-1">Read <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 29 -->
+          <article class="card-cyber article-card overflow-hidden reveal" style="transition-delay: 1500ms;">
+            <div class="h-48 bg-gradient-to-br from-cyan-600/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="cloud" class="w-16 h-16 text-cyan-400/60"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-1 bg-cyan-500/10 border border-cyan-500/30 rounded text-cyan-400 text-xs">Cloud</span>
+                <span class="text-csga-text-secondary text-xs">Oct 10, 2025</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">Cloud Security Best Practices Guide Released</h3>
+              <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">Comprehensive guide helps organizations secure cloud infrastructure and maintain compliance.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-text-secondary">By Dr. Chris Golden</span>
+                <a href="#" class="text-csga-cyan text-sm flex items-center gap-1">Read <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 30 -->
+          <article class="card-cyber article-card overflow-hidden reveal" style="transition-delay: 1550ms;">
+            <div class="h-48 bg-gradient-to-br from-amber-600/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="briefcase" class="w-16 h-16 text-amber-400/60"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-1 bg-amber-500/10 border border-amber-500/30 rounded text-amber-400 text-xs">Career</span>
+                <span class="text-csga-text-secondary text-xs">Oct 5, 2025</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">Cybersecurity Career Pathways Guide</h3>
+              <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">New resource maps career paths from entry-level to executive roles in cybersecurity.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-text-secondary">By Leigh Cassell</span>
+                <a href="#" class="text-csga-cyan text-sm flex items-center gap-1">Read <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 31 -->
+          <article class="card-cyber article-card overflow-hidden reveal" style="transition-delay: 1600ms;">
+            <div class="h-48 bg-gradient-to-br from-lime-600/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="smartphone" class="w-16 h-16 text-lime-400/60"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-1 bg-lime-500/10 border border-lime-500/30 rounded text-lime-400 text-xs">IoT</span>
+                <span class="text-csga-text-secondary text-xs">Sep 28, 2025</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">IoT Security: Protecting Connected Devices</h3>
+              <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">Essential security measures for organizations deploying Internet of Things devices.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-text-secondary">By Nicholas Templeman</span>
+                <a href="#" class="text-csga-cyan text-sm flex items-center gap-1">Read <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 32 -->
+          <article class="card-cyber article-card overflow-hidden reveal" style="transition-delay: 1650ms;">
+            <div class="h-48 bg-gradient-to-br from-rose-600/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="message-circle" class="w-16 h-16 text-rose-400/60"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-1 bg-rose-500/10 border border-rose-500/30 rounded text-rose-400 text-xs">Social</span>
+                <span class="text-csga-text-secondary text-xs">Sep 20, 2025</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">Social Engineering: The Human Factor</h3>
+              <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">Understanding social engineering attacks and building organizational resilience through training.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-text-secondary">By Dr. Eyal Pinko</span>
+                <a href="#" class="text-csga-cyan text-sm flex items-center gap-1">Read <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 33 -->
+          <article class="card-cyber article-card overflow-hidden reveal" style="transition-delay: 1700ms;">
+            <div class="h-48 bg-gradient-to-br from-sky-600/20 to-csga-dark-secondary flex items-center justify-center">
+              <i data-lucide="compass" class="w-16 h-16 text-sky-400/60"></i>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-2 py-1 bg-sky-500/10 border border-sky-500/30 rounded text-sky-400 text-xs">Strategy</span>
+                <span class="text-csga-text-secondary text-xs">Sep 15, 2025</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">CSGA Strategic Vision 2026-2030</h3>
+              <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">Five-year strategic plan outlines CSGA's roadmap for advancing global cybersecurity and AI governance.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-text-secondary">By Dr. Frumi Barr</span>
+                <a href="#" class="text-csga-cyan text-sm flex items-center gap-1">Read <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Load More -->
+        <div class="mt-16 text-center reveal" style="transition-delay: 1750ms;">
+          <button class="px-8 py-4 border border-csga-cyan/30 text-csga-cyan rounded-xl font-semibold hover:bg-csga-cyan/10 transition-colors flex items-center gap-2 mx-auto">
+            <span>Load More Articles</span>
+            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners Slider -->
+  <section class="relative w-full bg-csga-dark py-12 border-y border-[rgba(242,245,250,0.06)]">
+    <div class="w-full px-6 lg:px-12 mb-8">
+      <div class="text-center">
+        <div class="label-mono mb-2">Trusted By Industry Leaders</div>
+      </div>
+    </div>
+    <div class="overflow-hidden">
+      <div class="partner-slider flex items-center gap-12 whitespace-nowrap">
+        <div class="flex items-center gap-12">
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">BMCC</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">CUNY</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">Terranova</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">CSOAI</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">Applied Tech Academy</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">Ontario Aerospace Council</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">U.S. Dept of Commerce</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">Toronto DAO</span>
+        </div>
+        <div class="flex items-center gap-12">
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">BMCC</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">CUNY</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">Terranova</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">CSOAI</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">Applied Tech Academy</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">Ontario Aerospace Council</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">U.S. Dept of Commerce</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">Toronto DAO</span>
+        </div>
+      </div>
+    </div>
+    <div class="w-full px-6 lg:px-12 mt-6 text-center">
+      <a href="partners.html" class="text-sm text-csga-cyan hover:underline">View All Partners →</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="relative bg-csga-dark border-t border-[rgba(242,245,250,0.06)]">
+    <div class="w-full px-6 lg:px-12 py-16 lg:py-20">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 lg:gap-8">
+        <div class="lg:col-span-2">
+          <div class="mb-6">
+            <img src="images/logo.png" alt="CSGA Global" class="h-32 w-auto">
+          </div>
+          <p class="text-csga-text-secondary text-sm leading-relaxed mb-6 max-w-sm">Cyber Security Global Alliance — advancing cybersecurity education, workforce development, and responsible AI governance worldwide.</p>
+        </div>
+        <div>
+          <h4 class="font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-csga-text-secondary mb-4">Organization</h4>
+          <ul class="space-y-3">
+            <li><a href="about.html" class="text-sm text-csga-text/80 hover:text-csga-cyan transition-colors duration-300">About CSGA</a></li>
+            <li><a href="council.html" class="text-sm text-csga-text/80 hover:text-csga-cyan transition-colors duration-300">Global Council</a></li>
+            <li><a href="news.html" class="text-sm text-csga-cyan">News & Media</a></li>
+            <li><a href="events.html" class="text-sm text-csga-text/80 hover:text-csga-cyan transition-colors duration-300">Events</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-csga-text-secondary mb-4">Solutions</h4>
+          <ul class="space-y-3">
+            <li><a href="cobol-bridge.html" class="text-sm text-csga-text/80 hover:text-csga-cyan transition-colors duration-300">COBOL Bridge</a></li>
+            <li><a href="csoai.html" class="text-sm text-csga-text/80 hover:text-csga-cyan transition-colors duration-300">CSOAI</a></li>
+            <li><a href="education.html" class="text-sm text-csga-text/80 hover:text-csga-cyan transition-colors duration-300">Education</a></li>
+            <li><a href="programs.html" class="text-sm text-csga-text/80 hover:text-csga-cyan transition-colors duration-300">Programs</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-csga-text-secondary mb-4">Resources</h4>
+          <ul class="space-y-3">
+            <li><a href="partners.html" class="text-sm text-csga-text/80 hover:text-csga-cyan transition-colors duration-300">Partners</a></li>
+            <li><a href="members.html" class="text-sm text-csga-text/80 hover:text-csga-cyan transition-colors duration-300">Membership</a></li>
+            <li><a href="contact.html" class="text-sm text-csga-text/80 hover:text-csga-cyan transition-colors duration-300">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-csga-text-secondary mb-4">Contact</h4>
+          <ul class="space-y-3">
+            <li class="flex items-center gap-2 text-sm text-csga-text/80">
+              <i data-lucide="phone" class="w-4 h-4 text-csga-cyan"></i>
+              +1 (416) 800-6080
+            </li>
+            <li class="flex items-start gap-2 text-sm text-csga-text/80">
+              <i data-lucide="map-pin" class="w-4 h-4 text-csga-cyan mt-0.5"></i>
+              <span>Toronto, Canada</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-[rgba(242,245,250,0.06)]">
+      <div class="w-full px-6 lg:px-12 py-6">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+          <p class="text-xs text-csga-text-secondary">© 2026 CSGA Global. All rights reserved.</p>
+          <div class="flex items-center gap-6">
+            <a href="privacy-policy.html" class="text-xs text-csga-text-secondary hover:text-csga-cyan transition-colors duration-300">Privacy Policy</a>
+            <a href="terms-of-service.html" class="text-xs text-csga-text-secondary hover:text-csga-cyan transition-colors duration-300">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+    const reveals = document.querySelectorAll('.reveal');
+    const revealOnScroll = () => {
+      reveals.forEach(el => {
+        const windowHeight = window.innerHeight;
+        const elementTop = el.getBoundingClientRect().top;
+        if (elementTop < windowHeight - 100) {
+          el.classList.add('active');
+        }
+      });
+    };
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+  </script>
+</body>
+</html>

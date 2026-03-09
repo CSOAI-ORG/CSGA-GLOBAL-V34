@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Member Dashboard | CSGA Global</title>
+  <meta name="description" content="CSGA Member Dashboard - Access COBOL Bridge, CSOAI tools, threat intelligence, and AI-powered cybersecurity resources.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'csga-dark': '#0B0F17',
+            'csga-dark-secondary': '#0E1420',
+            'csga-dark-tertiary': '#111827',
+            'csga-cyan': '#2EE9F6',
+            'csga-cyan-dim': 'rgba(46, 233, 246, 0.1)',
+            'csga-text': '#F2F5FA',
+            'csga-text-secondary': '#A7B1C6',
+            'csga-border': 'rgba(242, 245, 250, 0.08)',
+          },
+          fontFamily: {
+            'sans': ['Inter', 'sans-serif'],
+            'heading': ['Space Grotesk', 'sans-serif'],
+            'mono': ['IBM Plex Mono', 'monospace'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #0B0F17; color: #F2F5FA; font-family: 'Inter', sans-serif; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02em; }
+    .label-mono { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.18em; color: #A7B1C6; }
+    .grain-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; opacity: 0.04; mix-blend-mode: overlay; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); }
+    .sidebar-link { transition: all 0.3s ease; }
+    .sidebar-link:hover, .sidebar-link.active { background: rgba(46, 233, 246, 0.1); color: #2EE9F6; border-right: 3px solid #2EE9F6; }
+    .card-dashboard { background: rgba(14, 20, 32, 0.8); backdrop-filter: blur(20px); border: 1px solid rgba(242, 245, 250, 0.08); border-radius: 1rem; transition: all 0.3s ease; }
+    .card-dashboard:hover { border-color: rgba(46, 233, 246, 0.3); transform: translateY(-2px); }
+    .btn-primary { position: relative; overflow: hidden; transition: all 0.3s ease; }
+    .btn-primary::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.5s ease; }
+    .btn-primary:hover::before { left: 100%; }
+    .metric-card { background: linear-gradient(135deg, rgba(46, 233, 246, 0.1), rgba(46, 233, 246, 0.02)); border: 1px solid rgba(46, 233, 246, 0.2); }
+    .progress-bar { background: linear-gradient(90deg, #2EE9F6, #1a9aa3); }
+    .glow-cyan { box-shadow: 0 0 30px rgba(46, 233, 246, 0.15); }
+    .tool-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    .tool-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(46, 233, 246, 0.15); border-color: rgba(46, 233, 246, 0.4); }
+    .status-online { animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    .chat-bubble { animation: slideIn 0.3s ease; }
+    @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body class="antialiased">
+  <div class="grain-overlay"></div>
+
+  <!-- Dashboard Layout -->
+  <div class="flex min-h-screen">
+    
+    <!-- Sidebar -->
+    <aside class="w-64 bg-csga-dark-secondary border-r border-csga-border fixed h-full z-50 hidden lg:block">
+      <div class="p-6">
+        <a href="index.html" class="flex items-center gap-3 mb-8">
+          <img src="images/logo.png" alt="CSGA" class="h-10 w-auto">
+        </a>
+        
+        <nav class="space-y-1">
+          <a href="#overview" class="sidebar-link active flex items-center gap-3 px-4 py-3 rounded-lg text-csga-text text-sm">
+            <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+            <span>Overview</span>
+          </a>
+          <a href="#cobol-bridge" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg text-csga-text-secondary text-sm">
+            <i data-lucide="server" class="w-5 h-5"></i>
+            <span>COBOL Bridge</span>
+          </a>
+          <a href="#csoai" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg text-csga-text-secondary text-sm">
+            <i data-lucide="brain" class="w-5 h-5"></i>
+            <span>CSOAI Tools</span>
+          </a>
+          <a href="#threat-intel" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg text-csga-text-secondary text-sm">
+            <i data-lucide="shield-alert" class="w-5 h-5"></i>
+            <span>Threat Intelligence</span>
+          </a>
+          <a href="#ai-assistant" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg text-csga-text-secondary text-sm">
+            <i data-lucide="bot" class="w-5 h-5"></i>
+            <span>AI Assistant</span>
+          </a>
+          <a href="#training" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg text-csga-text-secondary text-sm">
+            <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+            <span>My Training</span>
+          </a>
+          <a href="#certifications" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg text-csga-text-secondary text-sm">
+            <i data-lucide="award" class="w-5 h-5"></i>
+            <span>Certifications</span>
+          </a>
+          <a href="#community" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg text-csga-text-secondary text-sm">
+            <i data-lucide="users" class="w-5 h-5"></i>
+            <span>Community</span>
+          </a>
+          <a href="#resources" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg text-csga-text-secondary text-sm">
+            <i data-lucide="folder-open" class="w-5 h-5"></i>
+            <span>Resources</span>
+          </a>
+        </nav>
+      </div>
+      
+      <div class="absolute bottom-0 left-0 right-0 p-6 border-t border-csga-border">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-full bg-csga-cyan/20 flex items-center justify-center">
+            <i data-lucide="user" class="w-5 h-5 text-csga-cyan"></i>
+          </div>
+          <div>
+            <div class="text-sm font-medium text-csga-text">Member</div>
+            <div class="text-xs text-csga-text-secondary">Professional Plan</div>
+          </div>
+        </div>
+        <a href="index.html" class="flex items-center gap-2 text-csga-text-secondary hover:text-csga-cyan transition-colors text-sm">
+          <i data-lucide="log-out" class="w-4 h-4"></i>
+          <span>Sign Out</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 lg:ml-64">
+      
+      <!-- Top Header -->
+      <header class="sticky top-0 z-40 bg-csga-dark/90 backdrop-blur-xl border-b border-csga-border">
+        <div class="flex items-center justify-between px-6 py-4">
+          <div class="flex items-center gap-4">
+            <button class="lg:hidden p-2 text-csga-text hover:text-csga-cyan">
+              <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+            <h1 class="text-xl font-bold text-csga-text">Member Dashboard</h1>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="hidden md:flex items-center gap-2 px-4 py-2 bg-csga-cyan/10 rounded-full border border-csga-cyan/30">
+              <div class="w-2 h-2 rounded-full bg-csga-cyan status-online"></div>
+              <span class="text-sm text-csga-cyan">AI Systems Active</span>
+            </div>
+            <button class="relative p-2 text-csga-text-secondary hover:text-csga-cyan transition-colors">
+              <i data-lucide="bell" class="w-5 h-5"></i>
+              <span class="absolute top-1 right-1 w-2 h-2 bg-csga-cyan rounded-full"></span>
+            </button>
+            <button class="relative p-2 text-csga-text-secondary hover:text-csga-cyan transition-colors">
+              <i data-lucide="message-square" class="w-5 h-5"></i>
+              <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Dashboard Content -->
+      <div class="p-6 space-y-8">
+        
+        <!-- Welcome Section -->
+        <section id="overview" class="card-dashboard p-8 glow-cyan">
+          <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+            <div>
+              <div class="label-mono mb-2">Welcome Back</div>
+              <h2 class="text-3xl font-bold text-csga-text mb-2">Your CSGA Command Center</h2>
+              <p class="text-csga-text-secondary max-w-xl">Access all your cybersecurity tools, AI governance resources, training programs, and community connections in one unified dashboard.</p>
+            </div>
+            <div class="flex gap-3">
+              <a href="contact.html" class="btn-primary px-6 py-3 bg-csga-cyan text-csga-dark rounded-xl font-semibold hover:bg-csga-cyan/90 transition-colors flex items-center gap-2">
+                <i data-lucide="zap" class="w-4 h-4"></i>
+                <span>Upgrade Plan</span>
+              </a>
+              <button class="px-6 py-3 border border-csga-cyan/30 text-csga-cyan rounded-xl font-semibold hover:bg-csga-cyan/10 transition-colors flex items-center gap-2">
+                <i data-lucide="help-circle" class="w-4 h-4"></i>
+                <span>Get Help</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Key Metrics -->
+        <section class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="metric-card card-dashboard p-6">
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-10 h-10 rounded-lg bg-csga-cyan/20 flex items-center justify-center">
+                <i data-lucide="shield-check" class="w-5 h-5 text-csga-cyan"></i>
+              </div>
+              <span class="text-xs text-csga-cyan bg-csga-cyan/10 px-2 py-1 rounded">+12%</span>
+            </div>
+            <div class="text-3xl font-bold text-csga-text mb-1">98.5%</div>
+            <div class="text-sm text-csga-text-secondary">Security Score</div>
+          </div>
+          
+          <div class="metric-card card-dashboard p-6">
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-10 h-10 rounded-lg bg-csga-cyan/20 flex items-center justify-center">
+                <i data-lucide="book-open" class="w-5 h-5 text-csga-cyan"></i>
+              </div>
+              <span class="text-xs text-csga-cyan bg-csga-cyan/10 px-2 py-1 rounded">In Progress</span>
+            </div>
+            <div class="text-3xl font-bold text-csga-text mb-1">3</div>
+            <div class="text-sm text-csga-text-secondary">Active Courses</div>
+          </div>
+          
+          <div class="metric-card card-dashboard p-6">
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-10 h-10 rounded-lg bg-csga-cyan/20 flex items-center justify-center">
+                <i data-lucide="award" class="w-5 h-5 text-csga-cyan"></i>
+              </div>
+              <span class="text-xs text-green-400 bg-green-400/10 px-2 py-1 rounded">Verified</span>
+            </div>
+            <div class="text-3xl font-bold text-csga-text mb-1">5</div>
+            <div class="text-sm text-csga-text-secondary">Certifications</div>
+          </div>
+          
+          <div class="metric-card card-dashboard p-6">
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-10 h-10 rounded-lg bg-csga-cyan/20 flex items-center justify-center">
+                <i data-lucide="users" class="w-5 h-5 text-csga-cyan"></i>
+              </div>
+              <span class="text-xs text-csga-cyan bg-csga-cyan/10 px-2 py-1 rounded">+24</span>
+            </div>
+            <div class="text-3xl font-bold text-csga-text mb-1">156</div>
+            <div class="text-sm text-csga-text-secondary">Network Connections</div>
+          </div>
+        </section>
+
+        <!-- COBOL Bridge Section -->
+        <section id="cobol-bridge" class="space-y-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="label-mono mb-2">Legacy Modernization</div>
+              <h2 class="text-2xl font-bold text-csga-text">COBOL Bridge</h2>
+            </div>
+            <a href="#" class="text-csga-cyan hover:underline text-sm flex items-center gap-1">
+              <span>View Documentation</span>
+              <i data-lucide="external-link" class="w-4 h-4"></i>
+            </a>
+          </div>
+          
+          <div class="grid lg:grid-cols-2 gap-6">
+            <div class="card-dashboard p-6">
+              <img src="images/cobol-bridge.jpg" alt="COBOL Bridge" class="w-full h-48 object-cover rounded-lg mb-6">
+              <h3 class="text-xl font-bold text-csga-text mb-3">Transform Legacy Systems</h3>
+              <p class="text-csga-text-secondary mb-6">Bridge the gap between COBOL legacy systems and modern cloud infrastructure. Our AI-powered tools analyze, refactor, and migrate critical business logic securely.</p>
+              <div class="space-y-3">
+                <div class="flex items-center gap-3">
+                  <i data-lucide="check-circle" class="w-5 h-5 text-csga-cyan"></i>
+                  <span class="text-sm text-csga-text-secondary">Automated code analysis and documentation</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <i data-lucide="check-circle" class="w-5 h-5 text-csga-cyan"></i>
+                  <span class="text-sm text-csga-text-secondary">Secure cloud migration pathways</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <i data-lucide="check-circle" class="w-5 h-5 text-csga-cyan"></i>
+                  <span class="text-sm text-csga-text-secondary">API modernization and microservices</span>
+                </div>
+              </div>
+              <button class="btn-primary w-full mt-6 px-6 py-3 bg-csga-cyan text-csga-dark rounded-xl font-semibold hover:bg-csga-cyan/90 transition-colors">
+                Launch COBOL Bridge
+              </button>
+            </div>
+            
+            <div class="space-y-4">
+              <div class="card-dashboard p-5">
+                <div class="flex items-center gap-4">
+                  <div class="w-12 h-12 rounded-lg bg-csga-cyan/10 flex items-center justify-center">
+                    <i data-lucide="file-code" class="w-6 h-6 text-csga-cyan"></i>
+                  </div>
+                  <div class="flex-1">
+                    <div class="flex items-center justify-between mb-1">
+                      <span class="text-sm font-medium text-csga-text">Code Analysis</span>
+                      <span class="text-sm text-csga-cyan">85%</span>
+                    </div>
+                    <div class="h-2 bg-csga-dark-tertiary rounded-full overflow-hidden">
+                      <div class="progress-bar h-full rounded-full" style="width: 85%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="card-dashboard p-5">
+                <div class="flex items-center gap-4">
+                  <div class="w-12 h-12 rounded-lg bg-csga-cyan/10 flex items-center justify-center">
+                    <i data-lucide="cloud" class="w-6 h-6 text-csga-cyan"></i>
+                  </div>
+                  <div class="flex-1">
+                    <div class="flex items-center justify-between mb-1">
+                      <span class="text-sm font-medium text-csga-text">Migration Progress</span>
+                      <span class="text-sm text-csga-cyan">42%</span>
+                    </div>
+                    <div class="h-2 bg-csga-dark-tertiary rounded-full overflow-hidden">
+                      <div class="progress-bar h-full rounded-full" style="width: 42%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="card-dashboard p-5">
+                <div class="flex items-center gap-4">
+                  <div class="w-12 h-12 rounded-lg bg-csga-cyan/10 flex items-center justify-center">
+                    <i data-lucide="lock" class="w-6 h-6 text-csga-cyan"></i>
+                  </div>
+                  <div class="flex-1">
+                    <div class="flex items-center justify-between mb-1">
+                      <span class="text-sm font-medium text-csga-text">Security Audit</span>
+                      <span class="text-sm text-green-400">Complete</span>
+                    </div>
+                    <div class="h-2 bg-csga-dark-tertiary rounded-full overflow-hidden">
+                      <div class="bg-green-400 h-full rounded-full" style="width: 100%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="card-dashboard p-5">
+                <h4 class="text-sm font-medium text-csga-text mb-3">Recent Activity</h4>
+                <div class="space-y-3">
+                  <div class="flex items-center gap-3 text-sm">
+                    <div class="w-2 h-2 rounded-full bg-csga-cyan"></div>
+                    <span class="text-csga-text-secondary">Payment processing module analyzed</span>
+                    <span class="text-xs text-csga-text-secondary ml-auto">2h ago</span>
+                  </div>
+                  <div class="flex items-center gap-3 text-sm">
+                    <div class="w-2 h-2 rounded-full bg-csga-cyan"></div>
+                    <span class="text-csga-text-secondary">Customer API endpoints migrated</span>
+                    <span class="text-xs text-csga-text-secondary ml-auto">5h ago</span>
+                  </div>
+                  <div class="flex items-center gap-3 text-sm">
+                    <div class="w-2 h-2 rounded-full bg-green-400"></div>
+                    <span class="text-csga-text-secondary">Security scan completed</span>
+                    <span class="text-xs text-csga-text-secondary ml-auto">1d ago</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CSOAI Tools Section -->
+        <section id="csoai" class="space-y-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="label-mono mb-2">AI Governance</div>
+              <h2 class="text-2xl font-bold text-csga-text">CSOAI Tools</h2>
+            </div>
+            <a href="csoai.html" class="text-csga-cyan hover:underline text-sm flex items-center gap-1">
+              <span>Learn More</span>
+              <i data-lucide="external-link" class="w-4 h-4"></i>
+            </a>
+          </div>
+          
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="tool-card card-dashboard p-6">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-csga-cyan/30 to-csga-cyan/10 flex items-center justify-center mb-4">
+                <i data-lucide="scan" class="w-6 h-6 text-csga-cyan"></i>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">AI Risk Scanner</h3>
+              <p class="text-sm text-csga-text-secondary mb-4">Automated assessment of AI systems for bias, security vulnerabilities, and compliance gaps.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-csga-cyan bg-csga-cyan/10 px-2 py-1 rounded">Active</span>
+                <button class="text-csga-cyan hover:text-csga-text transition-colors">
+                  <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </button>
+              </div>
+            </div>
+            
+            <div class="tool-card card-dashboard p-6">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500/30 to-purple-500/10 flex items-center justify-center mb-4">
+                <i data-lucide="scale" class="w-6 h-6 text-purple-400"></i>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">Policy Generator</h3>
+              <p class="text-sm text-csga-text-secondary mb-4">Generate AI governance policies aligned with NIST, EU AI Act, and industry standards.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-purple-400 bg-purple-400/10 px-2 py-1 rounded">Available</span>
+                <button class="text-csga-cyan hover:text-csga-text transition-colors">
+                  <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </button>
+              </div>
+            </div>
+            
+            <div class="tool-card card-dashboard p-6">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500/30 to-emerald-500/10 flex items-center justify-center mb-4">
+                <i data-lucide="eye" class="w-6 h-6 text-emerald-400"></i>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">Model Monitor</h3>
+              <p class="text-sm text-csga-text-secondary mb-4">Real-time monitoring of AI model performance, drift detection, and anomaly alerts.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-emerald-400 bg-emerald-400/10 px-2 py-1 rounded">New</span>
+                <button class="text-csga-cyan hover:text-csga-text transition-colors">
+                  <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </button>
+              </div>
+            </div>
+            
+            <div class="tool-card card-dashboard p-6">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500/30 to-amber-500/10 flex items-center justify-center mb-4">
+                <i data-lucide="file-text" class="w-6 h-6 text-amber-400"></i>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">Compliance Reporter</h3>
+              <p class="text-sm text-csga-text-secondary mb-4">Automated compliance reporting for audits and regulatory submissions.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-amber-400 bg-amber-400/10 px-2 py-1 rounded">Pro</span>
+                <button class="text-csga-cyan hover:text-csga-text transition-colors">
+                  <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </button>
+              </div>
+            </div>
+            
+            <div class="tool-card card-dashboard p-6">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-rose-500/30 to-rose-500/10 flex items-center justify-center mb-4">
+                <i data-lucide="shield" class="w-6 h-6 text-rose-400"></i>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">Adversarial Testing</h3>
+              <p class="text-sm text-csga-text-secondary mb-4">Test AI models against adversarial attacks and prompt injection scenarios.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-rose-400 bg-rose-400/10 px-2 py-1 rounded">Beta</span>
+                <button class="text-csga-cyan hover:text-csga-text transition-colors">
+                  <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </button>
+              </div>
+            </div>
+            
+            <div class="tool-card card-dashboard p-6">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/30 to-blue-500/10 flex items-center justify-center mb-4">
+                <i data-lucide="git-branch" class="w-6 h-6 text-blue-400"></i>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">Model Registry</h3>
+              <p class="text-sm text-csga-text-secondary mb-4">Centralized model versioning, lineage tracking, and deployment management.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-blue-400 bg-blue-400/10 px-2 py-1 rounded">Available</span>
+                <button class="text-csga-cyan hover:text-csga-text transition-colors">
+                  <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- AI Assistant Section -->
+        <section id="ai-assistant" class="space-y-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="label-mono mb-2">AI-Powered Support</div>
+              <h2 class="text-2xl font-bold text-csga-text">CSGA AI Assistant</h2>
+            </div>
+            <div class="flex items-center gap-2 px-3 py-1 bg-green-500/10 rounded-full border border-green-500/30">
+              <div class="w-2 h-2 rounded-full bg-green-500 status-online"></div>
+              <span class="text-xs text-green-400">Online</span>
+            </div>
+          </div>
+          
+          <div class="grid lg:grid-cols-3 gap-6">
+            <div class="lg:col-span-2 card-dashboard p-6">
+              <div class="flex items-center gap-4 mb-6">
+                <img src="images/ai-assistant.jpg" alt="AI Assistant" class="w-16 h-16 rounded-xl object-cover">
+                <div>
+                  <h3 class="text-lg font-bold text-csga-text">Your Cybersecurity Companion</h3>
+                  <p class="text-sm text-csga-text-secondary">Ask questions, get threat alerts, and receive personalized guidance</p>
+                </div>
+              </div>
+              
+              <div class="bg-csga-dark-tertiary rounded-xl p-4 mb-4 h-64 overflow-y-auto space-y-4" id="chat-container">
+                <div class="chat-bubble flex gap-3">
+                  <div class="w-8 h-8 rounded-full bg-csga-cyan/20 flex items-center justify-center flex-shrink-0">
+                    <i data-lucide="bot" class="w-4 h-4 text-csga-cyan"></i>
+                  </div>
+                  <div class="bg-csga-dark-secondary rounded-lg p-3 max-w-[80%]">
+                    <p class="text-sm text-csga-text">Hello! I'm your CSGA AI Assistant. I can help you with:</p>
+                    <ul class="text-sm text-csga-text-secondary mt-2 space-y-1">
+                      <li>• Threat intelligence updates</li>
+                      <li>• Training recommendations</li>
+                      <li>• Certification guidance</li>
+                      <li>• Technical questions</li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <div class="chat-bubble flex gap-3 justify-end">
+                  <div class="bg-csga-cyan/20 rounded-lg p-3 max-w-[80%]">
+                    <p class="text-sm text-csga-text">What are the latest CVEs I should know about?</p>
+                  </div>
+                </div>
+                
+                <div class="chat-bubble flex gap-3">
+                  <div class="w-8 h-8 rounded-full bg-csga-cyan/20 flex items-center justify-center flex-shrink-0">
+                    <i data-lucide="bot" class="w-4 h-4 text-csga-cyan"></i>
+                  </div>
+                  <div class="bg-csga-dark-secondary rounded-lg p-3 max-w-[80%]">
+                    <p class="text-sm text-csga-text">Here are this week's critical CVEs:</p>
+                    <div class="mt-2 space-y-2">
+                      <div class="bg-csga-dark rounded p-2">
+                        <div class="flex items-center gap-2">
+                          <span class="text-xs px-2 py-0.5 bg-red-500/20 text-red-400 rounded">Critical</span>
+                          <span class="text-xs text-csga-cyan">CVE-2024-XXXX</span>
+                        </div>
+                        <p class="text-xs text-csga-text-secondary mt-1">Remote code execution in popular web framework</p>
+                      </div>
+                      <div class="bg-csga-dark rounded p-2">
+                        <div class="flex items-center gap-2">
+                          <span class="text-xs px-2 py-0.5 bg-amber-500/20 text-amber-400 rounded">High</span>
+                          <span class="text-xs text-csga-cyan">CVE-2024-YYYY</span>
+                        </div>
+                        <p class="text-xs text-csga-text-secondary mt-1">SQL injection vulnerability in enterprise DB</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="flex gap-3">
+                <input type="text" placeholder="Ask me anything about cybersecurity..." class="flex-1 bg-csga-dark-tertiary border border-csga-border rounded-xl px-4 py-3 text-csga-text placeholder-csga-text-secondary focus:outline-none focus:border-csga-cyan transition-colors">
+                <button class="px-4 py-3 bg-csga-cyan text-csga-dark rounded-xl hover:bg-csga-cyan/90 transition-colors">
+                  <i data-lucide="send" class="w-5 h-5"></i>
+                </button>
+              </div>
+            </div>
+            
+            <div class="space-y-4">
+              <div class="card-dashboard p-5">
+                <h4 class="text-sm font-medium text-csga-text mb-4">Quick Actions</h4>
+                <div class="space-y-2">
+                  <button class="w-full flex items-center gap-3 p-3 bg-csga-dark-tertiary rounded-lg hover:bg-csga-cyan/10 transition-colors text-left">
+                    <i data-lucide="alert-triangle" class="w-5 h-5 text-csga-cyan"></i>
+                    <span class="text-sm text-csga-text">Check my security posture</span>
+                  </button>
+                  <button class="w-full flex items-center gap-3 p-3 bg-csga-dark-tertiary rounded-lg hover:bg-csga-cyan/10 transition-colors text-left">
+                    <i data-lucide="book-open" class="w-5 h-5 text-csga-cyan"></i>
+                    <span class="text-sm text-csga-text">Recommend training</span>
+                  </button>
+                  <button class="w-full flex items-center gap-3 p-3 bg-csga-dark-tertiary rounded-lg hover:bg-csga-cyan/10 transition-colors text-left">
+                    <i data-lucide="award" class="w-5 h-5 text-csga-cyan"></i>
+                    <span class="text-sm text-csga-text">Certification roadmap</span>
+                  </button>
+                  <button class="w-full flex items-center gap-3 p-3 bg-csga-dark-tertiary rounded-lg hover:bg-csga-cyan/10 transition-colors text-left">
+                    <i data-lucide="users" class="w-5 h-5 text-csga-cyan"></i>
+                    <span class="text-sm text-csga-text">Connect with mentors</span>
+                  </button>
+                </div>
+              </div>
+              
+              <div class="card-dashboard p-5">
+                <h4 class="text-sm font-medium text-csga-text mb-3">AI Capabilities</h4>
+                <div class="space-y-2 text-sm">
+                  <div class="flex items-center gap-2 text-csga-text-secondary">
+                    <i data-lucide="check" class="w-4 h-4 text-csga-cyan"></i>
+                    <span>Real-time threat analysis</span>
+                  </div>
+                  <div class="flex items-center gap-2 text-csga-text-secondary">
+                    <i data-lucide="check" class="w-4 h-4 text-csga-cyan"></i>
+                    <span>Personalized learning paths</span>
+                  </div>
+                  <div class="flex items-center gap-2 text-csga-text-secondary">
+                    <i data-lucide="check" class="w-4 h-4 text-csga-cyan"></i>
+                    <span>Code review assistance</span>
+                  </div>
+                  <div class="flex items-center gap-2 text-csga-text-secondary">
+                    <i data-lucide="check" class="w-4 h-4 text-csga-cyan"></i>
+                    <span>Policy drafting help</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Threat Intelligence Section -->
+        <section id="threat-intel" class="space-y-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="label-mono mb-2">Security Operations</div>
+              <h2 class="text-2xl font-bold text-csga-text">Threat Intelligence</h2>
+            </div>
+            <div class="flex items-center gap-2 px-3 py-1 bg-csga-cyan/10 rounded-full border border-csga-cyan/30">
+              <div class="w-2 h-2 rounded-full bg-csga-cyan status-online"></div>
+              <span class="text-xs text-csga-cyan">Live Feed</span>
+            </div>
+          </div>
+          
+          <div class="grid lg:grid-cols-3 gap-6">
+            <div class="lg:col-span-2 card-dashboard p-6">
+              <div class="flex items-center justify-between mb-6">
+                <h3 class="text-lg font-bold text-csga-text">Global Threat Map</h3>
+                <div class="flex gap-2">
+                  <button class="px-3 py-1 text-xs bg-csga-cyan/20 text-csga-cyan rounded-full">24h</button>
+                  <button class="px-3 py-1 text-xs text-csga-text-secondary hover:text-csga-text transition-colors">7d</button>
+                  <button class="px-3 py-1 text-xs text-csga-text-secondary hover:text-csga-text transition-colors">30d</button>
+                </div>
+              </div>
+              
+              <div class="bg-csga-dark-tertiary rounded-xl p-4 mb-4 h-64 flex items-center justify-center relative overflow-hidden">
+                <img src="images/global-network.jpg" alt="Threat Map" class="absolute inset-0 w-full h-full object-cover opacity-50">
+                <div class="relative z-10 text-center">
+                  <div class="text-4xl font-bold text-csga-cyan mb-2">2,847</div>
+                  <div class="text-sm text-csga-text-secondary">Active Threats Monitored</div>
+                </div>
+                <!-- Simulated threat indicators -->
+                <div class="absolute top-1/4 left-1/4 w-3 h-3 bg-red-500 rounded-full animate-ping"></div>
+                <div class="absolute top-1/3 right-1/3 w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
+                <div class="absolute bottom-1/3 left-1/2 w-2 h-2 bg-csga-cyan rounded-full animate-pulse"></div>
+              </div>
+              
+              <div class="grid grid-cols-3 gap-4">
+                <div class="text-center p-4 bg-csga-dark-tertiary rounded-lg">
+                  <div class="text-2xl font-bold text-red-400 mb-1">12</div>
+                  <div class="text-xs text-csga-text-secondary">Critical</div>
+                </div>
+                <div class="text-center p-4 bg-csga-dark-tertiary rounded-lg">
+                  <div class="text-2xl font-bold text-amber-400 mb-1">47</div>
+                  <div class="text-xs text-csga-text-secondary">High</div>
+                </div>
+                <div class="text-center p-4 bg-csga-dark-tertiary rounded-lg">
+                  <div class="text-2xl font-bold text-csga-cyan mb-1">156</div>
+                  <div class="text-xs text-csga-text-secondary">Medium</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="space-y-4">
+              <div class="card-dashboard p-5">
+                <h4 class="text-sm font-medium text-csga-text mb-4">Recent Alerts</h4>
+                <div class="space-y-3">
+                  <div class="flex items-start gap-3 p-3 bg-red-500/10 border border-red-500/20 rounded-lg">
+                    <i data-lucide="alert-triangle" class="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5"></i>
+                    <div>
+                      <div class="text-sm font-medium text-csga-text">Critical: Zero-Day Exploit</div>
+                      <div class="text-xs text-csga-text-secondary">New RCE vulnerability in enterprise software</div>
+                      <div class="text-xs text-red-400 mt-1">2 hours ago</div>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-3 p-3 bg-amber-500/10 border border-amber-500/20 rounded-lg">
+                    <i data-lucide="shield-alert" class="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5"></i>
+                    <div>
+                      <div class="text-sm font-medium text-csga-text">High: Phishing Campaign</div>
+                      <div class="text-xs text-csga-text-secondary">Targeted attacks on financial sector</div>
+                      <div class="text-xs text-amber-400 mt-1">5 hours ago</div>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-3 p-3 bg-csga-cyan/10 border border-csga-cyan/20 rounded-lg">
+                    <i data-lucide="info" class="w-5 h-5 text-csga-cyan flex-shrink-0 mt-0.5"></i>
+                    <div>
+                      <div class="text-sm font-medium text-csga-text">Update: Patch Available</div>
+                      <div class="text-xs text-csga-text-secondary">Security update for critical CVE</div>
+                      <div class="text-xs text-csga-cyan mt-1">8 hours ago</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="card-dashboard p-5">
+                <h4 class="text-sm font-medium text-csga-text mb-3">Threat Actors</h4>
+                <div class="space-y-2">
+                  <div class="flex items-center justify-between text-sm">
+                    <span class="text-csga-text-secondary">APT29 (Cozy Bear)</span>
+                    <span class="text-xs px-2 py-0.5 bg-red-500/20 text-red-400 rounded">Active</span>
+                  </div>
+                  <div class="flex items-center justify-between text-sm">
+                    <span class="text-csga-text-secondary">Lazarus Group</span>
+                    <span class="text-xs px-2 py-0.5 bg-amber-500/20 text-amber-400 rounded">Monitored</span>
+                  </div>
+                  <div class="flex items-center justify-between text-sm">
+                    <span class="text-csga-text-secondary">Conti Ransomware</span>
+                    <span class="text-xs px-2 py-0.5 bg-csga-cyan/20 text-csga-cyan rounded">Tracked</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- My Training Section -->
+        <section id="training" class="space-y-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="label-mono mb-2">Learning & Development</div>
+              <h2 class="text-2xl font-bold text-csga-text">My Training</h2>
+            </div>
+            <a href="education.html" class="text-csga-cyan hover:underline text-sm flex items-center gap-1">
+              <span>Browse All Courses</span>
+              <i data-lucide="external-link" class="w-4 h-4"></i>
+            </a>
+          </div>
+          
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="card-dashboard p-5">
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-10 h-10 rounded-lg bg-csga-cyan/20 flex items-center justify-center">
+                  <i data-lucide="shield" class="w-5 h-5 text-csga-cyan"></i>
+                </div>
+                <span class="text-xs text-csga-cyan bg-csga-cyan/10 px-2 py-1 rounded">In Progress</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">Security+ Certification</h3>
+              <p class="text-sm text-csga-text-secondary mb-4">Complete preparation for CompTIA Security+ exam</p>
+              <div class="mb-3">
+                <div class="flex items-center justify-between text-sm mb-1">
+                  <span class="text-csga-text-secondary">Progress</span>
+                  <span class="text-csga-cyan">68%</span>
+                </div>
+                <div class="h-2 bg-csga-dark-tertiary rounded-full overflow-hidden">
+                  <div class="progress-bar h-full rounded-full" style="width: 68%"></div>
+                </div>
+              </div>
+              <button class="w-full py-2 bg-csga-cyan/10 text-csga-cyan rounded-lg hover:bg-csga-cyan/20 transition-colors text-sm">
+                Continue Learning
+              </button>
+            </div>
+            
+            <div class="card-dashboard p-5">
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center">
+                  <i data-lucide="brain" class="w-5 h-5 text-purple-400"></i>
+                </div>
+                <span class="text-xs text-purple-400 bg-purple-400/10 px-2 py-1 rounded">New</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">AI Governance Fundamentals</h3>
+              <p class="text-sm text-csga-text-secondary mb-4">Learn AI risk management and ethical frameworks</p>
+              <div class="mb-3">
+                <div class="flex items-center justify-between text-sm mb-1">
+                  <span class="text-csga-text-secondary">Progress</span>
+                  <span class="text-csga-cyan">0%</span>
+                </div>
+                <div class="h-2 bg-csga-dark-tertiary rounded-full overflow-hidden">
+                  <div class="progress-bar h-full rounded-full" style="width: 0%"></div>
+                </div>
+              </div>
+              <button class="w-full py-2 bg-csga-cyan text-csga-dark rounded-lg hover:bg-csga-cyan/90 transition-colors text-sm">
+                Start Course
+              </button>
+            </div>
+            
+            <div class="card-dashboard p-5">
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center">
+                  <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
+                </div>
+                <span class="text-xs text-green-400 bg-green-400/10 px-2 py-1 rounded">Completed</span>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">Cybersecurity Basics</h3>
+              <p class="text-sm text-csga-text-secondary mb-4">Foundation course for cybersecurity professionals</p>
+              <div class="mb-3">
+                <div class="flex items-center justify-between text-sm mb-1">
+                  <span class="text-csga-text-secondary">Progress</span>
+                  <span class="text-green-400">100%</span>
+                </div>
+                <div class="h-2 bg-csga-dark-tertiary rounded-full overflow-hidden">
+                  <div class="bg-green-400 h-full rounded-full" style="width: 100%"></div>
+                </div>
+              </div>
+              <button class="w-full py-2 bg-csga-dark-tertiary text-csga-text-secondary rounded-lg hover:text-csga-text transition-colors text-sm">
+                Review Certificate
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications" class="space-y-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="label-mono mb-2">Credentials</div>
+              <h2 class="text-2xl font-bold text-csga-text">My Certifications</h2>
+            </div>
+            <a href="programs.html" class="text-csga-cyan hover:underline text-sm flex items-center gap-1">
+              <span>View All Programs</span>
+              <i data-lucide="external-link" class="w-4 h-4"></i>
+            </a>
+          </div>
+          
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="card-dashboard p-5 text-center">
+              <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-csga-cyan/30 to-csga-cyan/10 flex items-center justify-center">
+                <i data-lucide="award" class="w-8 h-8 text-csga-cyan"></i>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-1">CSGA Cyber</h3>
+              <p class="text-sm text-csga-text-secondary mb-3">Foundation</p>
+              <div class="text-xs text-green-400 bg-green-400/10 px-3 py-1 rounded-full inline-block">Verified</div>
+              <div class="text-xs text-csga-text-secondary mt-2">Issued: Jan 2024</div>
+            </div>
+            
+            <div class="card-dashboard p-5 text-center">
+              <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-purple-500/30 to-purple-500/10 flex items-center justify-center">
+                <i data-lucide="shield-check" class="w-8 h-8 text-purple-400"></i>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-1">CompTIA</h3>
+              <p class="text-sm text-csga-text-secondary mb-3">Security+</p>
+              <div class="text-xs text-green-400 bg-green-400/10 px-3 py-1 rounded-full inline-block">Verified</div>
+              <div class="text-xs text-csga-text-secondary mt-2">Issued: Mar 2024</div>
+            </div>
+            
+            <div class="card-dashboard p-5 text-center">
+              <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-amber-500/30 to-amber-500/10 flex items-center justify-center">
+                <i data-lucide="brain-circuit" class="w-8 h-8 text-amber-400"></i>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-1">CSOAI</h3>
+              <p class="text-sm text-csga-text-secondary mb-3">AI Governance</p>
+              <div class="text-xs text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full inline-block">In Progress</div>
+              <div class="text-xs text-csga-text-secondary mt-2">Est: Jun 2024</div>
+            </div>
+            
+            <div class="card-dashboard p-5 text-center border-dashed border-2 border-csga-cyan/30">
+              <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-csga-cyan/10 flex items-center justify-center">
+                <i data-lucide="plus" class="w-8 h-8 text-csga-cyan"></i>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-1">Add New</h3>
+              <p class="text-sm text-csga-text-secondary mb-3">Certification</p>
+              <button class="text-xs text-csga-cyan hover:underline">Browse Programs</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Community Section -->
+        <section id="community" class="space-y-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="label-mono mb-2">Network</div>
+              <h2 class="text-2xl font-bold text-csga-text">Community</h2>
+            </div>
+            <a href="events.html" class="text-csga-cyan hover:underline text-sm flex items-center gap-1">
+              <span>View Events</span>
+              <i data-lucide="external-link" class="w-4 h-4"></i>
+            </a>
+          </div>
+          
+          <div class="grid lg:grid-cols-2 gap-6">
+            <div class="card-dashboard p-6">
+              <h3 class="text-lg font-bold text-csga-text mb-4">Think Tank Memberships</h3>
+              <div class="space-y-3">
+                <div class="flex items-center justify-between p-3 bg-csga-dark-tertiary rounded-lg">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg bg-csga-cyan/20 flex items-center justify-center">
+                      <i data-lucide="cpu" class="w-5 h-5 text-csga-cyan"></i>
+                    </div>
+                    <div>
+                      <div class="text-sm font-medium text-csga-text">AI & Defense Innovation</div>
+                      <div class="text-xs text-csga-text-secondary">124 members</div>
+                    </div>
+                  </div>
+                  <span class="text-xs text-green-400 bg-green-400/10 px-2 py-1 rounded">Active</span>
+                </div>
+                <div class="flex items-center justify-between p-3 bg-csga-dark-tertiary rounded-lg">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center">
+                      <i data-lucide="atom" class="w-5 h-5 text-purple-400"></i>
+                    </div>
+                    <div>
+                      <div class="text-sm font-medium text-csga-text">Quantum Solutions</div>
+                      <div class="text-xs text-csga-text-secondary">67 members</div>
+                    </div>
+                  </div>
+                  <span class="text-xs text-green-400 bg-green-400/10 px-2 py-1 rounded">Active</span>
+                </div>
+                <div class="flex items-center justify-between p-3 bg-csga-dark-tertiary rounded-lg">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg bg-amber-500/20 flex items-center justify-center">
+                      <i data-lucide="car" class="w-5 h-5 text-amber-400"></i>
+                    </div>
+                    <div>
+                      <div class="text-sm font-medium text-csga-text">Autonomous Vehicles</div>
+                      <div class="text-xs text-csga-text-secondary">89 members</div>
+                    </div>
+                  </div>
+                  <span class="text-xs text-csga-cyan bg-csga-cyan/10 px-2 py-1 rounded">Pending</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="card-dashboard p-6">
+              <h3 class="text-lg font-bold text-csga-text mb-4">Upcoming Events</h3>
+              <div class="space-y-3">
+                <div class="flex items-start gap-3 p-3 bg-csga-dark-tertiary rounded-lg">
+                  <div class="w-12 h-12 rounded-lg bg-csga-cyan/20 flex items-center justify-center flex-shrink-0">
+                    <div class="text-center">
+                      <div class="text-xs text-csga-cyan font-bold">MAR</div>
+                      <div class="text-lg text-csga-cyan font-bold">15</div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="text-sm font-medium text-csga-text">AI & Defence Innovation Summit</div>
+                    <div class="text-xs text-csga-text-secondary">Toronto, Canada • Hybrid</div>
+                    <div class="flex items-center gap-2 mt-2">
+                      <span class="text-xs px-2 py-0.5 bg-csga-cyan/20 text-csga-cyan rounded">Registered</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3 p-3 bg-csga-dark-tertiary rounded-lg">
+                  <div class="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center flex-shrink-0">
+                    <div class="text-center">
+                      <div class="text-xs text-purple-400 font-bold">APR</div>
+                      <div class="text-lg text-purple-400 font-bold">08</div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="text-sm font-medium text-csga-text">Regional Cyber Threat Briefing</div>
+                    <div class="text-xs text-csga-text-secondary">Virtual Event</div>
+                    <div class="flex items-center gap-2 mt-2">
+                      <span class="text-xs px-2 py-0.5 bg-csga-text/10 text-csga-text-secondary rounded">Open</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section id="resources" class="space-y-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="label-mono mb-2">Library</div>
+              <h2 class="text-2xl font-bold text-csga-text">Resources</h2>
+            </div>
+          </div>
+          
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <a href="#" class="card-dashboard p-5 hover:border-csga-cyan/30 transition-all group">
+              <div class="w-12 h-12 rounded-lg bg-csga-cyan/20 flex items-center justify-center mb-4 group-hover:bg-csga-cyan/30 transition-colors">
+                <i data-lucide="file-text" class="w-6 h-6 text-csga-cyan"></i>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">Whitepapers</h3>
+              <p class="text-sm text-csga-text-secondary">Research reports and technical documents</p>
+              <div class="text-xs text-csga-cyan mt-3">24 available</div>
+            </a>
+            
+            <a href="#" class="card-dashboard p-5 hover:border-csga-cyan/30 transition-all group">
+              <div class="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center mb-4 group-hover:bg-purple-500/30 transition-colors">
+                <i data-lucide="video" class="w-6 h-6 text-purple-400"></i>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">Webinars</h3>
+              <p class="text-sm text-csga-text-secondary">Recorded sessions and live events</p>
+              <div class="text-xs text-purple-400 mt-3">156 available</div>
+            </a>
+            
+            <a href="#" class="card-dashboard p-5 hover:border-csga-cyan/30 transition-all group">
+              <div class="w-12 h-12 rounded-lg bg-emerald-500/20 flex items-center justify-center mb-4 group-hover:bg-emerald-500/30 transition-colors">
+                <i data-lucide="download" class="w-6 h-6 text-emerald-400"></i>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">Tools</h3>
+              <p class="text-sm text-csga-text-secondary">Security tools and frameworks</p>
+              <div class="text-xs text-emerald-400 mt-3">42 available</div>
+            </a>
+            
+            <a href="#" class="card-dashboard p-5 hover:border-csga-cyan/30 transition-all group">
+              <div class="w-12 h-12 rounded-lg bg-amber-500/20 flex items-center justify-center mb-4 group-hover:bg-amber-500/30 transition-colors">
+                <i data-lucide="newspaper" class="w-6 h-6 text-amber-400"></i>
+              </div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">News</h3>
+              <p class="text-sm text-csga-text-secondary">Latest cybersecurity updates</p>
+              <div class="text-xs text-amber-400 mt-3">Daily updates</div>
+            </a>
+          </div>
+        </section>
+
+        <!-- Footer CTA -->
+        <section class="card-dashboard p-8 text-center glow-cyan">
+          <h2 class="text-2xl font-bold text-csga-text mb-4">Ready to Upgrade Your Experience?</h2>
+          <p class="text-csga-text-secondary mb-6 max-w-xl mx-auto">Unlock premium features including advanced AI tools, priority threat alerts, exclusive events, and 1-on-1 mentorship.</p>
+          <div class="flex flex-wrap justify-center gap-4">
+            <a href="members.html" class="btn-primary px-8 py-3 bg-csga-cyan text-csga-dark rounded-xl font-semibold hover:bg-csga-cyan/90 transition-colors inline-flex items-center gap-2">
+              <span>View Membership Plans</span>
+              <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </a>
+            <a href="contact.html" class="px-8 py-3 border border-csga-cyan/30 text-csga-cyan rounded-xl font-semibold hover:bg-csga-cyan/10 transition-colors">
+              Contact Sales
+            </a>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Dashboard Footer -->
+      <footer class="border-t border-csga-border p-6">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+          <p class="text-sm text-csga-text-secondary">&copy; 2026 CSGA Global. All rights reserved.</p>
+          <div class="flex gap-6">
+            <a href="#" class="text-sm text-csga-text-secondary hover:text-csga-cyan transition-colors">Privacy</a>
+            <a href="#" class="text-sm text-csga-text-secondary hover:text-csga-cyan transition-colors">Terms</a>
+            <a href="#" class="text-sm text-csga-text-secondary hover:text-csga-cyan transition-colors">Support</a>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+    
+    // Mobile menu toggle
+    const mobileMenuBtn = document.querySelector('button.lg\\:hidden');
+    const sidebar = document.querySelector('aside');
+    
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('hidden');
+        sidebar.classList.toggle('fixed');
+        sidebar.classList.toggle('inset-0');
+        sidebar.classList.toggle('z-50');
+      });
+    }
+    
+    // Smooth scroll for sidebar links
+    document.querySelectorAll('.sidebar-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+          // Update active state
+          document.querySelectorAll('.sidebar-link').forEach(l => {
+            l.classList.remove('active');
+            l.classList.add('text-csga-text-secondary');
+          });
+          link.classList.add('active');
+          link.classList.remove('text-csga-text-secondary');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSGA Global | Cyber Resilience. AI Trust. Global Reach.</title>
+  <meta name="description" content="CSGA is a global alliance advancing cybersecurity education, workforce development, and responsible AI governance across institutions, enterprises, and nations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'csga-dark': '#0B0F17',
+            'csga-dark-secondary': '#0E1420',
+            'csga-cyan': '#2EE9F6',
+            'csga-text': '#F2F5FA',
+            'csga-text-secondary': '#A7B1C6',
+          },
+          fontFamily: {
+            'sans': ['Inter', 'sans-serif'],
+            'heading': ['Space Grotesk', 'sans-serif'],
+            'mono': ['IBM Plex Mono', 'monospace'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #0B0F17; color: #F2F5FA; font-family: 'Inter', sans-serif; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02em; }
+    .label-mono { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.18em; color: #A7B1C6; }
+    .cta-link { position: relative; display: inline-flex; align-items: center; gap: 0.5rem; color: #2EE9F6; font-weight: 500; transition: gap 0.3s; }
+    .cta-link:hover { gap: 0.75rem; }
+    .cta-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 1px; background: #2EE9F6; }
+    .card-cyber { background: rgba(14, 20, 32, 0.8); backdrop-filter: blur(20px); border: 1px solid rgba(242, 245, 250, 0.08); border-radius: 1rem; }
+    .grain-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; opacity: 0.04; mix-blend-mode: overlay; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); }
+    .nav-link { position: relative; color: #A7B1C6; transition: color 0.3s; }
+    .nav-link:hover { color: #F2F5FA; }
+    .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: #2EE9F6; transition: width 0.3s; }
+    .nav-link:hover::after { width: 100%; }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .partner-slider { animation: slide 30s linear infinite; }
+    @keyframes slide { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .partner-slider:hover { animation-play-state: paused; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    
+    /* VIDEO-LIKE HERO SLIDESHOW */
+    .hero-video-slideshow {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    
+    .hero-video-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+    }
+    
+    .hero-video-slide.active {
+      opacity: 1;
+    }
+    
+    .hero-video-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    /* ULTRA KEN BURNS EFFECTS */
+    .kb-ultra {
+      position: absolute;
+      inset: -15%;
+      width: 130%;
+      height: 130%;
+    }
+    
+    .kb-zoom-slow { animation: kbZoomSlow 20s ease-in-out infinite alternate; }
+    .kb-pan-wide { animation: kbPanWide 18s ease-in-out infinite alternate; }
+    .kb-zoom-deep { animation: kbZoomDeep 22s ease-in-out infinite alternate; }
+    .kb-pan-drift { animation: kbPanDrift 19s ease-in-out infinite alternate; }
+    .kb-zoom-pulse { animation: kbZoomPulse 21s ease-in-out infinite alternate; }
+    .kb-pan-sweep { animation: kbPanSweep 20s ease-in-out infinite alternate; }
+    
+    @keyframes kbZoomSlow {
+      0% { transform: scale(1.1) translate(-2%, -1%); }
+      100% { transform: scale(1.35) translate(1%, 0.5%); }
+    }
+    
+    @keyframes kbPanWide {
+      0% { transform: scale(1.2) translate(-5%, 0); }
+      100% { transform: scale(1.25) translate(3%, -2%); }
+    }
+    
+    @keyframes kbZoomDeep {
+      0% { transform: scale(1) translate(0, 0); }
+      100% { transform: scale(1.4) translate(-2%, -1%); }
+    }
+    
+    @keyframes kbPanDrift {
+      0% { transform: scale(1.15) translate(2%, -3%); }
+      100% { transform: scale(1.2) translate(-3%, 2%); }
+    }
+    
+    @keyframes kbZoomPulse {
+      0% { transform: scale(1.1) translate(-1%, 1%); }
+      100% { transform: scale(1.3) translate(1%, -1%); }
+    }
+    
+    @keyframes kbPanSweep {
+      0% { transform: scale(1.18) translate(0, 3%); }
+      100% { transform: scale(1.22) translate(0, -4%); }
+    }
+    
+    /* CINEMATIC OVERLAY */
+    .cinematic-overlay {
+      background: linear-gradient(
+        180deg,
+        rgba(11, 15, 23, 0.85) 0%,
+        rgba(11, 15, 23, 0.5) 30%,
+        rgba(11, 15, 23, 0.4) 50%,
+        rgba(11, 15, 23, 0.6) 70%,
+        rgba(11, 15, 23, 0.95) 100%
+      );
+    }
+    
+    /* VIGNETTE EFFECT */
+    .vignette::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, transparent 30%, rgba(11, 15, 23, 0.7) 100%);
+      pointer-events: none;
+    }
+    
+    /* FLOATING PARTICLES */
+    @keyframes float {
+      0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
+      25% { transform: translateY(-30px) translateX(15px); opacity: 0.7; }
+      50% { transform: translateY(-15px) translateX(-15px); opacity: 0.5; }
+      75% { transform: translateY(-40px) translateX(8px); opacity: 0.6; }
+    }
+    
+    .floating-particle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: #2EE9F6;
+      border-radius: 50%;
+      box-shadow: 0 0 20px #2EE9F6;
+      animation: float 10s ease-in-out infinite;
+    }
+    
+    /* SCAN LINE EFFECT */
+    @keyframes scanline {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(100vh); }
+    }
+    
+    .scanline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, rgba(46, 233, 246, 0.4), transparent);
+      animation: scanline 8s linear infinite;
+      pointer-events: none;
+      z-index: 5;
+    }
+    
+    /* SLIDE INDICATORS */
+    .slide-dot {
+      transition: all 0.4s ease;
+      width: 50px;
+      height: 4px;
+      border-radius: 2px;
+      background: rgba(46, 233, 246, 0.25);
+      border: none;
+      cursor: pointer;
+    }
+    .slide-dot.active {
+      background: #2EE9F6;
+      width: 80px;
+      box-shadow: 0 0 15px rgba(46, 233, 246, 0.5);
+    }
+    .slide-dot:hover {
+      background: rgba(46, 233, 246, 0.5);
+    }
+    
+    /* GALLERY NAVIGATION CARDS */
+    .gallery-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1.5rem;
+      cursor: pointer;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .gallery-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 30px 80px rgba(46, 233, 246, 0.2);
+    }
+    
+    .gallery-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+    
+    .gallery-card:hover img {
+      transform: scale(1.15);
+    }
+    
+    .gallery-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(11, 15, 23, 0.95) 0%, rgba(11, 15, 23, 0.5) 50%, transparent 100%);
+      transition: all 0.4s ease;
+    }
+    
+    .gallery-card:hover .gallery-card-overlay {
+      background: linear-gradient(to top, rgba(11, 15, 23, 0.9) 0%, rgba(11, 15, 23, 0.3) 60%, transparent 100%);
+    }
+    
+    .gallery-card-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 2rem;
+      transform: translateY(10px);
+      transition: transform 0.4s ease;
+    }
+    
+    .gallery-card:hover .gallery-card-content {
+      transform: translateY(0);
+    }
+    
+    .gallery-card-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 1rem;
+      background: rgba(46, 233, 246, 0.15);
+      border: 1px solid rgba(46, 233, 246, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      transition: all 0.4s ease;
+    }
+    
+    .gallery-card:hover .gallery-card-icon {
+      background: rgba(46, 233, 246, 0.25);
+      transform: scale(1.1);
+      box-shadow: 0 0 30px rgba(46, 233, 246, 0.3);
+    }
+    
+    /* BUTTON ANIMATIONS */
+    .btn-primary {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.6s ease;
+    }
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+    
+    /* TEXT REVEAL ANIMATION */
+    @keyframes textReveal {
+      0% { opacity: 0; transform: translateY(40px); filter: blur(10px); }
+      100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+    }
+    
+    .text-reveal {
+      animation: textReveal 1s ease-out forwards;
+    }
+    .text-reveal-delay-1 { animation-delay: 0.3s; opacity: 0; }
+    .text-reveal-delay-2 { animation-delay: 0.5s; opacity: 0; }
+    .text-reveal-delay-3 { animation-delay: 0.7s; opacity: 0; }
+    .text-reveal-delay-4 { animation-delay: 0.9s; opacity: 0; }
+    
+    /* GLOW LINE */
+    @keyframes glowLine {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    
+    .glow-line {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #2EE9F6, transparent);
+      background-size: 200% 100%;
+      animation: glowLine 4s linear infinite;
+    }
+    
+    /* GRID OVERLAY */
+    .grid-overlay {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(46, 233, 246, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46, 233, 246, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+    
+    /* PILLAR CARD HOVER */
+    .pillar-card {
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .pillar-card:hover {
+      transform: translateY(-12px);
+      border-color: rgba(46, 233, 246, 0.4);
+      box-shadow: 0 20px 60px rgba(46, 233, 246, 0.15);
+    }
+    
+    /* FAQ */
+    .faq-item { border-bottom: 1px solid rgba(242, 245, 250, 0.08); }
+    .faq-question { cursor: pointer; transition: color 0.3s; }
+    .faq-question:hover { color: #2EE9F6; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; }
+    .faq-item.active .faq-answer { max-height: 500px; padding-top: 1rem; }
+    .faq-item.active .faq-icon { transform: rotate(180deg); }
+    .faq-icon { transition: transform 0.3s ease; }
+    
+    /* STEP CONNECTOR */
+    .step-connector { position: relative; }
+    .step-connector::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -50%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(46, 233, 246, 0.3), transparent);
+    }
+    @media (max-width: 768px) { .step-connector::after { display: none; } }
+    
+    /* IMG ZOOM */
+    .img-zoom { overflow: hidden; }
+    .img-zoom img { transition: transform 0.5s ease; }
+    .img-zoom:hover img { transform: scale(1.05); }
+  </style>
+</head>
+<body class="antialiased">
+  <div class="grain-overlay"></div>
+
+  <!-- Navigation -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-[1000] transition-all duration-500">
+    <div class="w-full px-6 lg:px-12">
+      <div class="flex items-center justify-between h-20 lg:h-24">
+        <a href="index.html" class="flex items-center gap-3 group">
+          <img src="images/logo.png" alt="CSGA Global" class="h-20 w-auto transition-transform duration-300 group-hover:scale-105">
+        </a>
+        <div class="hidden lg:flex items-center gap-8">
+          <a href="about.html" class="nav-link text-sm font-medium">About</a>
+          <a href="education.html" class="nav-link text-sm font-medium">Education</a>
+          <a href="programs.html" class="nav-link text-sm font-medium">Programs</a>
+          <a href="csoai.html" class="nav-link text-sm font-medium">CSOAI</a>
+          <a href="events.html" class="nav-link text-sm font-medium">Events</a>
+          <a href="veterans.html" class="nav-link text-sm font-medium">Veterans</a>
+          <a href="news.html" class="nav-link text-sm font-medium">News</a>
+          <a href="council.html" class="nav-link text-sm font-medium">Council</a>
+          <a href="members.html" class="nav-link text-sm font-medium">Members</a>
+          <a href="contact.html" class="px-5 py-2.5 bg-csga-cyan/10 border border-csga-cyan/30 rounded-lg text-csga-cyan text-sm font-medium hover:bg-csga-cyan/20 hover:border-csga-cyan/50 transition-all duration-300">Join</a>
+        </div>
+        <button id="mobile-menu-btn" class="lg:hidden p-2 text-csga-text hover:text-csga-cyan transition-colors">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="fixed inset-0 z-[999] lg:hidden opacity-0 pointer-events-none transition-opacity duration-500">
+    <div class="absolute inset-0 bg-csga-dark/95 backdrop-blur-xl" id="mobile-menu-overlay"></div>
+    <div class="relative flex flex-col items-center justify-center h-full gap-8">
+      <a href="about.html" class="mobile-nav-link text-2xl font-semibold text-csga-text hover:text-csga-cyan transition-colors">About</a>
+      <a href="education.html" class="mobile-nav-link text-2xl font-semibold text-csga-text hover:text-csga-cyan transition-colors">Education</a>
+      <a href="programs.html" class="mobile-nav-link text-2xl font-semibold text-csga-text hover:text-csga-cyan transition-colors">Programs</a>
+      <a href="csoai.html" class="mobile-nav-link text-2xl font-semibold text-csga-text hover:text-csga-cyan transition-colors">CSOAI</a>
+      <a href="events.html" class="mobile-nav-link text-2xl font-semibold text-csga-text hover:text-csga-cyan transition-colors">Events</a>
+      <a href="veterans.html" class="mobile-nav-link text-2xl font-semibold text-csga-text hover:text-csga-cyan transition-colors">Veterans</a>
+      <a href="news.html" class="mobile-nav-link text-2xl font-semibold text-csga-text hover:text-csga-cyan transition-colors">News</a>
+      <a href="council.html" class="mobile-nav-link text-2xl font-semibold text-csga-text hover:text-csga-cyan transition-colors">Council</a>
+      <a href="members.html" class="mobile-nav-link text-2xl font-semibold text-csga-text hover:text-csga-cyan transition-colors">Members</a>
+      <a href="contact.html" class="mt-4 px-8 py-3 bg-csga-cyan text-csga-dark rounded-lg font-semibold hover:bg-csga-cyan/90 transition-colors">Join the Alliance</a>
+    </div>
+  </div>
+
+  <!-- CINEMATIC HERO SECTION WITH VIDEO-LIKE SLIDESHOW -->
+  <section class="relative w-full h-screen overflow-hidden">
+    <!-- Video-like Slideshow with Ultra Ken Burns -->
+    <div id="hero-slideshow" class="hero-video-slideshow vignette">
+      <!-- Slide 1: Global Network -->
+      <div class="hero-video-slide active" data-slide="0">
+        <div class="kb-ultra kb-zoom-slow">
+          <img src="images/hero-1-global.jpg" alt="Global Cyber Network">
+        </div>
+      </div>
+      <!-- Slide 2: AI Command Center -->
+      <div class="hero-video-slide" data-slide="1">
+        <div class="kb-ultra kb-pan-wide">
+          <img src="images/hero-2-command.jpg" alt="AI Command Center">
+        </div>
+      </div>
+      <!-- Slide 3: Cyber Team -->
+      <div class="hero-video-slide" data-slide="2">
+        <div class="kb-ultra kb-zoom-deep">
+          <img src="images/hero-3-team.jpg" alt="Cybersecurity Team">
+        </div>
+      </div>
+      <!-- Slide 4: AI Governance -->
+      <div class="hero-video-slide" data-slide="3">
+        <div class="kb-ultra kb-pan-drift">
+          <img src="images/hero-4-governance.jpg" alt="AI Governance">
+        </div>
+      </div>
+      <!-- Slide 5: Cloud Security -->
+      <div class="hero-video-slide" data-slide="4">
+        <div class="kb-ultra kb-zoom-pulse">
+          <img src="images/hero-5-cloud.jpg" alt="Cloud Security">
+        </div>
+      </div>
+      <!-- Slide 6: Quantum -->
+      <div class="hero-video-slide" data-slide="5">
+        <div class="kb-ultra kb-pan-sweep">
+          <img src="images/hero-6-quantum.jpg" alt="Quantum Security">
+        </div>
+      </div>
+    </div>
+    
+    <!-- Grid Overlay -->
+    <div class="grid-overlay"></div>
+    
+    <!-- Cinematic Gradient Overlay -->
+    <div class="absolute inset-0 cinematic-overlay"></div>
+    
+    <!-- Floating Particles -->
+    <div class="floating-particle" style="top: 15%; left: 8%; animation-delay: 0s;"></div>
+    <div class="floating-particle" style="top: 35%; left: 85%; animation-delay: 2s;"></div>
+    <div class="floating-particle" style="top: 65%; left: 25%; animation-delay: 4s;"></div>
+    <div class="floating-particle" style="top: 25%; left: 65%; animation-delay: 1s;"></div>
+    <div class="floating-particle" style="top: 75%; left: 75%; animation-delay: 3s;"></div>
+    <div class="floating-particle" style="top: 45%; left: 45%; animation-delay: 5s;"></div>
+    <div class="floating-particle" style="top: 85%; left: 15%; animation-delay: 2.5s;"></div>
+    <div class="floating-particle" style="top: 55%; left: 90%; animation-delay: 4.5s;"></div>
+    
+    <!-- Scan Line Effect -->
+    <div class="absolute inset-0 scanline pointer-events-none"></div>
+    
+    <!-- Hero Content -->
+    <div class="relative z-10 h-full flex items-center">
+      <div class="w-full px-6 lg:px-[6vw]">
+        <div class="max-w-4xl">
+          <!-- Label with Glow Line -->
+          <div class="mb-6 text-reveal text-reveal-delay-1">
+            <div class="flex items-center gap-4 mb-2">
+              <div class="glow-line flex-1 max-w-[100px]"></div>
+              <span class="label-mono text-csga-cyan">Cyber Security Global Alliance</span>
+              <div class="glow-line flex-1 max-w-[100px]"></div>
+            </div>
+          </div>
+          
+          <!-- Main Headline -->
+          <h1 class="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-csga-text leading-[1.05] tracking-tight mb-6 text-reveal text-reveal-delay-2">
+            Securing the<br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-csga-cyan via-cyan-300 to-csga-cyan">Digital Future</span>
+          </h1>
+          
+          <!-- Subheadline -->
+          <p class="text-lg lg:text-xl text-csga-text-secondary leading-relaxed mb-8 max-w-2xl text-reveal text-reveal-delay-3">
+            Global alliance advancing cybersecurity education, AI governance, and legacy modernization across institutions, enterprises, and nations.
+          </p>
+          
+          <!-- Stats Row -->
+          <div class="flex flex-wrap gap-8 mb-10 text-reveal text-reveal-delay-3">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-csga-cyan/10 border border-csga-cyan/30 flex items-center justify-center">
+                <i data-lucide="users" class="w-6 h-6 text-csga-cyan"></i>
+              </div>
+              <div>
+                <div class="font-mono text-2xl font-bold text-csga-text">10K+</div>
+                <div class="text-sm text-csga-text-secondary">Global Members</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-csga-cyan/10 border border-csga-cyan/30 flex items-center justify-center">
+                <i data-lucide="building-2" class="w-6 h-6 text-csga-cyan"></i>
+              </div>
+              <div>
+                <div class="font-mono text-2xl font-bold text-csga-text">500+</div>
+                <div class="text-sm text-csga-text-secondary">Enterprise Clients</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-csga-cyan/10 border border-csga-cyan/30 flex items-center justify-center">
+                <i data-lucide="globe" class="w-6 h-6 text-csga-cyan"></i>
+              </div>
+              <div>
+                <div class="font-mono text-2xl font-bold text-csga-text">25+</div>
+                <div class="text-sm text-csga-text-secondary">Countries</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- CTA Buttons -->
+          <div class="flex flex-wrap items-center gap-4 text-reveal text-reveal-delay-4">
+            <a href="education.html" class="btn-primary px-8 py-4 bg-csga-cyan text-csga-dark rounded-xl font-semibold hover:bg-csga-cyan/90 transition-colors flex items-center gap-2 shadow-[0_0_40px_rgba(46,233,246,0.3)]">
+              <span>Explore Programs</span>
+              <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </a>
+            <a href="cobol-bridge.html" class="px-8 py-4 border border-csga-cyan/50 text-csga-cyan rounded-xl font-semibold hover:bg-csga-cyan/10 transition-colors flex items-center gap-2 backdrop-blur-sm">
+              <i data-lucide="rocket" class="w-5 h-5"></i>
+              <span>COBOL Bridge</span>
+            </a>
+            <a href="https://csoai.org/courses" target="_blank" rel="noopener noreferrer" class="px-8 py-4 border border-csga-text/20 text-csga-text rounded-xl font-semibold hover:bg-csga-text/5 transition-colors flex items-center gap-2 backdrop-blur-sm">
+              <span>Free AI Safety Course</span>
+              <i data-lucide="external-link" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Slide Indicators -->
+    <div class="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex gap-3">
+      <button class="slide-dot active" data-slide="0"></button>
+      <button class="slide-dot" data-slide="1"></button>
+      <button class="slide-dot" data-slide="2"></button>
+      <button class="slide-dot" data-slide="3"></button>
+      <button class="slide-dot" data-slide="4"></button>
+      <button class="slide-dot" data-slide="5"></button>
+    </div>
+    
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-12 right-12 z-20 hidden lg:block">
+      <div class="flex flex-col items-center gap-2 text-csga-text-secondary">
+        <span class="text-xs label-mono">Scroll</span>
+        <div class="w-6 h-10 border-2 border-csga-cyan/30 rounded-full flex justify-center pt-2">
+          <div class="w-1.5 h-3 bg-csga-cyan rounded-full animate-bounce"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Introduction Section -->
+  <section class="relative w-full bg-csga-dark-secondary py-24 lg:py-32 overflow-hidden">
+    <div class="w-full px-6 lg:px-[6vw]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
+        <div class="reveal">
+          <div class="label-mono mb-4 text-csga-cyan">About CSGA</div>
+          <h2 class="text-3xl lg:text-4xl font-bold text-csga-text mb-6">Cyber Security Global Alliance</h2>
+          <p class="text-csga-text-secondary leading-relaxed mb-6">
+            CSGA is a global, mission-driven organization advancing cybersecurity education, workforce development, and trusted AI governance.
+          </p>
+          <p class="text-csga-text-secondary leading-relaxed mb-8">
+            Through academic partnerships, live-fire training environments, global collaboration, and a member-driven alliance model, CSGA supports individuals, veterans, institutions, and governments in strengthening cyber resilience and digital trust worldwide.
+          </p>
+          <a href="about.html" class="cta-link">
+            <span>Learn More About CSGA</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+        <div class="reveal" style="transition-delay: 200ms;">
+          <div class="aspect-video rounded-2xl overflow-hidden bg-csga-dark border border-csga-cyan/20 shadow-[0_0_60px_rgba(46,233,246,0.15)]">
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/0t3PcNYuy4A" title="CSGA Introduction" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Three Pillars Section -->
+  <section class="relative w-full bg-csga-dark py-24 lg:py-32 overflow-hidden">
+    <div class="absolute inset-0 opacity-5">
+      <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, #2EE9F6 1px, transparent 0); background-size: 40px 40px;"></div>
+    </div>
+    
+    <div class="relative z-10 w-full px-6 lg:px-[6vw]">
+      <div class="text-center mb-16">
+        <div class="label-mono mb-4 reveal">Our Mission</div>
+        <h2 class="text-4xl lg:text-6xl font-bold text-csga-text mb-4 reveal" style="transition-delay: 100ms;">Three Pillars of Impact</h2>
+        <p class="text-lg text-csga-text-secondary max-w-2xl mx-auto reveal" style="transition-delay: 200ms;">Building a safer digital world through education, innovation, and leadership</p>
+        <div class="glow-line max-w-[200px] mx-auto mt-6 reveal" style="transition-delay: 300ms;"></div>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Pillar 1: Education -->
+        <div class="pillar-card card-cyber overflow-hidden group reveal" style="transition-delay: 300ms;">
+          <div class="h-56 overflow-hidden relative">
+            <img src="images/hero-3-team.jpg" alt="Cybersecurity Education" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-csga-dark to-transparent"></div>
+            <div class="absolute bottom-4 left-4">
+              <div class="px-3 py-1 bg-csga-cyan/20 border border-csga-cyan/40 rounded-full">
+                <span class="text-xs font-mono text-csga-cyan">BMCC Partnership</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-8">
+            <div class="w-14 h-14 rounded-xl bg-csga-cyan/10 border border-csga-cyan/30 flex items-center justify-center mb-6 group-hover:bg-csga-cyan/20 transition-colors">
+              <i data-lucide="graduation-cap" class="w-7 h-7 text-csga-cyan"></i>
+            </div>
+            <h3 class="text-xl font-bold text-csga-text mb-3">Cybersecurity & AI Education</h3>
+            <p class="text-csga-text-secondary text-sm leading-relaxed mb-6">Hands-on education programs developed with BMCC and CUNY, preparing learners for real-world cyber defense and AI oversight roles.</p>
+            <div class="flex items-center gap-4 mb-6">
+              <div class="text-center">
+                <div class="font-mono text-xl font-bold text-csga-cyan">94%</div>
+                <div class="text-xs text-csga-text-secondary">Placement</div>
+              </div>
+              <div class="w-px h-10 bg-csga-text/10"></div>
+              <div class="text-center">
+                <div class="font-mono text-xl font-bold text-csga-cyan">$85K</div>
+                <div class="text-xs text-csga-text-secondary">Avg Salary</div>
+              </div>
+            </div>
+            <a href="education.html" class="cta-link text-sm">
+              <span>Explore Programs</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Pillar 2: COBOL Bridge -->
+        <div class="pillar-card card-cyber overflow-hidden group reveal" style="transition-delay: 400ms;">
+          <div class="h-56 overflow-hidden relative">
+            <img src="images/hero-6-quantum.jpg" alt="COBOL Bridge" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-csga-dark to-transparent"></div>
+            <div class="absolute bottom-4 left-4">
+              <div class="px-3 py-1 bg-csga-cyan/20 border border-csga-cyan/40 rounded-full">
+                <span class="text-xs font-mono text-csga-cyan">Now Live</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-8">
+            <div class="w-14 h-14 rounded-xl bg-csga-cyan/10 border border-csga-cyan/30 flex items-center justify-center mb-6 group-hover:bg-csga-cyan/20 transition-colors">
+              <i data-lucide="cpu" class="w-7 h-7 text-csga-cyan"></i>
+            </div>
+            <h3 class="text-xl font-bold text-csga-text mb-3">COBOL Bridge</h3>
+            <p class="text-csga-text-secondary text-sm leading-relaxed mb-6">The world's first MCP-native solution for modernizing legacy COBOL infrastructure without code rewrites.</p>
+            <div class="flex items-center gap-4 mb-6">
+              <div class="text-center">
+                <div class="font-mono text-xl font-bold text-csga-cyan">99.7%</div>
+                <div class="text-xs text-csga-text-secondary">Accuracy</div>
+              </div>
+              <div class="w-px h-10 bg-csga-text/10"></div>
+              <div class="text-center">
+                <div class="font-mono text-xl font-bold text-csga-cyan">85%</div>
+                <div class="text-xs text-csga-text-secondary">Cost Save</div>
+              </div>
+            </div>
+            <a href="cobol-bridge.html" class="cta-link text-sm">
+              <span>Explore COBOL Bridge</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Pillar 3: CSOAI -->
+        <div class="pillar-card card-cyber overflow-hidden group reveal" style="transition-delay: 500ms;">
+          <div class="h-56 overflow-hidden relative">
+            <img src="images/hero-4-governance.jpg" alt="AI Governance" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-csga-dark to-transparent"></div>
+            <div class="absolute bottom-4 left-4">
+              <div class="px-3 py-1 bg-csga-cyan/20 border border-csga-cyan/40 rounded-full">
+                <span class="text-xs font-mono text-csga-cyan">EU AI Act Ready</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-8">
+            <div class="w-14 h-14 rounded-xl bg-csga-cyan/10 border border-csga-cyan/30 flex items-center justify-center mb-6 group-hover:bg-csga-cyan/20 transition-colors">
+              <i data-lucide="shield-check" class="w-7 h-7 text-csga-cyan"></i>
+            </div>
+            <h3 class="text-xl font-bold text-csga-text mb-3">AI Governance</h3>
+            <p class="text-csga-text-secondary text-sm leading-relaxed mb-6">Comprehensive 52-article framework ensuring EU AI Act compliance and responsible AI deployment.</p>
+            <div class="flex items-center gap-4 mb-6">
+              <div class="text-center">
+                <div class="font-mono text-xl font-bold text-csga-cyan">52</div>
+                <div class="text-xs text-csga-text-secondary">Articles</div>
+              </div>
+              <div class="w-px h-10 bg-csga-text/10"></div>
+              <div class="text-center">
+                <div class="font-mono text-xl font-bold text-csga-cyan">Aug 2</div>
+                <div class="text-xs text-csga-text-secondary">Deadline</div>
+              </div>
+            </div>
+            <a href="csoai.html" class="cta-link text-sm">
+              <span>Explore CSOAI</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="relative w-full bg-csga-dark-secondary py-24 lg:py-32">
+    <div class="w-full px-6 lg:px-[6vw]">
+      <div class="text-center mb-16">
+        <div class="label-mono mb-4 reveal">Getting Started</div>
+        <h2 class="text-4xl lg:text-5xl font-bold text-csga-text mb-4 reveal" style="transition-delay: 100ms;">How It Works</h2>
+        <p class="text-lg text-csga-text-secondary max-w-2xl mx-auto reveal" style="transition-delay: 200ms;">Your journey to cybersecurity and AI excellence in four simple steps</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="text-center reveal" style="transition-delay: 300ms;">
+          <div class="step-connector relative inline-block mb-6">
+            <div class="w-20 h-20 rounded-full bg-csga-cyan/10 border-2 border-csga-cyan flex items-center justify-center mx-auto relative">
+              <span class="text-3xl font-bold text-csga-cyan">1</span>
+              <div class="absolute -inset-2 border border-csga-cyan/20 rounded-full animate-ping"></div>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold text-csga-text mb-3">Choose Your Path</h3>
+          <p class="text-csga-text-secondary text-sm">Explore our education programs, membership options, or training courses.</p>
+        </div>
+        <div class="text-center reveal" style="transition-delay: 400ms;">
+          <div class="step-connector relative inline-block mb-6">
+            <div class="w-20 h-20 rounded-full bg-csga-cyan/10 border-2 border-csga-cyan flex items-center justify-center mx-auto">
+              <span class="text-3xl font-bold text-csga-cyan">2</span>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold text-csga-text mb-3">Register or Apply</h3>
+          <p class="text-csga-text-secondary text-sm">Sign up for courses, apply for membership, or register for events.</p>
+        </div>
+        <div class="text-center reveal" style="transition-delay: 500ms;">
+          <div class="step-connector relative inline-block mb-6">
+            <div class="w-20 h-20 rounded-full bg-csga-cyan/10 border-2 border-csga-cyan flex items-center justify-center mx-auto">
+              <span class="text-3xl font-bold text-csga-cyan">3</span>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold text-csga-text mb-3">Learn & Connect</h3>
+          <p class="text-csga-text-secondary text-sm">Access world-class training and connect with industry experts.</p>
+        </div>
+        <div class="text-center reveal" style="transition-delay: 600ms;">
+          <div class="relative inline-block mb-6">
+            <div class="w-20 h-20 rounded-full bg-csga-cyan/10 border-2 border-csga-cyan flex items-center justify-center mx-auto">
+              <span class="text-3xl font-bold text-csga-cyan">4</span>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold text-csga-text mb-3">Advance Your Career</h3>
+          <p class="text-csga-text-secondary text-sm">Earn certifications and unlock new opportunities in cybersecurity.</p>
+        </div>
+      </div>
+      
+      <div class="text-center mt-12 reveal" style="transition-delay: 700ms;">
+        <a href="contact.html" class="btn-primary inline-flex items-center gap-2 px-8 py-4 bg-csga-cyan text-csga-dark rounded-xl font-semibold hover:bg-csga-cyan/90 transition-colors">
+          <span>Start Your Journey Today</span>
+          <i data-lucide="arrow-right" class="w-5 h-5"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY NAVIGATION SECTION - NEW! -->
+  <section class="relative w-full bg-csga-dark py-24 lg:py-32 overflow-hidden">
+    <div class="absolute inset-0 opacity-5">
+      <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, #2EE9F6 1px, transparent 0); background-size: 50px 50px;"></div>
+    </div>
+    
+    <div class="relative z-10 w-full px-6 lg:px-[6vw]">
+      <div class="text-center mb-16">
+        <div class="label-mono mb-4 reveal">Explore CSGA</div>
+        <h2 class="text-4xl lg:text-6xl font-bold text-csga-text mb-4 reveal" style="transition-delay: 100ms;">Discover Our World</h2>
+        <p class="text-lg text-csga-text-secondary max-w-2xl mx-auto reveal" style="transition-delay: 200ms;">Navigate to key areas of our organization</p>
+        <div class="glow-line max-w-[200px] mx-auto mt-6 reveal" style="transition-delay: 300ms;"></div>
+      </div>
+      
+      <!-- Gallery Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Membership -->
+        <a href="members.html" class="gallery-card h-80 reveal" style="transition-delay: 300ms;">
+          <img src="images/gallery-membership-v2.jpg" alt="Become a Member">
+          <div class="gallery-card-overlay"></div>
+          <div class="gallery-card-content">
+            <div class="gallery-card-icon">
+              <i data-lucide="crown" class="w-7 h-7 text-csga-cyan"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-csga-text mb-2">Become a Member</h3>
+            <p class="text-csga-text-secondary text-sm mb-4">Join 10,000+ professionals in our global alliance</p>
+            <span class="inline-flex items-center gap-2 text-csga-cyan font-medium">
+              <span>Join Now</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </span>
+          </div>
+        </a>
+        
+        <!-- CSGA Cyber Security Course (Training by BMCC) -->
+        <a href="education.html" class="gallery-card h-80 reveal" style="transition-delay: 400ms;">
+          <img src="images/gallery-bmcc.jpg" alt="CSGA Cyber Security Course">
+          <div class="gallery-card-overlay"></div>
+          <div class="gallery-card-content">
+            <div class="gallery-card-icon">
+              <i data-lucide="shield" class="w-7 h-7 text-csga-cyan"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-csga-text mb-2">CSGA Cyber Security</h3>
+            <p class="text-csga-text-secondary text-sm mb-4">WhiteHat Program with CUNY-accredited training by BMCC — 94% job placement</p>
+            <span class="inline-flex items-center gap-2 text-csga-cyan font-medium">
+              <span>View Courses</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </span>
+          </div>
+        </a>
+        
+        <!-- CSGA Cyber Range -->
+        <div class="gallery-card h-80 reveal cursor-default" style="transition-delay: 450ms;">
+          <img src="images/gallery-ai.jpg" alt="CSGA Cyber Range Training Platform">
+          <div class="gallery-card-overlay"></div>
+          <div class="gallery-card-content">
+            <div class="gallery-card-icon">
+              <i data-lucide="target" class="w-7 h-7 text-csga-cyan"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-csga-text mb-2">CSGA Cyber Range</h3>
+            <p class="text-csga-text-secondary text-sm mb-4">Hands-on training platform with real-world cyber attack simulations.</p>
+            <a href="programs.html" class="inline-flex items-center gap-2 text-csga-cyan font-medium hover:underline">
+              <span>Learn More About the Programs</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- AI Courses -->
+        <a href="csoai.html" class="gallery-card h-80 reveal" style="transition-delay: 500ms;">
+          <img src="images/gallery-ai.jpg" alt="AI Courses">
+          <div class="gallery-card-overlay"></div>
+          <div class="gallery-card-content">
+            <div class="gallery-card-icon">
+              <i data-lucide="brain" class="w-7 h-7 text-csga-cyan"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-csga-text mb-2">AI & Governance</h3>
+            <p class="text-csga-text-secondary text-sm mb-4">Master AI safety and EU AI Act compliance</p>
+            <span class="inline-flex items-center gap-2 text-csga-cyan font-medium">
+              <span>Explore AI</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </span>
+          </div>
+        </a>
+        
+        <!-- Our Team -->
+        <a href="council.html" class="gallery-card h-80 reveal" style="transition-delay: 600ms;">
+          <img src="images/gallery-team.jpg" alt="Our Team">
+          <div class="gallery-card-overlay"></div>
+          <div class="gallery-card-content">
+            <div class="gallery-card-icon">
+              <i data-lucide="users" class="w-7 h-7 text-csga-cyan"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-csga-text mb-2">Our Global Council</h3>
+            <p class="text-csga-text-secondary text-sm mb-4">Meet the experts leading cybersecurity innovation</p>
+            <span class="inline-flex items-center gap-2 text-csga-cyan font-medium">
+              <span>View Team</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </span>
+          </div>
+        </a>
+        
+        <!-- Partners -->
+        <a href="partners.html" class="gallery-card h-80 reveal" style="transition-delay: 700ms;">
+          <img src="images/gallery-partnerships.jpg" alt="Our Partners">
+          <div class="gallery-card-overlay"></div>
+          <div class="gallery-card-content">
+            <div class="gallery-card-icon">
+              <i data-lucide="handshake" class="w-7 h-7 text-csga-cyan"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-csga-text mb-2">Our Partners</h3>
+            <p class="text-csga-text-secondary text-sm mb-4">Collaborating with BMCC, CUNY, and industry leaders</p>
+            <span class="inline-flex items-center gap-2 text-csga-cyan font-medium">
+              <span>See Partners</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </span>
+          </div>
+        </a>
+        
+        <!-- Education Platform -->
+        <a href="education.html" class="gallery-card h-80 reveal" style="transition-delay: 800ms;">
+          <img src="images/gallery-education.jpg" alt="Education Platform">
+          <div class="gallery-card-overlay"></div>
+          <div class="gallery-card-content">
+            <div class="gallery-card-icon">
+              <i data-lucide="graduation-cap" class="w-7 h-7 text-csga-cyan"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-csga-text mb-2">Education Platform</h3>
+            <p class="text-csga-text-secondary text-sm mb-4">World-class training and certifications</p>
+            <span class="inline-flex items-center gap-2 text-csga-cyan font-medium">
+              <span>Start Learning</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Governance Leadership Section -->
+  <section class="relative w-full bg-csga-dark-secondary py-24 lg:py-32 overflow-hidden">
+    <div class="absolute inset-0 opacity-5">
+      <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, #2EE9F6 1px, transparent 0); background-size: 50px 50px;"></div>
+    </div>
+    <div class="relative z-10 w-full px-6 lg:px-[6vw]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div class="reveal">
+          <div class="inline-flex items-center gap-2 px-4 py-2 bg-csga-cyan/10 border border-csga-cyan/30 rounded-full mb-6">
+            <i data-lucide="globe" class="w-4 h-4 text-csga-cyan"></i>
+            <span class="text-sm font-medium text-csga-cyan">Global Leadership</span>
+          </div>
+          <h2 class="text-4xl lg:text-5xl font-bold text-csga-text mb-6">AI Governance</h2>
+          <p class="text-xl text-csga-cyan font-semibold mb-4">Leading the World in AI Safety & Governance</p>
+          <p class="text-csga-text-secondary leading-relaxed mb-6">
+            CSGA is at the forefront of responsible AI governance, shaping international standards and frameworks that ensure artificial intelligence benefits humanity while minimizing risks.
+          </p>
+          <div class="mb-6">
+            <p class="text-sm text-csga-text-secondary mb-2"><strong class="text-csga-text">Major Acquisition:</strong> CSOAI.org</p>
+            <p class="text-csga-text-secondary text-sm leading-relaxed">
+              CSGA has acquired CSOAI.org (Council for the Safety of Artificial Intelligence), strengthening our position as the global leader in AI safety research, policy development, and ethical frameworks.
+            </p>
+          </div>
+          <div class="grid grid-cols-2 gap-3 mb-8">
+            <div class="flex items-center gap-2 text-sm text-csga-text-secondary">
+              <i data-lucide="check-circle" class="w-4 h-4 text-csga-cyan"></i>
+              <span>AI Ethics Frameworks</span>
+            </div>
+            <div class="flex items-center gap-2 text-sm text-csga-text-secondary">
+              <i data-lucide="check-circle" class="w-4 h-4 text-csga-cyan"></i>
+              <span>Risk Assessment Tools</span>
+            </div>
+            <div class="flex items-center gap-2 text-sm text-csga-text-secondary">
+              <i data-lucide="check-circle" class="w-4 h-4 text-csga-cyan"></i>
+              <span>Policy Recommendations</span>
+            </div>
+            <div class="flex items-center gap-2 text-sm text-csga-text-secondary">
+              <i data-lucide="check-circle" class="w-4 h-4 text-csga-cyan"></i>
+              <span>Global Standards</span>
+            </div>
+          </div>
+          <a href="csoai.html" class="btn-primary inline-flex items-center gap-2 px-6 py-3 bg-csga-cyan text-csga-dark rounded-xl font-semibold hover:bg-csga-cyan/90 transition-colors">
+            <span>Explore CSOAI</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+        <div class="reveal" style="transition-delay: 200ms;">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="card-cyber p-6 text-center">
+              <div class="font-mono text-4xl font-bold text-csga-cyan mb-2">1,500+</div>
+              <p class="text-sm text-csga-text-secondary">Active Members</p>
+            </div>
+            <div class="card-cyber p-6 text-center">
+              <div class="font-mono text-4xl font-bold text-csga-cyan mb-2">50+</div>
+              <p class="text-sm text-csga-text-secondary">Countries</p>
+            </div>
+            <div class="card-cyber p-6 text-center">
+              <div class="font-mono text-4xl font-bold text-csga-cyan mb-2">10,000+</div>
+              <p class="text-sm text-csga-text-secondary">Professionals Trained</p>
+            </div>
+            <div class="card-cyber p-6 text-center">
+              <div class="font-mono text-4xl font-bold text-csga-cyan mb-2">34</div>
+              <p class="text-sm text-csga-text-secondary">Council Members</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COBOL Bridge Technology Section -->
+  <section class="relative w-full bg-csga-dark py-24 lg:py-32 overflow-hidden">
+    <div class="w-full px-6 lg:px-[6vw]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div class="order-2 lg:order-1 reveal img-zoom rounded-2xl overflow-hidden">
+          <img src="images/hero-6-quantum.jpg" alt="COBOL Bridge Technology" class="w-full h-auto">
+        </div>
+        <div class="order-1 lg:order-2 reveal">
+          <div class="inline-flex items-center gap-2 px-4 py-2 bg-csga-cyan/10 border border-csga-cyan/30 rounded-full mb-6">
+            <i data-lucide="cpu" class="w-4 h-4 text-csga-cyan"></i>
+            <span class="text-sm font-medium text-csga-cyan">Legacy Modernization</span>
+          </div>
+          <h2 class="text-4xl lg:text-5xl font-bold text-csga-text mb-6">Bridge for COBOL Infrastructure</h2>
+          <p class="text-xl text-csga-cyan font-semibold mb-4">New MCP-Native Solution Enables Compliance Without Code Rewrite</p>
+          <p class="text-csga-text-secondary leading-relaxed mb-6">
+            As the EU AI Act deadline looms, CSGA's COBOL-Bridge provides a revolutionary approach to modernizing legacy COBOL infrastructure without requiring complete code rewrites.
+          </p>
+          <p class="text-csga-text-secondary leading-relaxed mb-8">
+            Our MCP-native solution enables organizations to achieve AI compliance while preserving their critical legacy systems, reducing risk and accelerating time-to-compliance.
+          </p>
+          <a href="cobol-bridge.html" class="btn-primary inline-flex items-center gap-2 px-6 py-3 bg-csga-cyan text-csga-dark rounded-xl font-semibold hover:bg-csga-cyan/90 transition-colors">
+            <span>Request COBOL-Bridge Trial</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certificate Programs Section -->
+  <section class="relative w-full bg-csga-dark-secondary py-24 lg:py-32 overflow-hidden">
+    <div class="w-full px-6 lg:px-[6vw]">
+      <div class="text-center mb-16">
+        <div class="label-mono mb-4 reveal">Professional Development</div>
+        <h2 class="text-4xl lg:text-5xl font-bold text-csga-text mb-4 reveal" style="transition-delay: 100ms;">Certificate Programs</h2>
+        <p class="text-lg text-csga-text-secondary max-w-2xl mx-auto reveal" style="transition-delay: 200ms;">Industry-recognized certifications to advance your cybersecurity career</p>
+        <div class="glow-line max-w-[200px] mx-auto mt-6 reveal" style="transition-delay: 300ms;"></div>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Cybersecurity Fundamentals -->
+        <div class="card-cyber p-6 reveal" style="transition-delay: 300ms;">
+          <div class="w-12 h-12 rounded-lg bg-csga-cyan/10 flex items-center justify-center mb-4">
+            <i data-lucide="shield" class="w-6 h-6 text-csga-cyan"></i>
+          </div>
+          <div class="text-xs font-mono text-csga-cyan mb-2">Certificate Program</div>
+          <h3 class="text-lg font-bold text-csga-text mb-3">Cybersecurity Fundamentals</h3>
+          <p class="text-sm text-csga-text-secondary mb-4">12-week comprehensive program covering network security, threat detection, and incident response.</p>
+          <a href="education.html" class="cta-link text-sm">Learn More <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+        </div>
+        
+        <!-- AI & Machine Learning Security -->
+        <div class="card-cyber p-6 reveal" style="transition-delay: 400ms;">
+          <div class="w-12 h-12 rounded-lg bg-csga-cyan/10 flex items-center justify-center mb-4">
+            <i data-lucide="brain" class="w-6 h-6 text-csga-cyan"></i>
+          </div>
+          <div class="text-xs font-mono text-csga-cyan mb-2">Certificate Program</div>
+          <h3 class="text-lg font-bold text-csga-text mb-3">AI & Machine Learning Security</h3>
+          <p class="text-sm text-csga-text-secondary mb-4">8-week specialized course on securing AI systems and understanding ML vulnerabilities.</p>
+          <a href="csoai.html" class="cta-link text-sm">Learn More <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+        </div>
+        
+        <!-- Digital Forensics -->
+        <div class="card-cyber p-6 reveal" style="transition-delay: 500ms;">
+          <div class="w-12 h-12 rounded-lg bg-csga-cyan/10 flex items-center justify-center mb-4">
+            <i data-lucide="search" class="w-6 h-6 text-csga-cyan"></i>
+          </div>
+          <div class="text-xs font-mono text-csga-cyan mb-2">Certificate Program</div>
+          <h3 class="text-lg font-bold text-csga-text mb-3">Digital Forensics</h3>
+          <p class="text-sm text-csga-text-secondary mb-4">10-week hands-on training in evidence collection, analysis, and legal procedures.</p>
+          <a href="programs.html" class="cta-link text-sm">Learn More <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+        </div>
+        
+        <!-- Security Leadership -->
+        <div class="card-cyber p-6 reveal" style="transition-delay: 600ms;">
+          <div class="w-12 h-12 rounded-lg bg-csga-cyan/10 flex items-center justify-center mb-4">
+            <i data-lucide="users" class="w-6 h-6 text-csga-cyan"></i>
+          </div>
+          <div class="text-xs font-mono text-csga-cyan mb-2">Executive Certificate</div>
+          <h3 class="text-lg font-bold text-csga-text mb-3">Security Leadership</h3>
+          <p class="text-sm text-csga-text-secondary mb-4">6-week executive program for CISOs and security managers on strategic leadership.</p>
+          <a href="programs.html" class="cta-link text-sm">Learn More <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CSGA Cyber AI Research Institute - Baby Blue Section -->
+  <section class="relative w-full bg-csga-cyan py-24 lg:py-32">
+    <div class="w-full px-6 lg:px-[6vw]">
+      <div class="text-center max-w-4xl mx-auto mb-12">
+        <div class="label-mono mb-4 text-csga-dark/70 reveal">Major Announcement</div>
+        <h2 class="text-4xl lg:text-5xl font-bold text-csga-dark mb-6 reveal" style="transition-delay: 100ms;">CSGA Announces the Official Opening of the CSGA Cyber AI Research Institute</h2>
+        <p class="text-xl text-csga-dark/80 reveal" style="transition-delay: 200ms;">Powered by CSOAI Ltd (UK)</p>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
+        <div class="reveal" style="transition-delay: 300ms;">
+          <div class="aspect-video rounded-2xl overflow-hidden bg-csga-dark shadow-2xl">
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/ZOHb6ihvF1I" title="CSGA Cyber AI Research Institute" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full"></iframe>
+          </div>
+        </div>
+        <div class="reveal" style="transition-delay: 400ms;">
+          <p class="text-lg text-csga-dark leading-relaxed mb-6">
+            The world's first independent research body combining AI governance standards with operational cybersecurity testing.
+          </p>
+          <div class="space-y-4 mb-8">
+            <div class="flex items-center gap-3">
+              <i data-lucide="check-circle" class="w-5 h-5 text-csga-dark flex-shrink-0"></i>
+              <span class="text-csga-dark">AI governance standards development</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i data-lucide="check-circle" class="w-5 h-5 text-csga-dark flex-shrink-0"></i>
+              <span class="text-csga-dark">Operational cybersecurity testing</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i data-lucide="check-circle" class="w-5 h-5 text-csga-dark flex-shrink-0"></i>
+              <span class="text-csga-dark">Independent research and validation</span>
+            </div>
+          </div>
+          <a href="https://assets.zyrosite.com/YNqrr2vl4OiBzE4Q/csga-post-feb-09-2026-jc-nt-0JNMZQdMfLxLGD1s.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-8 py-4 bg-csga-dark text-csga-cyan rounded-xl font-semibold hover:bg-csga-dark/90 transition-colors">
+            <span>Download Press Release</span>
+            <i data-lucide="download" class="w-5 h-5"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="relative w-full bg-csga-dark py-24 lg:py-32 overflow-hidden">
+    <div class="w-full px-6 lg:px-[6vw]">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-16">
+          <div class="label-mono mb-4 reveal">Support</div>
+          <h2 class="text-4xl lg:text-5xl font-bold text-csga-text mb-4 reveal" style="transition-delay: 100ms;">FAQ</h2>
+          <p class="text-lg text-csga-text-secondary reveal" style="transition-delay: 200ms;">Frequently Asked Questions</p>
+          <p class="text-csga-text-secondary mt-4 reveal" style="transition-delay: 300ms;">Got questions? We've got answers. If you don't find what you're looking for, feel free to contact us.</p>
+          <div class="mt-6 reveal" style="transition-delay: 400ms;">
+            <a href="contact.html" class="inline-flex items-center gap-2 px-6 py-3 bg-csga-cyan/10 border border-csga-cyan/30 text-csga-cyan rounded-xl font-semibold hover:bg-csga-cyan/20 transition-colors">
+              <i data-lucide="message-circle" class="w-5 h-5"></i>
+              <span>Contact Support</span>
+            </a>
+          </div>
+        </div>
+        
+        <div class="space-y-4">
+          <!-- FAQ 1 -->
+          <div class="faq-item card-cyber p-6 reveal" style="transition-delay: 500ms;">
+            <div class="faq-question flex items-center justify-between">
+              <h3 class="text-lg font-semibold text-csga-text">What is CSGA and what do you do?</h3>
+              <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-csga-cyan"></i>
+            </div>
+            <div class="faq-answer">
+              <p class="text-csga-text-secondary">CSGA (Cyber Security Global Alliance) is a global organization advancing cybersecurity education, workforce development, and responsible AI governance. We offer training programs, certifications, research initiatives, and community building across institutions, enterprises, and nations.</p>
+            </div>
+          </div>
+          
+          <!-- FAQ 2 -->
+          <div class="faq-item card-cyber p-6 reveal" style="transition-delay: 600ms;">
+            <div class="faq-question flex items-center justify-between">
+              <h3 class="text-lg font-semibold text-csga-text">How do I become a member?</h3>
+              <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-csga-cyan"></i>
+            </div>
+            <div class="faq-answer">
+              <p class="text-csga-text-secondary">You can become a member by visiting our Membership page and selecting the plan that best fits your needs. We offer individual, student, professional, and enterprise membership options with various benefits.</p>
+            </div>
+          </div>
+          
+          <!-- FAQ 3 -->
+          <div class="faq-item card-cyber p-6 reveal" style="transition-delay: 700ms;">
+            <div class="faq-question flex items-center justify-between">
+              <h3 class="text-lg font-semibold text-csga-text">Are the courses certified?</h3>
+              <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-csga-cyan"></i>
+            </div>
+            <div class="faq-answer">
+              <p class="text-csga-text-secondary">Yes! Our courses are industry-recognized and many are offered in partnership with accredited institutions like BMCC and CUNY. Upon completion, you'll receive certificates that are valued by employers worldwide.</p>
+            </div>
+          </div>
+          
+          <!-- FAQ 4 -->
+          <div class="faq-item card-cyber p-6 reveal" style="transition-delay: 800ms;">
+            <div class="faq-question flex items-center justify-between">
+              <h3 class="text-lg font-semibold text-csga-text">Can I access courses online?</h3>
+              <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-csga-cyan"></i>
+            </div>
+            <div class="faq-answer">
+              <p class="text-csga-text-secondary">Absolutely! Most of our courses are available online with live virtual sessions, recorded lectures, and hands-on labs. We also offer in-person training at select locations for certain programs.</p>
+            </div>
+          </div>
+          
+          <!-- FAQ 5 -->
+          <div class="faq-item card-cyber p-6 reveal" style="transition-delay: 900ms;">
+            <div class="faq-question flex items-center justify-between">
+              <h3 class="text-lg font-semibold text-csga-text">What is the Veterans Program?</h3>
+              <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-csga-cyan"></i>
+            </div>
+            <div class="faq-answer">
+              <p class="text-csga-text-secondary">Our Veterans Program provides specialized cybersecurity training and career placement services for military veterans transitioning to civilian careers. We offer scholarships, mentorship, and direct connections to employers seeking veteran talent.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners Slider -->
+  <section class="relative w-full bg-csga-dark py-12 border-y border-[rgba(242,245,250,0.06)]">
+    <div class="w-full px-6 lg:px-12 mb-8">
+      <div class="text-center">
+        <div class="label-mono mb-2">Trusted By Industry Leaders</div>
+      </div>
+    </div>
+    <div class="overflow-hidden">
+      <div class="partner-slider flex items-center gap-12 whitespace-nowrap">
+        <div class="flex items-center gap-12">
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">BMCC</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">CUNY</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">Terranova</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">CSOAI</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">Applied Tech Academy</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">Ontario Aerospace Council</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">U.S. Dept of Commerce</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">Toronto DAO</span>
+        </div>
+        <div class="flex items-center gap-12">
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">BMCC</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">CUNY</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">Terranova</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">CSOAI</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">Applied Tech Academy</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">Ontario Aerospace Council</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">U.S. Dept of Commerce</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">Toronto DAO</span>
+        </div>
+      </div>
+    </div>
+    <div class="w-full px-6 lg:px-12 mt-6 text-center">
+      <a href="partners.html" class="text-sm text-csga-cyan hover:underline">View All Partners →</a>
+    </div>
+  </section>
+
+  <!-- Videos Section - English & French -->
+  <section class="relative w-full bg-csga-dark-secondary py-24 lg:py-32 overflow-hidden">
+    <div class="w-full px-6 lg:px-[6vw]">
+      <div class="text-center mb-16">
+        <div class="label-mono mb-4 reveal">Learn More</div>
+        <h2 class="text-4xl lg:text-5xl font-bold text-csga-text mb-4 reveal" style="transition-delay: 100ms;">Discover CSGA</h2>
+        <div class="glow-line max-w-[200px] mx-auto mt-6 reveal" style="transition-delay: 200ms;"></div>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <!-- English Video -->
+        <div class="reveal" style="transition-delay: 300ms;">
+          <div class="aspect-video rounded-2xl overflow-hidden bg-csga-dark border border-csga-cyan/20 shadow-[0_0_40px_rgba(46,233,246,0.1)] mb-6">
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/ZOHb6ihvF1I" title="CSGA - English" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full"></iframe>
+          </div>
+          <div class="text-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-csga-cyan/10 border border-csga-cyan/30 rounded-full mb-3">
+              <i data-lucide="globe" class="w-4 h-4 text-csga-cyan"></i>
+              <span class="text-xs font-mono text-csga-cyan">English</span>
+            </div>
+            <h3 class="text-xl font-bold text-csga-text mb-3">Cyber Security Global Alliance</h3>
+            <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">
+              CSGA is a global, mission-driven organization advancing cybersecurity education, workforce development, and trusted AI governance.
+            </p>
+            <p class="text-csga-text-secondary text-sm leading-relaxed">
+              Through academic partnerships, live-fire training environments, global collaboration, and a member-driven alliance model, CSGA supports individuals, veterans, institutions, and governments in strengthening cyber resilience and digital trust worldwide.
+            </p>
+          </div>
+        </div>
+        
+        <!-- French Video -->
+        <div class="reveal" style="transition-delay: 400ms;">
+          <div class="aspect-video rounded-2xl overflow-hidden bg-csga-dark border border-csga-cyan/20 shadow-[0_0_40px_rgba(46,233,246,0.1)] mb-6">
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/ZOHb6ihvF1I" title="CSGA - Français" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full"></iframe>
+          </div>
+          <div class="text-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-csga-cyan/10 border border-csga-cyan/30 rounded-full mb-3">
+              <i data-lucide="globe" class="w-4 h-4 text-csga-cyan"></i>
+              <span class="text-xs font-mono text-csga-cyan">Français</span>
+            </div>
+            <h3 class="text-xl font-bold text-csga-text mb-3">Alliance mondiale de la cybersécurité</h3>
+            <p class="text-csga-text-secondary text-sm leading-relaxed mb-4">
+              La CSGA est une organisation mondiale axée sur sa mission qui fait progresser la formation en cybersécurité, le développement de la main d'œuvre et la gouvernance fiable de l'intelligence artificielle.
+            </p>
+            <p class="text-csga-text-secondary text-sm leading-relaxed">
+              Grâce à des partenariats académiques, à des environnements de formation en conditions réelles, à une collaboration internationale et à un modèle d'alliance dirigé par ses membres, la CSGA aide les personnes, les anciens militaires, les établissements et les gouvernements à renforcer la résilience numérique et la confiance dans les technologies partout dans le monde.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-12 reveal" style="transition-delay: 500ms;">
+        <a href="about.html" class="btn-primary inline-flex items-center gap-2 px-8 py-4 bg-csga-cyan text-csga-dark rounded-xl font-semibold hover:bg-csga-cyan/90 transition-colors">
+          <span>Learn More About CSGA</span>
+          <i data-lucide="arrow-right" class="w-5 h-5"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="relative bg-csga-dark border-t border-[rgba(242,245,250,0.06)]">
+    <div class="w-full px-6 lg:px-12 py-16 lg:py-20">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 lg:gap-8">
+        <div class="lg:col-span-2">
+          <div class="mb-6">
+            <img src="images/logo.png" alt="CSGA Global" class="h-32 w-auto">
+          </div>
+          <p class="text-csga-text-secondary text-sm leading-relaxed mb-6 max-w-sm">Cyber Security Global Alliance — advancing cybersecurity education, workforce development, and responsible AI governance worldwide.</p>
+          <div class="flex items-center gap-4">
+            <a href="https://twitter.com/CSGA_Global" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-csga-dark-secondary border border-[rgba(242,245,250,0.08)] flex items-center justify-center text-csga-text-secondary hover:text-csga-cyan hover:border-csga-cyan/30 transition-all duration-300">
+              <i data-lucide="twitter" class="w-5 h-5"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/csga-canada" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-csga-dark-secondary border border-[rgba(242,245,250,0.08)] flex items-center justify-center text-csga-text-secondary hover:text-csga-cyan hover:border-csga-cyan/30 transition-all duration-300">
+              <i data-lucide="linkedin" class="w-5 h-5"></i>
+            </a>
+            <a href="mailto:contact@csga-global.org" class="w-10 h-10 rounded-lg bg-csga-dark-secondary border border-[rgba(242,245,250,0.08)] flex items-center justify-center text-csga-text-secondary hover:text-csga-cyan hover:border-csga-cyan/30 transition-all duration-300">
+              <i data-lucide="mail" class="w-5 h-5"></i>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-csga-text-secondary mb-4">Organization</h4>
+          <ul class="space-y-3">
+            <li><a href="about.html" class="text-sm text-csga-text/80 hover:text-csga-cyan transition-colors duration-300">About CSGA</a></li>
+            <li><a href="council.html" class="text-sm text-csga-text/80 hover:text-csga-cyan transition-colors duration-300">Global Council</a></li>
+            <li><a href="news.html" class="text-sm text-csga-text/80 hover:text-csga-cyan transition-colors duration-300">News & Media</a></li>
+            <li><a href="events.html" class="text-sm text-csga-text/80 hover:text-csga-cyan transition-colors duration-300">Events</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-csga-text-secondary mb-4">Programs</h4>
+          <ul class="space-y-3">
+            <li><a href="education.html" class="text-sm text-csga-text/80 hover:text-csga-cyan transition-colors duration-300">Education</a></li>
+            <li><a href="programs.html" class="text-sm text-csga-text/80 hover:text-csga-cyan transition-colors duration-300">Training Programs</a></li>
+            <li><a href="csoai.html" class="text-sm text-csga-text/80 hover:text-csga-cyan transition-colors duration-300">CSOAI</a></li>
+            <li><a href="veterans.html" class="text-sm text-csga-text/80 hover:text-csga-cyan transition-colors duration-300">Veterans</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-csga-text-secondary mb-4">Resources</h4>
+          <ul class="space-y-3">
+            <li><a href="csoai.html" class="text-sm text-csga-text/80 hover:text-csga-cyan transition-colors duration-300">Research</a></li>
+            <li><a href="members.html" class="text-sm text-csga-text/80 hover:text-csga-cyan transition-colors duration-300">Membership</a></li>
+            <li><a href="contact.html" class="text-sm text-csga-text/80 hover:text-csga-cyan transition-colors duration-300">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-csga-text-secondary mb-4">Contact</h4>
+          <ul class="space-y-3">
+            <li class="flex items-center gap-2 text-sm text-csga-text/80">
+              <i data-lucide="phone" class="w-4 h-4 text-csga-cyan"></i>
+              +1 (416) 800-6080
+            </li>
+            <li class="flex items-start gap-2 text-sm text-csga-text/80">
+              <i data-lucide="map-pin" class="w-4 h-4 text-csga-cyan mt-0.5"></i>
+              <span>Toronto, Canada</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-[rgba(242,245,250,0.06)]">
+      <div class="w-full px-6 lg:px-12 py-6">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+          <p class="text-xs text-csga-text-secondary">© 2026 CSGA Global. All rights reserved.</p>
+          <div class="flex items-center gap-6">
+            <a href="privacy-policy.html" class="text-xs text-csga-text-secondary hover:text-csga-cyan transition-colors duration-300">Privacy Policy</a>
+            <a href="terms-of-service.html" class="text-xs text-csga-text-secondary hover:text-csga-cyan transition-colors duration-300">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+    
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('opacity-0');
+      mobileMenu.classList.toggle('pointer-events-none');
+    });
+    
+    mobileMenuOverlay.addEventListener('click', () => {
+      mobileMenu.classList.add('opacity-0');
+      mobileMenu.classList.add('pointer-events-none');
+    });
+    
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('opacity-0');
+        mobileMenu.classList.add('pointer-events-none');
+      });
+    });
+    
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        navbar.classList.add('bg-csga-dark/90', 'backdrop-blur-xl', 'border-b', 'border-[rgba(242,245,250,0.06)]');
+      } else {
+        navbar.classList.remove('bg-csga-dark/90', 'backdrop-blur-xl', 'border-b', 'border-[rgba(242,245,250,0.06)]');
+      }
+    });
+    
+    // VIDEO-LIKE SLIDESHOW WITH KEN BURNS
+    const slides = document.querySelectorAll('.hero-video-slide');
+    const dots = document.querySelectorAll('.slide-dot');
+    let currentSlide = 0;
+    const slideInterval = 4000; // 4 seconds per slide
+    
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+      currentSlide = index;
+    }
+    
+    function nextSlide() {
+      const next = (currentSlide + 1) % slides.length;
+      showSlide(next);
+    }
+    
+    // Auto-advance slides
+    setInterval(nextSlide, slideInterval);
+    
+    // Dot click handlers
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => showSlide(index));
+    });
+    
+    // Scroll reveal animation
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
+    revealElements.forEach(el => revealObserver.observe(el));
+    
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const faqItem = question.parentElement;
+        const isActive = faqItem.classList.contains('active');
+        
+        // Close all FAQ items
+        document.querySelectorAll('.faq-item').forEach(item => {
+          item.classList.remove('active');
+        });
+        
+        // Open clicked item if it wasn't active
+        if (!isActive) {
+          faqItem.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

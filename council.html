@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Council | CSGA</title>
+  <meta name="description" content="Meet the CSGA Global Council - visionary leaders advancing cybersecurity, AI governance, and digital trust worldwide.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'csga-dark': '#0B0F17',
+            'csga-dark-secondary': '#0E1420',
+            'csga-cyan': '#2EE9F6',
+            'csga-text': '#F2F5FA',
+            'csga-text-secondary': '#A7B1C6',
+          },
+          fontFamily: {
+            'sans': ['Inter', 'sans-serif'],
+            'heading': ['Space Grotesk', 'sans-serif'],
+            'mono': ['IBM Plex Mono', 'monospace'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #0B0F17; color: #F2F5FA; font-family: 'Inter', sans-serif; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02em; }
+    .label-mono { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.18em; color: #A7B1C6; }
+    .cta-link { position: relative; display: inline-flex; align-items: center; gap: 0.5rem; color: #2EE9F6; font-weight: 500; transition: gap 0.3s; }
+    .cta-link:hover { gap: 0.75rem; }
+    .cta-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 1px; background: #2EE9F6; }
+    .card-cyber { background: rgba(14, 20, 32, 0.8); backdrop-filter: blur(20px); border: 1px solid rgba(242, 245, 250, 0.08); border-radius: 1rem; }
+    .grain-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; opacity: 0.04; mix-blend-mode: overlay; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); }
+    .nav-link { position: relative; color: #A7B1C6; transition: color 0.3s; }
+    .nav-link:hover { color: #F2F5FA; }
+    .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: #2EE9F6; transition: width 0.3s; }
+    .nav-link:hover::after { width: 100%; }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .partner-slider { animation: slide 30s linear infinite; }
+    @keyframes slide { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .partner-slider:hover { animation-play-state: paused; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    
+    /* Ken Burns Effect */
+    .ken-burns {
+      animation: kenBurns 20s ease-in-out infinite alternate;
+    }
+    @keyframes kenBurns {
+      0% { transform: scale(1) translate(0, 0); }
+      100% { transform: scale(1.15) translate(-2%, -1%); }
+    }
+    
+    /* Hero with Ken Burns */
+    .hero-ken-burns {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    .hero-ken-burns img {
+      width: 110%;
+      height: 110%;
+      object-fit: cover;
+      animation: kenBurns 25s ease-in-out infinite alternate;
+    }
+    
+    /* Glow effects */
+    .glow-cyan { box-shadow: 0 0 60px rgba(46, 233, 246, 0.15); }
+    .glow-cyan-strong { box-shadow: 0 0 100px rgba(46, 233, 246, 0.25); }
+    
+    /* Member card hover */
+    .member-card {
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .member-card:hover {
+      transform: translateY(-12px);
+      border-color: rgba(46, 233, 246, 0.4);
+      box-shadow: 0 20px 60px rgba(46, 233, 246, 0.15);
+    }
+    .member-card:hover .member-image {
+      transform: scale(1.05);
+    }
+    .member-image {
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* Parallax section */
+    .parallax-section {
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    /* Video container */
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 1rem;
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
+    /* Button shimmer animation */
+    .btn-primary {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+  </style>
+</head>
+<body class="antialiased">
+  <div class="grain-overlay"></div>
+
+  <!-- Navigation -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-[1000] transition-all duration-500">
+    <div class="w-full px-6 lg:px-12">
+      <div class="flex items-center justify-between h-20 lg:h-24">
+        <a href="index.html" class="flex items-center gap-3 group">
+          <img src="images/logo.png" alt="CSGA Global" class="h-20 w-auto transition-transform duration-300 group-hover:scale-105">
+        </a>
+        <div class="hidden lg:flex items-center gap-8">
+          <a href="about.html" class="nav-link text-sm font-medium">About</a>
+          <a href="education.html" class="nav-link text-sm font-medium">Education</a>
+          <a href="programs.html" class="nav-link text-sm font-medium">Programs</a>
+          <a href="csoai.html" class="nav-link text-sm font-medium">CSOAI</a>
+          <a href="events.html" class="nav-link text-sm font-medium">Events</a>
+          <a href="veterans.html" class="nav-link text-sm font-medium">Veterans</a>
+          <a href="news.html" class="nav-link text-sm font-medium">News</a>
+          <a href="council.html" class="nav-link text-sm font-medium text-csga-cyan">Council</a>
+          <a href="members.html" class="nav-link text-sm font-medium">Members</a>
+          <a href="contact.html" class="px-5 py-2.5 bg-csga-cyan/10 border border-csga-cyan/30 rounded-lg text-csga-cyan text-sm font-medium hover:bg-csga-cyan/20 hover:border-csga-cyan/50 transition-all duration-300">Join</a>
+        </div>
+        <button id="mobile-menu-btn" class="lg:hidden p-2 text-csga-text hover:text-csga-cyan transition-colors">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="fixed inset-0 z-[999] lg:hidden opacity-0 pointer-events-none transition-opacity duration-500">
+    <div class="absolute inset-0 bg-csga-dark/95 backdrop-blur-xl" id="mobile-menu-overlay"></div>
+    <div class="relative flex flex-col items-center justify-center h-full gap-8">
+      <a href="about.html" class="mobile-nav-link text-2xl font-semibold text-csga-text hover:text-csga-cyan transition-colors">About</a>
+      <a href="education.html" class="mobile-nav-link text-2xl font-semibold text-csga-text hover:text-csga-cyan transition-colors">Education</a>
+      <a href="programs.html" class="mobile-nav-link text-2xl font-semibold text-csga-text hover:text-csga-cyan transition-colors">Programs</a>
+      <a href="csoai.html" class="mobile-nav-link text-2xl font-semibold text-csga-text hover:text-csga-cyan transition-colors">CSOAI</a>
+      <a href="events.html" class="mobile-nav-link text-2xl font-semibold text-csga-text hover:text-csga-cyan transition-colors">Events</a>
+      <a href="veterans.html" class="mobile-nav-link text-2xl font-semibold text-csga-text hover:text-csga-cyan transition-colors">Veterans</a>
+      <a href="news.html" class="mobile-nav-link text-2xl font-semibold text-csga-text hover:text-csga-cyan transition-colors">News</a>
+      <a href="council.html" class="mobile-nav-link text-2xl font-semibold text-csga-cyan transition-colors">Council</a>
+      <a href="members.html" class="mobile-nav-link text-2xl font-semibold text-csga-text hover:text-csga-cyan transition-colors">Members</a>
+      <a href="contact.html" class="mt-4 px-8 py-3 bg-csga-cyan text-csga-dark rounded-lg font-semibold hover:bg-csga-cyan/90 transition-colors">Join the Alliance</a>
+    </div>
+  </div>
+
+  <!-- Hero Section with Ken Burns -->
+  <section class="relative w-full min-h-[80vh] overflow-hidden flex items-center">
+    <div class="hero-ken-burns">
+      <img src="images/council-hero.jpg" alt="CSGA Global Council">
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-b from-csga-dark/80 via-csga-dark/60 to-csga-dark"></div>
+    <div class="relative z-10 w-full px-6 lg:px-12 pt-32 pb-20">
+      <div class="max-w-4xl">
+        <div class="label-mono mb-4 reveal">Leadership</div>
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-csga-text mb-6 reveal" style="transition-delay: 100ms;">Global Council</h1>
+        <p class="text-xl text-csga-text-secondary max-w-2xl leading-relaxed reveal" style="transition-delay: 200ms;">Visionary leaders from academia, industry, government, and civil society establishing the global standard for cybersecurity and AI safety.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Executive Board & Co-Founders -->
+  <section class="relative w-full bg-csga-dark py-24 lg:py-32">
+    <div class="w-full px-6 lg:px-12">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <div class="label-mono mb-4 reveal">Executive Board</div>
+        <h2 class="text-4xl lg:text-5xl font-bold text-csga-text mb-6 reveal" style="transition-delay: 100ms;">Executive Board & Co-Founders</h2>
+        <p class="text-lg text-csga-text-secondary reveal" style="transition-delay: 200ms;">Guiding the alliance's mission to advance cybersecurity and responsible AI governance worldwide.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 max-w-7xl mx-auto">
+        <!-- James Castle - Global Chairperson -->
+        <div class="member-card card-cyber overflow-hidden reveal" style="transition-delay: 100ms;">
+          <div class="aspect-[3/4] overflow-hidden">
+            <img src="images/council-james-castle.jpg" alt="James Castle" class="member-image w-full h-full object-cover">
+          </div>
+          <div class="p-4">
+            <h3 class="text-base font-bold text-csga-text mb-1">James Castle</h3>
+            <p class="text-csga-cyan text-xs mb-2">Global Chairperson</p>
+            <p class="text-csga-text-secondary text-xs leading-relaxed">CEO and Chief Security Officer of Terranova Aerospace and Defense Group. Casting vote on deadlocks.</p>
+          </div>
+        </div>
+
+        <!-- Dr. Chris Golden - Executive Director -->
+        <div class="member-card card-cyber overflow-hidden reveal" style="transition-delay: 150ms;">
+          <div class="aspect-[3/4] overflow-hidden">
+            <img src="images/council-chris-golden.jpg" alt="Dr. Chris Golden" class="member-image w-full h-full object-cover">
+          </div>
+          <div class="p-4">
+            <h3 class="text-base font-bold text-csga-text mb-1">Dr. Chris Golden</h3>
+            <p class="text-csga-cyan text-xs mb-2">Executive Director</p>
+            <p class="text-csga-text-secondary text-xs leading-relaxed">Leading CSGA's operational excellence and strategic initiatives worldwide.</p>
+          </div>
+        </div>
+
+        <!-- Kathleen Chapman - Chief Revenue Officer -->
+        <div class="member-card card-cyber overflow-hidden reveal" style="transition-delay: 200ms;">
+          <div class="aspect-[3/4] overflow-hidden">
+            <img src="images/council-kathleen-chapman.jpg" alt="Kathleen Chapman" class="member-image w-full h-full object-cover">
+          </div>
+          <div class="p-4">
+            <h3 class="text-base font-bold text-csga-text mb-1">Kathleen Chapman</h3>
+            <p class="text-csga-cyan text-xs mb-2">Chief Revenue Officer</p>
+            <p class="text-csga-text-secondary text-xs leading-relaxed">Driving strategic partnerships and revenue growth initiatives across global markets.</p>
+          </div>
+        </div>
+
+        <!-- Dr. Frumi Barr - Chief Strategy Officer -->
+        <div class="member-card card-cyber overflow-hidden reveal" style="transition-delay: 250ms;">
+          <div class="aspect-[3/4] overflow-hidden bg-csga-cyan/10 flex items-center justify-center">
+            <i data-lucide="user" class="w-20 h-20 text-csga-cyan/40"></i>
+          </div>
+          <div class="p-4">
+            <h3 class="text-base font-bold text-csga-text mb-1">Dr. Frumi Barr</h3>
+            <p class="text-csga-cyan text-xs mb-2">Chief Strategy Officer</p>
+            <p class="text-csga-text-secondary text-xs leading-relaxed">Shaping long-term strategic direction and organizational growth planning.</p>
+          </div>
+        </div>
+
+        <!-- Leigh Cassell - Chief Training Officer -->
+        <div class="member-card card-cyber overflow-hidden reveal" style="transition-delay: 300ms;">
+          <div class="aspect-[3/4] overflow-hidden bg-csga-cyan/10 flex items-center justify-center">
+            <i data-lucide="user" class="w-20 h-20 text-csga-cyan/40"></i>
+          </div>
+          <div class="p-4">
+            <h3 class="text-base font-bold text-csga-text mb-1">Leigh Cassell</h3>
+            <p class="text-csga-cyan text-xs mb-2">Chief Training Officer</p>
+            <p class="text-csga-text-secondary text-xs leading-relaxed">Overseeing educational programs and professional development initiatives.</p>
+          </div>
+        </div>
+
+        <!-- Nicholas Templeman - Chief Science Officer -->
+        <div class="member-card card-cyber overflow-hidden reveal" style="transition-delay: 350ms;">
+          <div class="aspect-[3/4] overflow-hidden">
+            <img src="images/council-nicholas-templeman.jpg" alt="Nicholas Templeman" class="member-image w-full h-full object-cover">
+          </div>
+          <div class="p-4">
+            <h3 class="text-base font-bold text-csga-text mb-1">Nicholas Templeman</h3>
+            <p class="text-csga-cyan text-xs mb-2">Chief Science Officer</p>
+            <p class="text-csga-text-secondary text-xs leading-relaxed">Director of the CSGA Cyber AI Research Institute, leading scientific research and innovation.</p>
+          </div>
+        </div>
+
+        <!-- Terry Temple - Chief Defense Officer -->
+        <div class="member-card card-cyber overflow-hidden reveal" style="transition-delay: 400ms;">
+          <div class="aspect-[3/4] overflow-hidden bg-csga-cyan/10 flex items-center justify-center">
+            <i data-lucide="user" class="w-20 h-20 text-csga-cyan/40"></i>
+          </div>
+          <div class="p-4">
+            <h3 class="text-base font-bold text-csga-text mb-1">Terry Temple</h3>
+            <p class="text-csga-cyan text-xs mb-2">Chief Defense Officer</p>
+            <p class="text-csga-text-secondary text-xs leading-relaxed">Leading defense and security operations, including TSO-CSRT initiatives.</p>
+          </div>
+        </div>
+
+        <!-- Dr. Eyal Pinko - Chief Intelligence Officer -->
+        <div class="member-card card-cyber overflow-hidden reveal" style="transition-delay: 450ms;">
+          <div class="aspect-[3/4] overflow-hidden bg-csga-cyan/10 flex items-center justify-center">
+            <i data-lucide="user" class="w-20 h-20 text-csga-cyan/40"></i>
+          </div>
+          <div class="p-4">
+            <h3 class="text-base font-bold text-csga-text mb-1">Dr. Eyal Pinko</h3>
+            <p class="text-csga-cyan text-xs mb-2">Chief Intelligence Officer</p>
+            <p class="text-csga-text-secondary text-xs leading-relaxed">Overseeing threat intelligence, cyber analysis, and strategic intelligence operations.</p>
+          </div>
+        </div>
+
+        <!-- Samir Azizi - Chief AI Officer -->
+        <div class="member-card card-cyber overflow-hidden reveal" style="transition-delay: 500ms;">
+          <div class="aspect-[3/4] overflow-hidden bg-csga-cyan/10 flex items-center justify-center">
+            <i data-lucide="user" class="w-20 h-20 text-csga-cyan/40"></i>
+          </div>
+          <div class="p-4">
+            <h3 class="text-base font-bold text-csga-text mb-1">Samir Azizi</h3>
+            <p class="text-csga-cyan text-xs mb-2">Chief AI Officer</p>
+            <p class="text-csga-text-secondary text-xs leading-relaxed">Leading AI strategy, governance frameworks, and technology initiatives at CSOAI.</p>
+          </div>
+        </div>
+
+        <!-- Ting Ma - Chief Financial Officer -->
+        <div class="member-card card-cyber overflow-hidden reveal" style="transition-delay: 550ms;">
+          <div class="aspect-[3/4] overflow-hidden bg-csga-cyan/10 flex items-center justify-center">
+            <i data-lucide="user" class="w-20 h-20 text-csga-cyan/40"></i>
+          </div>
+          <div class="p-4">
+            <h3 class="text-base font-bold text-csga-text mb-1">Ting Ma</h3>
+            <p class="text-csga-cyan text-xs mb-2">Chief Financial Officer</p>
+            <p class="text-csga-text-secondary text-xs leading-relaxed">Managing financial operations, budgeting, and fiscal strategy for the alliance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Diplomatic Relations -->
+  <section class="relative w-full bg-csga-dark-secondary py-24 lg:py-32">
+    <div class="w-full px-6 lg:px-12">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <div class="label-mono mb-4 reveal">Global Diplomacy</div>
+        <h2 class="text-4xl lg:text-5xl font-bold text-csga-text mb-6 reveal" style="transition-delay: 100ms;">Diplomatic Relations</h2>
+        <p class="text-lg text-csga-text-secondary reveal" style="transition-delay: 200ms;">Building international partnerships and fostering global cooperation in cybersecurity and AI governance.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <!-- Estelle Chen - Canada-French Ambassador to the US -->
+        <div class="member-card card-cyber overflow-hidden reveal" style="transition-delay: 100ms;">
+          <div class="aspect-[3/4] overflow-hidden bg-csga-cyan/10 flex items-center justify-center">
+            <i data-lucide="user" class="w-20 h-20 text-csga-cyan/40"></i>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-csga-text mb-1">Estelle Chen</h3>
+            <p class="text-csga-cyan text-sm mb-3">Canada-French Ambassador to the US</p>
+            <p class="text-csga-text-secondary text-sm leading-relaxed">Based in New York, New York. Representing CSGA's interests and fostering diplomatic relations between Canada, France, and the United States.</p>
+            <div class="mt-4 flex items-center gap-2 text-xs text-csga-text-secondary">
+              <i data-lucide="map-pin" class="w-4 h-4 text-csga-cyan"></i>
+              <span>New York, New York</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dr. Daniel Katz - US Ambassador in Diplomatic Relations -->
+        <div class="member-card card-cyber overflow-hidden reveal" style="transition-delay: 200ms;">
+          <div class="aspect-[3/4] overflow-hidden bg-csga-cyan/10 flex items-center justify-center">
+            <i data-lucide="user" class="w-20 h-20 text-csga-cyan/40"></i>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-csga-text mb-1">Dr. Daniel Katz</h3>
+            <p class="text-csga-cyan text-sm mb-3">US Ambassador in Diplomatic Relations</p>
+            <p class="text-csga-text-secondary text-sm leading-relaxed">Leading diplomatic initiatives and strategic partnerships for CSGA across the United States and international markets.</p>
+            <div class="mt-4 flex items-center gap-2 text-xs text-csga-text-secondary">
+              <i data-lucide="globe" class="w-4 h-4 text-csga-cyan"></i>
+              <span>United States</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CSOAI Founding Council -->
+  <section class="relative w-full bg-csga-dark-secondary py-24 lg:py-32">
+    <div class="w-full px-6 lg:px-12">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <div class="label-mono mb-4 reveal">CSOAI</div>
+        <h2 class="text-4xl lg:text-5xl font-bold text-csga-text mb-6 reveal" style="transition-delay: 100ms;">Founding AI Council</h2>
+        <p class="text-lg text-csga-text-secondary reveal" style="transition-delay: 200ms;">34 visionary leaders establishing the global standard for AI safety and governance.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Kathleen Chapman -->
+        <div class="member-card card-cyber p-6 reveal" style="transition-delay: 100ms;">
+          <div class="w-20 h-20 rounded-full overflow-hidden mx-auto mb-4 border-2 border-csga-cyan/30">
+            <img src="images/council-kathleen-chapman.jpg" alt="Kathleen Chapman" class="member-image w-full h-full object-cover">
+          </div>
+          <h3 class="text-lg font-bold text-csga-text text-center mb-1">Kathleen Chapman</h3>
+          <p class="text-csga-cyan text-xs text-center mb-2">VP & Chief Revenue Officer</p>
+          <p class="text-csga-text-secondary text-xs text-center">Driving strategic partnerships and revenue growth initiatives.</p>
+        </div>
+
+        <!-- Stephen J. Tonna -->
+        <div class="member-card card-cyber p-6 reveal" style="transition-delay: 150ms;">
+          <div class="w-20 h-20 rounded-full bg-csga-cyan/10 border-2 border-csga-cyan/30 flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="user" class="w-10 h-10 text-csga-cyan/60"></i>
+          </div>
+          <h3 class="text-lg font-bold text-csga-text text-center mb-1">Stephen J. Tonna</h3>
+          <p class="text-csga-cyan text-xs text-center mb-2">Head of Risk, Modelling & AI Governance</p>
+          <p class="text-csga-text-secondary text-xs text-center">Leading risk assessment and AI governance frameworks.</p>
+        </div>
+
+        <!-- Dr. Cari Miller -->
+        <div class="member-card card-cyber p-6 reveal" style="transition-delay: 200ms;">
+          <div class="w-20 h-20 rounded-full bg-csga-cyan/10 border-2 border-csga-cyan/30 flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="user" class="w-10 h-10 text-csga-cyan/60"></i>
+          </div>
+          <h3 class="text-lg font-bold text-csga-text text-center mb-1">Dr. Cari Miller</h3>
+          <p class="text-csga-cyan text-xs text-center mb-2">Vice Chair, IEEE P3119</p>
+          <p class="text-csga-text-secondary text-xs text-center">Shaping international standards for AI governance.</p>
+        </div>
+
+        <!-- Carlos Mendez -->
+        <div class="member-card card-cyber p-6 reveal" style="transition-delay: 250ms;">
+          <div class="w-20 h-20 rounded-full bg-csga-cyan/10 border-2 border-csga-cyan/30 flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="user" class="w-10 h-10 text-csga-cyan/60"></i>
+          </div>
+          <h3 class="text-lg font-bold text-csga-text text-center mb-1">Carlos Mendez</h3>
+          <p class="text-csga-cyan text-xs text-center mb-2">Chief Compliance Officer</p>
+          <p class="text-csga-text-secondary text-xs text-center">Ensuring regulatory compliance across global operations.</p>
+        </div>
+
+        <!-- Sophie Laurent -->
+        <div class="member-card card-cyber p-6 reveal" style="transition-delay: 350ms;">
+          <div class="w-20 h-20 rounded-full bg-csga-cyan/10 border-2 border-csga-cyan/30 flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="user" class="w-10 h-10 text-csga-cyan/60"></i>
+          </div>
+          <h3 class="text-lg font-bold text-csga-text text-center mb-1">Sophie Laurent</h3>
+          <p class="text-csga-cyan text-xs text-center mb-2">Head of AI Governance</p>
+          <p class="text-csga-text-secondary text-xs text-center">Developing AI governance frameworks and standards.</p>
+        </div>
+
+        <!-- Dr. Priya Sharma -->
+        <div class="member-card card-cyber p-6 reveal" style="transition-delay: 450ms;">
+          <div class="w-20 h-20 rounded-full bg-csga-cyan/10 border-2 border-csga-cyan/30 flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="user" class="w-10 h-10 text-csga-cyan/60"></i>
+          </div>
+          <h3 class="text-lg font-bold text-csga-text text-center mb-1">Dr. Priya Sharma</h3>
+          <p class="text-csga-cyan text-xs text-center mb-2">Chief AI Officer</p>
+          <p class="text-csga-text-secondary text-xs text-center">Leading AI strategy and technology initiatives.</p>
+        </div>
+
+        <!-- Marcus Williams -->
+        <div class="member-card card-cyber p-6 reveal" style="transition-delay: 500ms;">
+          <div class="w-20 h-20 rounded-full bg-csga-cyan/10 border-2 border-csga-cyan/30 flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="user" class="w-10 h-10 text-csga-cyan/60"></i>
+          </div>
+          <h3 class="text-lg font-bold text-csga-text text-center mb-1">Marcus Williams</h3>
+          <p class="text-csga-cyan text-xs text-center mb-2">OWASP Board Member</p>
+          <p class="text-csga-text-secondary text-xs text-center">Application security expert and standards contributor.</p>
+        </div>
+
+        <!-- James Patterson -->
+        <div class="member-card card-cyber p-6 reveal" style="transition-delay: 550ms;">
+          <div class="w-20 h-20 rounded-full bg-csga-cyan/10 border-2 border-csga-cyan/30 flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="user" class="w-10 h-10 text-csga-cyan/60"></i>
+          </div>
+          <h3 class="text-lg font-bold text-csga-text text-center mb-1">James Patterson</h3>
+          <p class="text-csga-cyan text-xs text-center mb-2">Chief Security Officer</p>
+          <p class="text-csga-text-secondary text-xs text-center">Overseeing organizational security posture.</p>
+        </div>
+
+        <!-- Lisa Thompson -->
+        <div class="member-card card-cyber p-6 reveal" style="transition-delay: 600ms;">
+          <div class="w-20 h-20 rounded-full bg-csga-cyan/10 border-2 border-csga-cyan/30 flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="user" class="w-10 h-10 text-csga-cyan/60"></i>
+          </div>
+          <h3 class="text-lg font-bold text-csga-text text-center mb-1">Lisa Thompson</h3>
+          <p class="text-csga-cyan text-xs text-center mb-2">VP Product Safety</p>
+          <p class="text-csga-text-secondary text-xs text-center">Ensuring product safety and quality standards.</p>
+        </div>
+
+        <!-- Thomas Mueller -->
+        <div class="member-card card-cyber p-6 reveal" style="transition-delay: 650ms;">
+          <div class="w-20 h-20 rounded-full bg-csga-cyan/10 border-2 border-csga-cyan/30 flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="user" class="w-10 h-10 text-csga-cyan/60"></i>
+          </div>
+          <h3 class="text-lg font-bold text-csga-text text-center mb-1">Thomas Mueller</h3>
+          <p class="text-csga-cyan text-xs text-center mb-2">VP Engineering Ethics</p>
+          <p class="text-csga-text-secondary text-xs text-center">Promoting ethical engineering practices.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Section -->
+  <section class="relative w-full bg-csga-dark py-24 lg:py-32">
+    <div class="w-full px-6 lg:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="reveal">
+          <div class="label-mono mb-4">Our Story</div>
+          <h2 class="text-4xl lg:text-5xl font-bold text-csga-text mb-6">CSGA Corporate Video</h2>
+          <p class="text-lg text-csga-text-secondary leading-relaxed mb-8">Learn about our journey since 2021, our mission to advance cybersecurity education, and our vision for a safer digital world through responsible AI governance.</p>
+          <div class="flex flex-wrap gap-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-csga-cyan/10 border border-csga-cyan/30 flex items-center justify-center">
+                <i data-lucide="calendar" class="w-5 h-5 text-csga-cyan"></i>
+              </div>
+              <div>
+                <div class="text-2xl font-bold text-csga-text">2021</div>
+                <div class="text-sm text-csga-text-secondary">Founded</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-csga-cyan/10 border border-csga-cyan/30 flex items-center justify-center">
+                <i data-lucide="users" class="w-5 h-5 text-csga-cyan"></i>
+              </div>
+              <div>
+                <div class="text-2xl font-bold text-csga-text">1,500+</div>
+                <div class="text-sm text-csga-text-secondary">Members</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal" style="transition-delay: 200ms;">
+          <div class="video-container glow-cyan">
+            <iframe src="https://www.youtube.com/embed/ZOHb6ihvF1I" title="CSGA Corporate Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Council Leadership Section -->
+  <section class="relative w-full bg-csga-dark py-24 lg:py-32">
+    <div class="w-full px-6 lg:px-12">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div class="reveal">
+          <div class="label-mono mb-4">Leadership</div>
+          <h2 class="text-3xl lg:text-4xl font-bold text-csga-text mb-6">Guided by Visionary Leaders</h2>
+          <p class="text-csga-text-secondary mb-6">Our Global Council comprises distinguished experts from cybersecurity, AI research, government, academia, and industry. Together, they shape the strategic direction of CSGA and CSOAI.</p>
+          <p class="text-csga-text-secondary mb-8">Council members bring decades of combined experience in national security, enterprise technology, policy development, and ethical AI governance.</p>
+          
+          <div class="grid grid-cols-2 gap-4">
+            <div class="card-cyber p-4 text-center">
+              <div class="text-3xl font-bold text-csga-cyan mb-1">34</div>
+              <div class="text-sm text-csga-text-secondary">Founding Council</div>
+            </div>
+            <div class="card-cyber p-4 text-center">
+              <div class="text-3xl font-bold text-csga-cyan mb-1">50+</div>
+              <div class="text-sm text-csga-text-secondary">Countries</div>
+            </div>
+            <div class="card-cyber p-4 text-center">
+              <div class="text-3xl font-bold text-csga-cyan mb-1">200+</div>
+              <div class="text-sm text-csga-text-secondary">Years Experience</div>
+            </div>
+            <div class="card-cyber p-4 text-center">
+              <div class="text-3xl font-bold text-csga-cyan mb-1">15</div>
+              <div class="text-sm text-csga-text-secondary">Industries</div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal" style="transition-delay: 200ms;">
+          <div class="relative rounded-2xl overflow-hidden glow-cyan">
+            <img src="images/council-leaders.jpg" alt="Council Leadership" class="w-full h-auto">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Global Network Parallax Section -->
+  <section class="relative w-full min-h-[60vh] parallax-section overflow-hidden flex items-center" style="background-image: url('images/global-cyber-network.jpg');">
+    <div class="absolute inset-0 bg-csga-dark/70"></div>
+    <div class="relative z-10 w-full px-6 lg:px-12 py-24">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="label-mono mb-4 reveal">Global Reach</div>
+        <h2 class="text-4xl lg:text-5xl font-bold text-csga-text mb-6 reveal" style="transition-delay: 100ms;">50+ Countries. One Mission.</h2>
+        <p class="text-xl text-csga-text-secondary leading-relaxed reveal" style="transition-delay: 200ms;">Our council members represent diverse perspectives from around the world, united in advancing cybersecurity and AI governance for a safer digital future.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="relative w-full bg-csga-dark py-24 lg:py-32">
+    <div class="w-full px-6 lg:px-12">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-16">
+          <div class="label-mono mb-4 reveal">Common Questions</div>
+          <h2 class="text-4xl lg:text-5xl font-bold text-csga-text mb-6 reveal" style="transition-delay: 100ms;">Council FAQ</h2>
+          <p class="text-lg text-csga-text-secondary reveal" style="transition-delay: 200ms;">Learn more about joining and participating in the CSGA Global Council.</p>
+        </div>
+        
+        <div class="space-y-4 reveal" style="transition-delay: 300ms;">
+          <div class="faq-item py-6 border-b border-csga-text/10">
+            <div class="faq-question flex items-center justify-between cursor-pointer" onclick="toggleFaq(this)">
+              <h3 class="text-lg font-semibold text-csga-text pr-8">How can I join the Global Council?</h3>
+              <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-csga-cyan flex-shrink-0 transition-transform"></i>
+            </div>
+            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
+              <p class="text-csga-text-secondary pt-4">Council membership is by invitation or application. Submit your application through our contact page with your CV and a statement of interest. Our selection committee reviews applications quarterly.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item py-6 border-b border-csga-text/10">
+            <div class="faq-question flex items-center justify-between cursor-pointer" onclick="toggleFaq(this)">
+              <h3 class="text-lg font-semibold text-csga-text pr-8">What are the responsibilities of council members?</h3>
+              <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-csga-cyan flex-shrink-0 transition-transform"></i>
+            </div>
+            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
+              <p class="text-csga-text-secondary pt-4">Council members participate in quarterly meetings, contribute to working groups, provide strategic guidance, and advocate for CSGA's mission. Time commitment is approximately 5-10 hours per month.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item py-6 border-b border-csga-text/10">
+            <div class="faq-question flex items-center justify-between cursor-pointer" onclick="toggleFaq(this)">
+              <h3 class="text-lg font-semibold text-csga-text pr-8">Is there a membership fee for the council?</h3>
+              <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-csga-cyan flex-shrink-0 transition-transform"></i>
+            </div>
+            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
+              <p class="text-csga-text-secondary pt-4">Council membership is complimentary for qualified individuals. We seek diverse perspectives and do not want financial barriers to prevent participation from outstanding candidates.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item py-6 border-b border-csga-text/10">
+            <div class="faq-question flex items-center justify-between cursor-pointer" onclick="toggleFaq(this)">
+              <h3 class="text-lg font-semibold text-csga-text pr-8">What expertise are you looking for?</h3>
+              <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-csga-cyan flex-shrink-0 transition-transform"></i>
+            </div>
+            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
+              <p class="text-csga-text-secondary pt-4">We seek expertise in cybersecurity, AI/ML, policy and governance, ethics, law, defense, critical infrastructure, healthcare, finance, and related fields. Both technical and non-technical perspectives are valued.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item py-6 border-b border-csga-text/10">
+            <div class="faq-question flex items-center justify-between cursor-pointer" onclick="toggleFaq(this)">
+              <h3 class="text-lg font-semibold text-csga-text pr-8">Can organizations nominate representatives?</h3>
+              <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-csga-cyan flex-shrink-0 transition-transform"></i>
+            </div>
+            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
+              <p class="text-csga-text-secondary pt-4">Yes, organizations can nominate senior representatives. Corporate partners and sponsors receive priority consideration for council positions. Contact us to discuss organizational membership.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Join Council CTA -->
+  <section class="relative w-full bg-csga-dark-secondary py-24 lg:py-32">
+    <div class="w-full px-6 lg:px-12">
+      <div class="card-cyber glow-cyan p-8 lg:p-16 text-center reveal">
+        <h2 class="text-3xl lg:text-4xl font-bold text-csga-text mb-4">Join the Global Council</h2>
+        <p class="text-lg text-csga-text-secondary max-w-2xl mx-auto mb-8">We're continuously expanding our Founding Council to include more voices from academia, industry, government, and civil society. If you're passionate about AI safety and cybersecurity, we'd love to hear from you.</p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="contact.html" class="btn-primary px-8 py-4 bg-csga-cyan text-csga-dark rounded-xl font-semibold hover:bg-csga-cyan/90 transition-colors inline-flex items-center gap-2">
+            <span>Apply to Join</span>
+            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+          </a>
+          <a href="members.html" class="px-8 py-4 border border-csga-text/20 text-csga-text rounded-xl font-semibold hover:border-csga-cyan/50 hover:text-csga-cyan transition-colors">Learn About Membership</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced CTA Section with Ken Burns -->
+  <section class="relative w-full py-24 lg:py-32 overflow-hidden">
+    <div class="absolute inset-0">
+      <div class="hero-ken-burns">
+        <img src="images/council-leaders.jpg" alt="CSGA Council">
+      </div>
+      <div class="absolute inset-0 bg-gradient-to-r from-csga-dark via-csga-dark/95 to-csga-dark/80"></div>
+    </div>
+    <div class="relative z-10 w-full px-6 lg:px-[6vw]">
+      <div class="card-cyber p-8 lg:p-16 text-center border-l-4 border-l-csga-cyan reveal">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-csga-cyan/10 border border-csga-cyan/30 rounded-full mb-6">
+          <i data-lucide="crown" class="w-4 h-4 text-csga-cyan"></i>
+          <span class="text-sm font-medium text-csga-cyan">Join Our Leadership</span>
+        </div>
+        <h2 class="text-4xl lg:text-5xl font-bold text-csga-text mb-6">Shape the Future With Us</h2>
+        <p class="text-lg text-csga-text-secondary leading-relaxed max-w-2xl mx-auto mb-10">
+          Are you a cybersecurity or AI governance leader interested in joining our Global Council? Help us shape international standards and advance the mission of building a safer digital world.
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-4 mb-10">
+          <a href="contact.html" class="btn-primary px-10 py-5 bg-csga-cyan text-csga-dark rounded-xl font-semibold hover:bg-csga-cyan/90 transition-colors flex items-center gap-2">
+            <span>Apply to Council</span>
+            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+          </a>
+          <a href="members.html" class="px-10 py-5 border border-csga-cyan/30 text-csga-cyan rounded-xl font-semibold hover:bg-csga-cyan/10 transition-colors flex items-center gap-2">
+            <span>Become a Member</span>
+            <i data-lucide="users" class="w-5 h-5"></i>
+          </a>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
+          <div class="text-center">
+            <div class="text-2xl font-bold text-csga-cyan mb-1">34</div>
+            <div class="text-xs text-csga-text-secondary">Council Members</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold text-csga-cyan mb-1">15+</div>
+            <div class="text-xs text-csga-text-secondary">Countries</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold text-csga-cyan mb-1">50+</div>
+            <div class="text-xs text-csga-text-secondary">Years Combined Exp.</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold text-csga-cyan mb-1">Global</div>
+            <div class="text-xs text-csga-text-secondary">Impact</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+    <!-- Partners Slider -->
+  <section class="relative w-full bg-csga-dark py-12 border-y border-[rgba(242,245,250,0.06)]">
+    <div class="w-full px-6 lg:px-12 mb-8">
+      <div class="text-center">
+        <div class="label-mono mb-2">Trusted By Industry Leaders</div>
+      </div>
+    </div>
+    <div class="overflow-hidden">
+      <div class="partner-slider flex items-center gap-12 whitespace-nowrap">
+        <div class="flex items-center gap-12">
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">BMCC</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">CUNY</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">Terranova</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">CSOAI</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">Applied Tech Academy</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">Ontario Aerospace Council</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">U.S. Dept of Commerce</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">Toronto DAO</span>
+        </div>
+        <div class="flex items-center gap-12">
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">BMCC</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">CUNY</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">Terranova</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">CSOAI</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">Applied Tech Academy</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">Ontario Aerospace Council</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">U.S. Dept of Commerce</span>
+          <span class="text-2xl font-bold text-csga-text/60 hover:text-csga-cyan transition-colors">Toronto DAO</span>
+        </div>
+      </div>
+    </div>
+    <div class="w-full px-6 lg:px-12 mt-6 text-center">
+      <a href="partners.html" class="text-sm text-csga-cyan hover:underline">View All Partners →</a>
+    </div>
+  </section>
+
+<footer class="relative bg-csga-dark border-t border-[rgba(242,245,250,0.06)]">
+    <div class="w-full px-6 lg:px-12 py-16 lg:py-20">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 lg:gap-8">
+        <div class="lg:col-span-2">
+          <div class="mb-6">
+            <img src="images/logo.png" alt="CSGA Global" class="h-32 w-auto">
+          </div>
+          <p class="text-csga-text-secondary text-sm leading-relaxed mb-6 max-w-sm">Cyber Security Global Alliance — advancing cybersecurity education, workforce development, and responsible AI governance worldwide.</p>
+          <div class="flex items-center gap-4">
+            <a href="https://twitter.com/CSGA_Global" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-csga-dark-secondary border border-[rgba(242,245,250,0.08)] flex items-center justify-center text-csga-text-secondary hover:text-csga-cyan hover:border-csga-cyan/30 transition-all duration-300">
+              <i data-lucide="twitter" class="w-5 h-5"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/csga-canada" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-csga-dark-secondary border border-[rgba(242,245,250,0.08)] flex items-center justify-center text-csga-text-secondary hover:text-csga-cyan hover:border-csga-cyan/30 transition-all duration-300">
+              <i data-lucide="linkedin" class="w-5 h-5"></i>
+            </a>
+            <a href="mailto:contact@csga-global.org" class="w-10 h-10 rounded-lg bg-csga-dark-secondary border border-[rgba(242,245,250,0.08)] flex items-center justify-center text-csga-text-secondary hover:text-csga-cyan hover:border-csga-cyan/30 transition-all duration-300">
+              <i data-lucide="mail" class="w-5 h-5"></i>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-csga-text-secondary mb-4">Organization</h4>
+          <ul class="space-y-3">
+            <li><a href="about.html" class="text-sm text-csga-text/80 hover:text-csga-cyan transition-colors duration-300">About CSGA</a></li>
+            <li><a href="council.html" class="text-sm text-csga-text/80 hover:text-csga-cyan transition-colors duration-300">Global Council</a></li>
+            <li><a href="news.html" class="text-sm text-csga-text/80 hover:text-csga-cyan transition-colors duration-300">News & Media</a></li>
+            <li><a href="events.html" class="text-sm text-csga-text/80 hover:text-csga-cyan transition-colors duration-300">Events</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-csga-text-secondary mb-4">Programs</h4>
+          <ul class="space-y-3">
+            <li><a href="education.html" class="text-sm text-csga-text/80 hover:text-csga-cyan transition-colors duration-300">Education</a></li>
+            <li><a href="programs.html" class="text-sm text-csga-text/80 hover:text-csga-cyan transition-colors duration-300">Training Programs</a></li>
+            <li><a href="csoai.html" class="text-sm text-csga-text/80 hover:text-csga-cyan transition-colors duration-300">CSOAI</a></li>
+            <li><a href="veterans.html" class="text-sm text-csga-text/80 hover:text-csga-cyan transition-colors duration-300">Veterans</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-csga-text-secondary mb-4">Resources</h4>
+          <ul class="space-y-3">
+            <li><a href="csoai.html" class="text-sm text-csga-text/80 hover:text-csga-cyan transition-colors duration-300">Research</a></li>
+            <li><a href="members.html" class="text-sm text-csga-text/80 hover:text-csga-cyan transition-colors duration-300">Membership</a></li>
+            <li><a href="contact.html" class="text-sm text-csga-text/80 hover:text-csga-cyan transition-colors duration-300">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-csga-text-secondary mb-4">Contact</h4>
+          <ul class="space-y-3">
+            <li class="flex items-center gap-2 text-sm text-csga-text/80">
+              <i data-lucide="phone" class="w-4 h-4 text-csga-cyan"></i>
+              +1 (416) 800-6080
+            </li>
+            <li class="flex items-start gap-2 text-sm text-csga-text/80">
+              <i data-lucide="map-pin" class="w-4 h-4 text-csga-cyan mt-0.5"></i>
+              <span>Toronto, Canada</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-[rgba(242,245,250,0.06)]">
+      <div class="w-full px-6 lg:px-12 py-6">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+          <p class="text-sm text-csga-text-secondary">&copy; 2024 CSGA Global. All rights reserved.</p>
+          <div class="flex items-center gap-6">
+            <a href="privacy-policy.html" class="text-sm text-csga-text-secondary hover:text-csga-cyan transition-colors">Privacy Policy</a>
+            <a href="terms.html" class="text-sm text-csga-text-secondary hover:text-csga-cyan transition-colors">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Navigation scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('bg-csga-dark/90', 'backdrop-blur-xl', 'border-b', 'border-csga-text/5');
+      } else {
+        navbar.classList.remove('bg-csga-dark/90', 'backdrop-blur-xl', 'border-b', 'border-csga-text/5');
+      }
+    });
+
+    // Mobile menu
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('opacity-0');
+      mobileMenu.classList.toggle('pointer-events-none');
+    });
+
+    mobileMenuOverlay.addEventListener('click', () => {
+      mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+    });
+
+    // Scroll reveal animation
+    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // FAQ toggle function
+    function toggleFaq(element) {
+      const faqItem = element.parentElement;
+      const answer = faqItem.querySelector('.faq-answer');
+      const icon = element.querySelector('.faq-icon');
+      const isOpen = answer.style.maxHeight && answer.style.maxHeight !== '0px';
+      
+      // Close all FAQ items
+      document.querySelectorAll('.faq-item').forEach(item => {
+        item.querySelector('.faq-answer').style.maxHeight = '0px';
+        item.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
+      });
+      
+      // Open clicked item if it was closed
+      if (!isOpen) {
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        icon.style.transform = 'rotate(180deg)';
+      }
+    }
+  </script>
+</body>
+</html>

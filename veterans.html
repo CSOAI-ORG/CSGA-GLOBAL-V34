@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veterans Program | CSGA Global</title>
+  <meta name="description" content="CSGA's Veterans Program supports military veterans transitioning into cybersecurity careers through training, mentorship, and community.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'csga-dark': '#0B0F17',
+            'csga-dark-secondary': '#0E1420',
+            'csga-cyan': '#2EE9F6',
+            'csga-text': '#F2F5FA',
+            'csga-text-secondary': '#A7B1C6',
+          },
+          fontFamily: {
+            'sans': ['Inter', 'sans-serif'],
+            'heading': ['Space Grotesk', 'sans-serif'],
+            'mono': ['IBM Plex Mono', 'monospace'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #0B0F17; color: #F2F5FA; font-family: 'Inter', sans-serif; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02em; }
+    .label-mono { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.18em; color: #A7B1C6; }
+    .cta-link { position: relative; display: inline-flex; align-items: center; gap: 0.5rem; color: #2EE9F6; font-weight: 500; transition: gap 0.3s; }
+    .cta-link:hover { gap: 0.75rem; }
+    .cta-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 1px; background: #2EE9F6; }
+    .card-cyber { background: rgba(14, 20, 32, 0.8); backdrop-filter: blur(20px); border: 1px solid rgba(242, 245, 250, 0.08); border-radius: 1rem; }
+    .grain-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; opacity: 0.04; mix-blend-mode: overlay; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); }
+    .nav-link { position: relative; color: #A7B1C6; transition: color 0.3s; }
+    .nav-link:hover { color: #F2F5FA; }
+    .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: #2EE9F6; transition: width 0.3s; }
+    .nav-link:hover::after { width: 100%; }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .partner-slider { animation: slide 30s linear infinite; }
+    @keyframes slide { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .partner-slider:hover { animation-play-state: paused; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .hero-ken-burns { position: absolute; inset: 0; overflow: hidden; }
+    .hero-ken-burns img { width: 110%; height: 110%; object-fit: cover; animation: kenBurns 25s ease-in-out infinite alternate; }
+    @keyframes kenBurns { 0% { transform: scale(1) translate(0, 0); } 100% { transform: scale(1.15) translate(-2%, -1%); } }
+    .glow-cyan { box-shadow: 0 0 60px rgba(46, 233, 246, 0.15); }
+    .veteran-card { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+    .veteran-card:hover { transform: translateY(-8px); border-color: rgba(46, 233, 246, 0.4); box-shadow: 0 20px 60px rgba(46, 233, 246, 0.15); }
+    .faq-item { border-bottom: 1px solid rgba(242, 245, 250, 0.08); }
+    .faq-question { cursor: pointer; transition: color 0.3s; }
+    .faq-question:hover { color: #2EE9F6; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; }
+    .faq-item.active .faq-answer { max-height: 500px; padding-top: 1rem; }
+    .faq-item.active .faq-icon { transform: rotate(180deg); }
+    .faq-icon { transition: transform 0.3s ease; }
+    .btn-primary { position: relative; overflow: hidden; transition: all 0.3s ease; }
+    .btn-primary::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.5s ease; }
+    .btn-primary:hover::before { left: 100%; }
+    .step-connector { position: absolute; top: 2rem; left: 50%; width: calc(100% - 4rem); height: 2px; background: linear-gradient(90deg, rgba(46, 233, 246, 0.3), rgba(46, 233, 246, 0.1)); transform: translateX(-50%); z-index: 0; }
+    .testimonial-card { background: linear-gradient(135deg, rgba(14, 20, 32, 0.9), rgba(14, 20, 32, 0.7)); border: 1px solid rgba(46, 233, 246, 0.1); }
+    .curriculum-item { transition: all 0.3s ease; }
+    .curriculum-item:hover { background: rgba(46, 233, 246, 0.05); border-color: rgba(46, 233, 246, 0.3); }
+  </style>
+</head>
+<body class="antialiased">
+  <div class="grain-overlay"></div>
+
+  <!-- Navigation -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-[1000] transition-all duration-500">
+    <div class="w-full px-6 lg:px-12">
+      <div class="flex items-center justify-between h-20 lg:h-24">
+        <a href="index.html" class="flex items-center gap-3 group">
+          <img src="images/logo.png" alt="CSGA Global" class="h-20 w-auto transition-transform duration-300 group-hover:scale-105">
+        </a>
+        <div class="hidden lg:flex items-center gap-8">
+          <a href="about.html" class="nav-link text-sm font-medium">About</a>
+          <a href="education.html" class="nav-link text-sm font-medium">Education</a>
+          <a href="programs.html" class="nav-link text-sm font-medium">Programs</a>
+          <a href="csoai.html" class="nav-link text-sm font-medium">CSOAI</a>
+          <a href="events.html" class="nav-link text-sm font-medium">Events</a>
+          <a href="veterans.html" class="nav-link text-sm font-medium text-csga-cyan">Veterans</a>
+          <a href="news.html" class="nav-link text-sm font-medium">News</a>
+          <a href="council.html" class="nav-link text-sm font-medium">Council</a>
+          <a href="members.html" class="nav-link text-sm font-medium">Members</a>
+          <a href="contact.html" class="px-5 py-2.5 bg-csga-cyan/10 border border-csga-cyan/30 rounded-lg text-csga-cyan text-sm font-medium hover:bg-csga-cyan/20 hover:border-csga-cyan/50 transition-all duration-300">Join</a>
+        </div>
+        <button id="mobile-menu-btn" class="lg:hidden p-2 text-csga-text hover:text-csga-cyan transition-colors">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="fixed inset-0 z-[999] lg:hidden opacity-0 pointer-events-none transition-opacity duration-500">
+    <div class="absolute inset-0 bg-csga-dark/95 backdrop-blur-xl" id="mobile-menu-overlay"></div>
+    <div class="relative flex flex-col items-center justify-center h-full gap-8">
+      <a href="about.html" class="mobile-nav-link text-2xl font-semibold text-csga-text hover:text-csga-cyan transition-colors">About</a>
+      <a href="education.html" class="mobile-nav-link text-2xl font-semibold text-csga-text hover:text-csga-cyan transition-colors">Education</a>
+      <a href="programs.html" class="mobile-nav-link text-2xl font-semibold text-csga-text hover:text-csga-cyan transition-colors">Programs</a>
+      <a href="csoai.html" class="mobile-nav-link text-2xl font-semibold text-csga-text hover:text-csga-cyan transition-colors">CSOAI</a>
+      <a href="events.html" class="mobile-nav-link text-2xl font-semibold text-csga-text hover:text-csga-cyan transition-colors">Events</a>
+      <a href="veterans.html" class="mobile-nav-link text-2xl font-semibold text-csga-cyan transition-colors">Veterans</a>
+      <a href="news.html" class="mobile-nav-link text-2xl font-semibold text-csga-text hover:text-csga-cyan transition-colors">News</a>
+      <a href="council.html" class="mobile-nav-link text-2xl font-semibold text-csga-text hover:text-csga-cyan transition-colors">Council</a>
+      <a href="members.html" class="mobile-nav-link text-2xl font-semibold text-csga-text hover:text-csga-cyan transition-colors">Members</a>
+      <a href="contact.html" class="mt-4 px-8 py-3 bg-csga-cyan text-csga-dark rounded-lg font-semibold hover:bg-csga-cyan/90 transition-colors">Join the Alliance</a>
+    </div>
+  </div>
+
+  <!-- Hero Section with Ken Burns -->
+  <section class="relative w-full min-h-[70vh] overflow-hidden flex items-center">
+    <div class="hero-ken-burns">
+      <img src="images/veterans-hero.jpg" alt="Veterans Program">
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-b from-csga-dark/80 via-csga-dark/60 to-csga-dark"></div>
+    <div class="relative z-10 w-full px-6 lg:px-[6vw] py-32">
+      <div class="max-w-4xl">
+        <div class="label-mono mb-4 reveal">Serving Those Who Served</div>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-csga-text leading-tight mb-6 reveal" style="transition-delay: 100ms;">
+          Veterans &<br><span class="text-csga-cyan">Their Spouses</span>
+        </h1>
+        <p class="text-lg lg:text-xl text-csga-text-secondary max-w-2xl mb-6 reveal" style="transition-delay: 200ms;">
+          Supporting military veterans and their spouses in their transition to cybersecurity careers through specialized training, mentorship, and a supportive community.
+        </p>
+        <div class="card-cyber p-6 mb-8 border-l-4 border-l-csga-cyan reveal" style="transition-delay: 250ms;">
+          <p class="text-xl font-semibold text-csga-text italic">"Service builds leadership. Education builds the future."</p>
+        </div>
+        <div class="flex flex-wrap gap-4 reveal" style="transition-delay: 300ms;">
+          <a href="contact.html" class="btn-primary px-8 py-4 bg-csga-cyan text-csga-dark rounded-xl font-semibold hover:bg-csga-cyan/90 transition-colors flex items-center gap-2">
+            <span>Join the Veterans Pathway</span>
+            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+          </a>
+          <a href="#how-it-works" class="px-8 py-4 border border-csga-cyan/30 text-csga-cyan rounded-xl font-semibold hover:bg-csga-cyan/10 transition-colors flex items-center gap-2">
+            <span>Learn More</span>
+            <i data-lucide="arrow-down" class="w-5 h-5"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Free AI Governance Training Banner -->
+  <section class="relative w-full bg-csga-cyan py-8">
+    <div class="w-full px-6 lg:px-[6vw]">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-full bg-csga-dark flex items-center justify-center flex-shrink-0">
+            <i data-lucide="graduation-cap" class="w-6 h-6 text-csga-cyan"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-csga-dark">Veterans: Free AI Governance Training</h3>
+            <p class="text-csga-dark/80 text-sm">Complimentary access to CSGA's AI governance certification program</p>
+          </div>
+        </div>
+        <a href="contact.html" class="px-6 py-3 bg-csga-dark text-csga-cyan rounded-lg font-semibold hover:bg-csga-dark/90 transition-colors flex items-center gap-2">
+          <span>Get Started</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="relative w-full bg-csga-dark py-20 lg:py-28">
+    <div class="w-full px-6 lg:px-[6vw]">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="text-center reveal">
+          <div class="text-4xl lg:text-5xl font-bold text-csga-cyan mb-2">500+</div>
+          <div class="text-sm text-csga-text-secondary">Veterans Trained</div>
+        </div>
+        <div class="text-center reveal" style="transition-delay: 100ms;">
+          <div class="text-4xl lg:text-5xl font-bold text-csga-cyan mb-2">85%</div>
+          <div class="text-sm text-csga-text-secondary">Placement Rate</div>
+        </div>
+        <div class="text-center reveal" style="transition-delay: 200ms;">
+          <div class="text-4xl lg:text-5xl font-bold text-csga-cyan mb-2">50+</div>
+          <div class="text-sm text-csga-text-secondary">Partner Employers</div>
+        </div>
+        <div class="text-center reveal" style="transition-delay: 300ms;">
+          <div class="text-4xl lg:text-5xl font-bold text-csga-cyan mb-2">12</div>
+          <div class="text-sm text-csga-text-secondary">Week Program</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works" class="relative w-full bg-csga-dark-secondary py-24 lg:py-32">
+    <div class="w-full px-6 lg:px-[6vw]">
+      <div class="text-center mb-16">
+        <div class="label-mono mb-4 reveal">Your Journey</div>
+        <h2 class="text-3xl lg:text-5xl font-bold text-csga-text mb-6 reveal" style="transition-delay: 100ms;">How It Works</h2>
+        <p class="text-lg text-csga-text-secondary max-w-2xl mx-auto reveal" style="transition-delay: 200ms;">From application to employment, we guide you every step of the way.</p>
+      </div>
+      
+      <div class="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="step-connector hidden lg:block"></div>
+        
+        <div class="relative z-10 text-center reveal">
+          <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-csga-cyan/10 border border-csga-cyan/30 flex items-center justify-center">
+            <i data-lucide="file-text" class="w-7 h-7 text-csga-cyan"></i>
+          </div>
+          <div class="text-csga-cyan font-mono text-sm mb-2">STEP 01</div>
+          <h3 class="text-xl font-bold text-csga-text mb-3">Apply</h3>
+          <p class="text-csga-text-secondary text-sm">Submit your application with military service documentation and career goals.</p>
+        </div>
+        
+        <div class="relative z-10 text-center reveal" style="transition-delay: 100ms;">
+          <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-csga-cyan/10 border border-csga-cyan/30 flex items-center justify-center">
+            <i data-lucide="graduation-cap" class="w-7 h-7 text-csga-cyan"></i>
+          </div>
+          <div class="text-csga-cyan font-mono text-sm mb-2">STEP 02</div>
+          <h3 class="text-xl font-bold text-csga-text mb-3">Train</h3>
+          <p class="text-csga-text-secondary text-sm">Complete our 12-week intensive cybersecurity training program.</p>
+        </div>
+        
+        <div class="relative z-10 text-center reveal" style="transition-delay: 200ms;">
+          <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-csga-cyan/10 border border-csga-cyan/30 flex items-center justify-center">
+            <i data-lucide="award" class="w-7 h-7 text-csga-cyan"></i>
+          </div>
+          <div class="text-csga-cyan font-mono text-sm mb-2">STEP 03</div>
+          <h3 class="text-xl font-bold text-csga-text mb-3">Certify</h3>
+          <p class="text-csga-text-secondary text-sm">Earn industry-recognized certifications including Security+ and CSRT.</p>
+        </div>
+        
+        <div class="relative z-10 text-center reveal" style="transition-delay: 300ms;">
+          <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-csga-cyan/10 border border-csga-cyan/30 flex items-center justify-center">
+            <i data-lucide="briefcase" class="w-7 h-7 text-csga-cyan"></i>
+          </div>
+          <div class="text-csga-cyan font-mono text-sm mb-2">STEP 04</div>
+          <h3 class="text-xl font-bold text-csga-text mb-3">Employ</h3>
+          <p class="text-csga-text-secondary text-sm">Connect with our network of 50+ employer partners for job placement.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Program Overview Section -->
+  <section class="relative w-full bg-csga-dark py-24 lg:py-32">
+    <div class="w-full px-6 lg:px-[6vw]">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-20">
+        <div class="reveal">
+          <div class="label-mono mb-4">Program Overview</div>
+          <h2 class="text-3xl lg:text-4xl font-bold text-csga-text mb-6">Building Cyber Warriors for the Digital Battlefield</h2>
+          <p class="text-csga-text-secondary mb-6">The CSGA Veterans Program is specifically designed for military veterans transitioning to civilian careers. We recognize the unique skills veterans bring—discipline, leadership, security clearance experience, and mission-focused mindset—and translate them into cybersecurity excellence.</p>
+          <p class="text-csga-text-secondary mb-8">Our comprehensive 12-week program combines technical training, hands-on labs, mentorship from industry veterans, and direct pathways to employment with leading cybersecurity employers.</p>
+          <div class="flex flex-wrap gap-4">
+            <div class="flex items-center gap-2 text-csga-text">
+              <i data-lucide="check-circle" class="w-5 h-5 text-csga-cyan"></i>
+              <span class="text-sm">GI Bill Approved</span>
+            </div>
+            <div class="flex items-center gap-2 text-csga-text">
+              <i data-lucide="check-circle" class="w-5 h-5 text-csga-cyan"></i>
+              <span class="text-sm">No Experience Required</span>
+            </div>
+            <div class="flex items-center gap-2 text-csga-text">
+              <i data-lucide="check-circle" class="w-5 h-5 text-csga-cyan"></i>
+              <span class="text-sm">Job Guarantee</span>
+            </div>
+          </div>
+        </div>
+        <div class="reveal" style="transition-delay: 200ms;">
+          <div class="relative rounded-2xl overflow-hidden glow-cyan">
+            <img src="images/veteran-transition.jpg" alt="Veteran Transition" class="w-full h-auto">
+          </div>
+        </div>
+      </div>
+
+      <!-- Program Cards -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="card-cyber p-6 veteran-card reveal">
+          <div class="w-12 h-12 rounded-xl bg-csga-cyan/10 flex items-center justify-center mb-4">
+            <i data-lucide="users" class="w-6 h-6 text-csga-cyan"></i>
+          </div>
+          <h3 class="text-xl font-bold text-csga-text mb-3">Mentorship Program</h3>
+          <p class="text-csga-text-secondary text-sm mb-4">One-on-one guidance from cybersecurity professionals who understand the veteran experience.</p>
+          <img src="images/veteran-mentorship.jpg" alt="Mentorship" class="w-full h-40 object-cover rounded-lg mb-4">
+          <a href="contact.html" class="cta-link text-sm">Learn More <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+        </div>
+        
+        <div class="card-cyber p-6 veteran-card reveal" style="transition-delay: 100ms;">
+          <div class="w-12 h-12 rounded-xl bg-csga-cyan/10 flex items-center justify-center mb-4">
+            <i data-lucide="laptop" class="w-6 h-6 text-csga-cyan"></i>
+          </div>
+          <h3 class="text-xl font-bold text-csga-text mb-3">Hands-On Training</h3>
+          <p class="text-csga-text-secondary text-sm mb-4">Real-world labs and simulations that mirror actual cybersecurity operations.</p>
+          <img src="images/veteran-training.jpg" alt="Training" class="w-full h-40 object-cover rounded-lg mb-4">
+          <a href="contact.html" class="cta-link text-sm">Learn More <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+        </div>
+        
+        <div class="card-cyber p-6 veteran-card reveal" style="transition-delay: 200ms;">
+          <div class="w-12 h-12 rounded-xl bg-csga-cyan/10 flex items-center justify-center mb-4">
+            <i data-lucide="award" class="w-6 h-6 text-csga-cyan"></i>
+          </div>
+          <h3 class="text-xl font-bold text-csga-text mb-3">Certification Prep</h3>
+          <p class="text-csga-text-secondary text-sm mb-4">Full preparation for CompTIA Security+, Network+, and CSGA certifications.</p>
+          <img src="images/veteran-certification.jpg" alt="Certification" class="w-full h-40 object-cover rounded-lg mb-4">
+          <a href="contact.html" class="cta-link text-sm">Learn More <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Curriculum Section -->
+  <section class="relative w-full bg-csga-dark-secondary py-24 lg:py-32">
+    <div class="w-full px-6 lg:px-[6vw]">
+      <div class="text-center mb-16">
+        <div class="label-mono mb-4 reveal">What You'll Learn</div>
+        <h2 class="text-3xl lg:text-5xl font-bold text-csga-text mb-6 reveal" style="transition-delay: 100ms;">Program Curriculum</h2>
+        <p class="text-lg text-csga-text-secondary max-w-2xl mx-auto reveal" style="transition-delay: 200ms;">Comprehensive training covering all essential cybersecurity domains.</p>
+      </div>
+      
+      <div class="grid lg:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <div class="curriculum-item card-cyber p-6 border border-csga-cyan/10 reveal">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-csga-cyan/10 flex items-center justify-center flex-shrink-0">
+              <i data-lucide="shield" class="w-5 h-5 text-csga-cyan"></i>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">Cybersecurity Fundamentals</h3>
+              <p class="text-csga-text-secondary text-sm">Network security, threat landscape, attack vectors, and defense strategies.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="curriculum-item card-cyber p-6 border border-csga-cyan/10 reveal" style="transition-delay: 50ms;">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-csga-cyan/10 flex items-center justify-center flex-shrink-0">
+              <i data-lucide="search" class="w-5 h-5 text-csga-cyan"></i>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">Threat Detection & Analysis</h3>
+              <p class="text-csga-text-secondary text-sm">SIEM tools, log analysis, anomaly detection, and incident identification.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="curriculum-item card-cyber p-6 border border-csga-cyan/10 reveal" style="transition-delay: 100ms;">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-csga-cyan/10 flex items-center justify-center flex-shrink-0">
+              <i data-lucide="alert-triangle" class="w-5 h-5 text-csga-cyan"></i>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">Incident Response</h3>
+              <p class="text-csga-text-secondary text-sm">Response procedures, forensics basics, containment, and recovery.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="curriculum-item card-cyber p-6 border border-csga-cyan/10 reveal" style="transition-delay: 150ms;">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-csga-cyan/10 flex items-center justify-center flex-shrink-0">
+              <i data-lucide="lock" class="w-5 h-5 text-csga-cyan"></i>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">Security Operations (SOC)</h3>
+              <p class="text-csga-text-secondary text-sm">SOC workflows, monitoring, alerting, and security tool management.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="curriculum-item card-cyber p-6 border border-csga-cyan/10 reveal" style="transition-delay: 200ms;">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-csga-cyan/10 flex items-center justify-center flex-shrink-0">
+              <i data-lucide="file-check" class="w-5 h-5 text-csga-cyan"></i>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">Compliance & Risk</h3>
+              <p class="text-csga-text-secondary text-sm">NIST, ISO 27001, risk assessment, and regulatory frameworks.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="curriculum-item card-cyber p-6 border border-csga-cyan/10 reveal" style="transition-delay: 250ms;">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-csga-cyan/10 flex items-center justify-center flex-shrink-0">
+              <i data-lucide="brain" class="w-5 h-5 text-csga-cyan"></i>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-csga-text mb-2">AI in Cybersecurity</h3>
+              <p class="text-csga-text-secondary text-sm">Machine learning for threat detection, AI-powered security tools.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Career Success Section -->
+  <section class="relative w-full bg-csga-dark py-24 lg:py-32">
+    <div class="w-full px-6 lg:px-[6vw]">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div class="order-2 lg:order-1 reveal">
+          <div class="relative rounded-2xl overflow-hidden glow-cyan">
+            <img src="images/veteran-career.jpg" alt="Veteran Career Success" class="w-full h-auto">
+          </div>
+        </div>
+        <div class="order-1 lg:order-2 reveal" style="transition-delay: 200ms;">
+          <div class="label-mono mb-4">Career Success</div>
+          <h2 class="text-3xl lg:text-4xl font-bold text-csga-text mb-6">From Service to Cybersecurity</h2>
+          <p class="text-csga-text-secondary mb-6">Our veterans have successfully transitioned into rewarding cybersecurity careers across government, defense contractors, Fortune 500 companies, and emerging tech startups.</p>
+          
+          <div class="space-y-4 mb-8">
+            <div class="flex items-center gap-4 p-4 bg-csga-dark-secondary rounded-xl">
+              <div class="w-12 h-12 rounded-full bg-csga-cyan/10 flex items-center justify-center">
+                <i data-lucide="building-2" class="w-6 h-6 text-csga-cyan"></i>
+              </div>
+              <div>
+                <div class="font-semibold text-csga-text">Top Employers</div>
+                <div class="text-sm text-csga-text-secondary">Lockheed Martin, Northrop Grumman, Booz Allen, CACI</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-4 p-4 bg-csga-dark-secondary rounded-xl">
+              <div class="w-12 h-12 rounded-full bg-csga-cyan/10 flex items-center justify-center">
+                <i data-lucide="trending-up" class="w-6 h-6 text-csga-cyan"></i>
+              </div>
+              <div>
+                <div class="font-semibold text-csga-text">Average Starting Salary</div>
+                <div class="text-sm text-csga-text-secondary">$75,000 - $95,000 for entry-level positions</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-4 p-4 bg-csga-dark-secondary rounded-xl">
+              <div class="w-12 h-12 rounded-full bg-csga-cyan/10 flex items-center justify-center">
+                <i data-lucide="badge-check" class="w-6 h-6 text-csga-cyan"></i>
+              </div>
+              <div>
+                <div class="font-semibold text-csga-text">Security Clearance Advantage</div>
+                <div class="text-sm text-csga-text-secondary">Leverage your clearance for high-paying defense roles</div>
+              </div>
+            </div>
+          </div>
+          
+          <a href="contact.html" class="btn-primary px-8 py-4 bg-csga-cyan text-csga-dark rounded-xl font-semibold hover:bg-csga-cyan/90 transition-colors inline-flex items-center gap-2">
+            <span>Start Your Journey</span>
+            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="relative w-full bg-csga-dark-secondary py-24 lg:py-32">
+    <div class="w-full px-6 lg:px-[6vw]">
+      <div class="text-center mb-16">
+        <div class="label-mono mb-4 reveal">Success Stories</div>
+        <h2 class="text-3xl lg:text-5xl font-bold text-csga-text mb-6 reveal" style="transition-delay: 100ms;">Veteran Testimonials</h2>
+        <p class="text-lg text-csga-text-secondary max-w-2xl mx-auto reveal" style="transition-delay: 200ms;">Hear from veterans who transformed their careers through our program.</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="testimonial-card p-6 rounded-2xl reveal">
+          <div class="flex items-center gap-1 mb-4">
+            <i data-lucide="star" class="w-4 h-4 text-csga-cyan fill-csga-cyan"></i>
+            <i data-lucide="star" class="w-4 h-4 text-csga-cyan fill-csga-cyan"></i>
+            <i data-lucide="star" class="w-4 h-4 text-csga-cyan fill-csga-cyan"></i>
+            <i data-lucide="star" class="w-4 h-4 text-csga-cyan fill-csga-cyan"></i>
+            <i data-lucide="star" class="w-4 h-4 text-csga-cyan fill-csga-cyan"></i>
+          </div>
+          <p class="text-csga-text-secondary mb-6">"After 8 years in the Army, I didn't know where to start. CSGA's Veterans Program gave me the skills, certifications, and connections I needed. I'm now a Security Analyst at a defense contractor."</p>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-csga-cyan/20 flex items-center justify-center">
+              <i data-lucide="user" class="w-6 h-6 text-csga-cyan"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-csga-text">Michael Torres</div>
+              <div class="text-sm text-csga-text-secondary">U.S. Army Veteran, Security Analyst</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card p-6 rounded-2xl reveal" style="transition-delay: 100ms;">
+          <div class="flex items-center gap-1 mb-4">
+            <i data-lucide="star" class="w-4 h-4 text-csga-cyan fill-csga-cyan"></i>
+            <i data-lucide="star" class="w-4 h-4 text-csga-cyan fill-csga-cyan"></i>
+            <i data-lucide="star" class="w-4 h-4 text-csga-cyan fill-csga-cyan"></i>
+            <i data-lucide="star" class="w-4 h-4 text-csga-cyan fill-csga-cyan"></i>
+            <i data-lucide="star" class="w-4 h-4 text-csga-cyan fill-csga-cyan"></i>
+          </div>
+          <p class="text-csga-text-secondary mb-6">"The mentorship was incredible. Having someone who understood both military culture and cybersecurity made all the difference. I landed my dream job within 3 weeks of graduating."</p>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-csga-cyan/20 flex items-center justify-center">
+              <i data-lucide="user" class="w-6 h-6 text-csga-cyan"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-csga-text">Sarah Chen</div>
+              <div class="text-sm text-csga-text-secondary">U.S. Navy Veteran, SOC Analyst</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card p-6 rounded-2xl reveal" style="transition-delay: 200ms;">
+          <div class="flex items-center gap-1 mb-4">
+            <i data-lucide="star" class="w-4 h-4 text-csga-cyan fill-csga-cyan"></i>
+            <i data-lucide="star" class="w-4 h-4 text-csga-cyan fill-csga-cyan"></i>
+            <i data-lucide="star" class="w-4 h-4 text-csga-cyan fill-csga-cyan"></i>
+            <i data-lucide="star" class="w-4 h-4 text-csga-cyan fill-csga-cyan"></i>
+            <i data-lucide="star" class="w-4 h-4 text-csga-cyan fill-csga-cyan"></i>
+          </div>
+          <p class="text-csga-text-secondary mb-6">"My security clearance was a huge asset, but I needed the technical skills. CSGA bridged that gap perfectly. The program is designed by veterans, for veterans. They get it."</p>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-csga-cyan/20 flex items-center justify-center">
+              <i data-lucide="user" class="w-6 h-6 text-csga-cyan"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-csga-text">David Rodriguez</div>
+              <div class="text-sm text-csga-text-secondary">U.S. Air Force Veteran, Cyber Operator</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="relative w-full bg-csga-dark py-24 lg:py-32">
+    <div class="w-full px-6 lg:px-[6vw]">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-16">
+          <div class="label-mono mb-4 reveal">Common Questions</div>
+          <h2 class="text-3xl lg:text-5xl font-bold text-csga-text mb-6 reveal" style="transition-delay: 100ms;">Frequently Asked Questions</h2>
+          <p class="text-lg text-csga-text-secondary reveal" style="transition-delay: 200ms;">Everything you need to know about the Veterans Program.</p>
+        </div>
+        
+        <div class="space-y-4 reveal" style="transition-delay: 300ms;">
+          <div class="faq-item py-6">
+            <div class="faq-question flex items-center justify-between" onclick="toggleFaq(this)">
+              <h3 class="text-lg font-semibold text-csga-text pr-8">Who is eligible for the Veterans Program?</h3>
+              <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-csga-cyan flex-shrink-0"></i>
+            </div>
+            <div class="faq-answer">
+              <p class="text-csga-text-secondary">The program is open to all U.S. military veterans, including active duty transitioning to civilian life, National Guard members, and Reservists. We also welcome spouses of service members in certain circumstances. No prior cybersecurity experience is required.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item py-6">
+            <div class="faq-question flex items-center justify-between" onclick="toggleFaq(this)">
+              <h3 class="text-lg font-semibold text-csga-text pr-8">Is the program covered by the GI Bill?</h3>
+              <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-csga-cyan flex-shrink-0"></i>
+            </div>
+            <div class="faq-answer">
+              <p class="text-csga-text-secondary">Yes! Our program is fully approved for VA education benefits including the GI Bill, VET TEC, and Vocational Rehabilitation. We have a dedicated VA certifying official to help you navigate the benefits process.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item py-6">
+            <div class="faq-question flex items-center justify-between" onclick="toggleFaq(this)">
+              <h3 class="text-lg font-semibold text-csga-text pr-8">What certifications will I earn?</h3>
+              <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-csga-cyan flex-shrink-0"></i>
+            </div>
+            <div class="faq-answer">
+              <p class="text-csga-text-secondary">Graduates earn multiple industry-recognized certifications including CompTIA Security+, CompTIA Network+, and the CSGA Cybersecurity Professional Certificate. Exam vouchers are included in the program cost.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item py-6">
+            <div class="faq-question flex items-center justify-between" onclick="toggleFaq(this)">
+              <h3 class="text-lg font-semibold text-csga-text pr-8">What is the job placement rate?</h3>
+              <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-csga-cyan flex-shrink-0"></i>
+            </div>
+            <div class="faq-answer">
+              <p class="text-csga-text-secondary">We maintain an 85% job placement rate within 90 days of graduation. Our dedicated career services team works with you throughout the program and continues support for 12 months after graduation.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item py-6">
+            <div class="faq-question flex items-center justify-between" onclick="toggleFaq(this)">
+              <h3 class="text-lg font-semibold text-csga-text pr-8">Can I participate remotely?</h3>
+              <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-csga-cyan flex-shrink-0"></i>
+            </div>
+            <div class="faq-answer">
+              <p class="text-csga-text-secondary">Yes! We offer both in-person and fully remote options. The remote program includes live virtual instruction, online labs, and virtual mentorship sessions. All you need is a reliable internet connection and a computer.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item py-6">
+            <div class="faq-question flex items-center justify-between" onclick="toggleFaq(this)">
+              <h3 class="text-lg font-semibold text-csga-text pr-8">How does my security clearance help?</h3>
+              <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-csga-cyan flex-shrink-0"></i>
+            </div>
+            <div class="faq-answer">
+              <p class="text-csga-text-secondary">Security clearances are highly valued in cybersecurity, especially for defense and government contracting positions. Many of our employer partners specifically seek cleared candidates and offer premium salaries—often 15-25% higher than uncleared positions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced CTA Section with Ken Burns -->
+  <section class="relative w-full py-24 lg:py-32 overflow-hidden">
+    <div class="absolute inset-0">
+      <div class="hero-ken-burns">
+        <img src="images/veteran-certification.jpg" alt="Veterans Program">
+      </div>
+      <div class="absolute inset-0 bg-gradient-to-r from-csga-dark via-csga-dark/95 to-csga-dark/90"></div>
+    </div>
+    <div class="relative z-10 w-full px-6 lg:px-[6vw]">
+      <div class="card-cyber p-8 lg:p-16 text-center border-l-4 border-l-csga-cyan reveal">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-csga-cyan/10 border border-csga-cyan/30 rounded-full mb-6">
+          <i data-lucide="medal" class="w-4 h-4 text-csga-cyan"></i>
+          <span class="text-sm font-medium text-csga-cyan">500+ Veterans Successfully Placed</span>
+        </div>
+        <h2 class="text-4xl lg:text-5xl font-bold text-csga-text mb-6">Your Next Mission: Cybersecurity</h2>
+        <p class="text-lg text-csga-text-secondary leading-relaxed max-w-2xl mx-auto mb-10">
+          Your military experience has prepared you for the challenges of cybersecurity. Join our veteran community and transition into a high-demand career with competitive salaries and growth opportunities.
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-4 mb-10">
+          <a href="contact.html" class="btn-primary px-10 py-5 bg-csga-cyan text-csga-dark rounded-xl font-semibold hover:bg-csga-cyan/90 transition-colors flex items-center gap-2">
+            <span>Apply Now</span>
+            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+          </a>
+          <a href="contact.html" class="px-10 py-5 border border-csga-cyan/30 text-csga-cyan rounded-xl font-semibold hover:bg-csga-cyan/10 transition-colors flex items-center gap-2">
+            <i data-lucide="phone" class="w-5 h-5"></i>
+            <span>Talk to an Advisor</span>
+          </a>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto mb-8">
+          <div class="text-center">
+            <div class="text-2xl font-bold text-csga-cyan mb-1">100%</div>
+            <div class="text-xs text-csga-text-secondary">GI Bill Approved</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold text-csga-cyan mb-1">$75K+</div>
+            <div class="text-xs text-csga-text-secondary">Starting Salary</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold text-csga-cyan mb-1">90%</div>
+            <div class="text-xs text-csga-text-secondary">Placement Rate</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold text-csga-cyan mb-1">Free</div>
+            <div class="text-xs text-csga-text-secondary">For Veterans</div>
+          </div>
+        </div>
+
+        <p class="text-sm text-csga-text-secondary">
+          <i data-lucide="shield-check" class="w-4 h-4 inline mr-1 text-csga-cyan"></i>
+          No Experience Required • Mentorship Included • Lifetime Career Support
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="relative w-full bg-csga-dark-secondary border-t border-csga-cyan/10">
+    <div class="w-full px-6 lg:px-[6vw] py-16">
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12">
+        <div class="col-span-2 lg:col-span-2">
+          <a href="index.html" class="inline-block mb-6">
+            <img src="images/logo.png" alt="CSGA Global" class="h-16 w-auto">
+          </a>
+          <p class="text-csga-text-secondary text-sm mb-6 max-w-sm">The Cybersecurity & Governance Alliance is a global community advancing cybersecurity excellence, AI governance, and digital trust.</p>
+          <div class="flex gap-4">
+            <a href="#" class="w-10 h-10 rounded-full bg-csga-cyan/10 flex items-center justify-center text-csga-cyan hover:bg-csga-cyan hover:text-csga-dark transition-all"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-csga-cyan/10 flex items-center justify-center text-csga-cyan hover:bg-csga-cyan hover:text-csga-dark transition-all"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-csga-cyan/10 flex items-center justify-center text-csga-cyan hover:bg-csga-cyan hover:text-csga-dark transition-all"><i data-lucide="youtube" class="w-5 h-5"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-semibold text-csga-text mb-4">Organization</h4>
+          <ul class="space-y-3">
+            <li><a href="about.html" class="text-csga-text-secondary hover:text-csga-cyan transition-colors text-sm">About</a></li>
+            <li><a href="council.html" class="text-csga-text-secondary hover:text-csga-cyan transition-colors text-sm">Council</a></li>
+            <li><a href="news.html" class="text-csga-text-secondary hover:text-csga-cyan transition-colors text-sm">News</a></li>
+            <li><a href="events.html" class="text-csga-text-secondary hover:text-csga-cyan transition-colors text-sm">Events</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-csga-text mb-4">Programs</h4>
+          <ul class="space-y-3">
+            <li><a href="education.html" class="text-csga-text-secondary hover:text-csga-cyan transition-colors text-sm">Education</a></li>
+            <li><a href="programs.html" class="text-csga-text-secondary hover:text-csga-cyan transition-colors text-sm">Training</a></li>
+            <li><a href="csoai.html" class="text-csga-text-secondary hover:text-csga-cyan transition-colors text-sm">CSOAI</a></li>
+            <li><a href="veterans.html" class="text-csga-text-secondary hover:text-csga-cyan transition-colors text-sm">Veterans</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-csga-text mb-4">Connect</h4>
+          <ul class="space-y-3">
+            <li><a href="members.html" class="text-csga-text-secondary hover:text-csga-cyan transition-colors text-sm">Membership</a></li>
+            <li><a href="contact.html" class="text-csga-text-secondary hover:text-csga-cyan transition-colors text-sm">Contact</a></li>
+            <li><a href="contact.html" class="text-csga-text-secondary hover:text-csga-cyan transition-colors text-sm">Support</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-csga-cyan/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-csga-text-secondary text-sm">&copy; 2026 CSGA Global. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-csga-text-secondary hover:text-csga-cyan transition-colors text-sm">Privacy Policy</a>
+          <a href="#" class="text-csga-text-secondary hover:text-csga-cyan transition-colors text-sm">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+    
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('opacity-0');
+      mobileMenu.classList.toggle('pointer-events-none');
+    });
+    
+    mobileMenuOverlay.addEventListener('click', () => {
+      mobileMenu.classList.add('opacity-0');
+      mobileMenu.classList.add('pointer-events-none');
+    });
+    
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        navbar.classList.add('bg-csga-dark/90', 'backdrop-blur-xl');
+      } else {
+        navbar.classList.remove('bg-csga-dark/90', 'backdrop-blur-xl');
+      }
+    });
+    
+    // Scroll reveal animation
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    
+    revealElements.forEach(el => revealObserver.observe(el));
+    
+    // FAQ toggle
+    function toggleFaq(element) {
+      const faqItem = element.parentElement;
+      const isActive = faqItem.classList.contains('active');
+      
+      // Close all FAQ items
+      document.querySelectorAll('.faq-item').forEach(item => {
+        item.classList.remove('active');
+      });
+      
+      // Open clicked item if it wasn't active
+      if (!isActive) {
+        faqItem.classList.add('active');
+      }
+    }
+  </script>
+</body>
+</html>
