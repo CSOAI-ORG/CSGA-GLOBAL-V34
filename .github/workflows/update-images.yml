@@ -1,0 +1,80 @@
+name: Update Real Images
+on: workflow_dispatch
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download team photos
+        run: |
+          mkdir -p images
+          curl -L -o images/council-james-castle.jpg "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=810,fit=crop/YNqrr2vl4OiBzE4Q/jc004-FnfH0JXtYua7GLcq.jpg"
+          curl -L -o images/council-samir-azizi.png "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=368,fit=crop/YNqrr2vl4OiBzE4Q/designer-10-i5viqjmXGy2Yf66g.png"
+          curl -L -o images/council-chris-golden.png "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=485,fit=crop/YNqrr2vl4OiBzE4Q/screenshot-2024-03-13-093946-Yg29948r8gT9JDr7.png"
+          curl -L -o images/council-daniel-katz.jpg "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=485,fit=crop/YNqrr2vl4OiBzE4Q/1698950625810-4sVoRISIdE65CaOx.jpg"
+          curl -L -o images/council-terry-temple.jpeg "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=768,fit=crop/YNqrr2vl4OiBzE4Q/1602097458445-Yg29nB4nB4S6G6Lp.jpeg"
+          curl -L -o images/council-eyal-pinko.jpg "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=768,fit=crop/YNqrr2vl4OiBzE4Q/1723497726713-vArFFkrpCtFFbE2l.jpg"
+      - name: Download partner logos
+        run: |
+          mkdir -p images
+          curl -L -o images/logo-toronto-dao.png "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=328,h=246,fit=crop/YNqrr2vl4OiBzE4Q/toronto-dao-logo-YanJg9jMZxfNk51k.png"
+          curl -L -o images/logo-terranova.png "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=328,h=246,fit=crop/YNqrr2vl4OiBzE4Q/logo-01-mePvyzjXrZSX4L9M.png"
+          curl -L -o images/logo-bmcc.png "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=328,h=246,fit=crop/YNqrr2vl4OiBzE4Q/screenshot-2025-07-28-172819-CV3pTKKZcyjsMfVE.png"
+          curl -L -o images/logo-csoai.png "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=328,h=246,fit=crop/YNqrr2vl4OiBzE4Q/csoai-logo_transparent-lE4nPkaUk4yy5F00.png"
+          curl -L -o images/logo-us-commerce.png "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=328,h=246,fit=crop/YNqrr2vl4OiBzE4Q/seal_of_the_united_states_department_of_commerce.svg-mv0DLOyv0Pfgx0N3.png"
+          curl -L -o images/logo-digital-human-library.png "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=328,h=246,fit=crop/YNqrr2vl4OiBzE4Q/untitled-0f0p3mmi0KMxXdrd.png"
+          curl -L -o images/logo-bbs.png "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=328,h=246,fit=crop/YNqrr2vl4OiBzE4Q/bbs-logo-07-05-22-YBgbG4BEBaCGGKyg.png"
+          curl -L -o images/logo-aidome.png "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=328,h=246,fit=crop/YNqrr2vl4OiBzE4Q/aidome-new-8JM6k8LoxB16giDq.png"
+          curl -L -o images/logo-csga.png "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=328,h=246,fit=crop/YNqrr2vl4OiBzE4Q/csga_logo2_1-YKb6294r0PFVM8Rb.png"
+          curl -L -o images/logo-csga-csoai.png "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=328,h=246,fit=crop/YNqrr2vl4OiBzE4Q/csga-csoai-logo-2-XO0NyZfSorgwuPnH.png"
+      - name: Fix council.html image extensions
+        run: |
+          sed -i 's|images/council-samir-azizi\.jpg|images/council-samir-azizi.png|g' council.html
+          sed -i 's|images/council-terry-temple\.jpg|images/council-terry-temple.jpeg|g' council.html
+          sed -i 's|images/council-chris-golden\.jpg|images/council-chris-golden.png|g' council.html
+      - name: Update partners.html with real logos
+        run: |
+          python3 << 'PYEOF'
+          import re
+          with open('partners.html', 'r') as f:
+              html = f.read()
+          def replace_icon(html, name, logo):
+              idx = html.find('>' + name + '<')
+              if idx == -1:
+                  idx = html.find('>' + name + '\n')
+              if idx == -1:
+                  print(f"Not found: {name}")
+                  return html
+              seg = html[max(0,idx-500):idx]
+              ms = list(re.finditer(r'<i\s+data-lucide="[^"]*"\s*(?:class="[^"]*")?\s*></i>', seg))
+              if not ms:
+                  print(f"No icon for: {name}")
+                  return html
+              m = ms[-1]
+              s = max(0,idx-500) + m.start()
+              e = max(0,idx-500) + m.end()
+              html = html[:s] + f'<img src="{logo}" alt="{name} logo" class="w-full h-full object-contain">' + html[e:]
+              print(f"Replaced: {name}")
+              return html
+          html = replace_icon(html, 'BMCC', 'images/logo-bmcc.png')
+          html = replace_icon(html, 'CUNY', 'images/logo-bmcc.png')
+          html = replace_icon(html, 'Digital Human Library', 'images/logo-digital-human-library.png')
+          html = replace_icon(html, 'Terranova', 'images/logo-terranova.png')
+          html = replace_icon(html, 'CSOAI', 'images/logo-csoai.png')
+          html = replace_icon(html, 'Toronto DAO', 'images/logo-toronto-dao.png')
+          html = replace_icon(html, 'U.S. Department of Commerce', 'images/logo-us-commerce.png')
+          html = replace_icon(html, 'Augusta University', 'images/logo-bbs.png')
+          html = replace_icon(html, 'Ontario Aerospace Council', 'images/logo-aidome.png')
+          html = replace_icon(html, 'Applied Technology Academy', 'images/logo-csga-csoai.png')
+          html = replace_icon(html, 'FedDev Ontario', 'images/logo-csga.png')
+          with open('partners.html', 'w') as f:
+              f.write(html)
+          print("Done updating partners.html")
+          PYEOF
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Add real team photos and partner logos from old site" || echo "No changes"
+          git push
