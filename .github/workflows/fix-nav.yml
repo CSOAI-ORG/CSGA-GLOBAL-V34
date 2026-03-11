@@ -1,0 +1,21 @@
+name: Fix Nav - Add Home Link
+on:
+  workflow_dispatch:
+jobs:
+  fix-nav:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add Home link to all HTML files
+        run: |
+          for f in *.html; do
+            sed -i 's|<a href="about.html" class="nav-link text-sm font-medium">About</a>|<a href="index.html" class="nav-link text-sm font-medium">Home</a>\n              <a href="about.html" class="nav-link text-sm font-medium">About</a>|' "$f"
+            sed -i 's|<a href="about.html" class="mobile-nav-link text-2xl font-semibold text-csga-text hover:text-csga-cyan transition-colors">About</a>|<a href="index.html" class="mobile-nav-link text-2xl font-semibold text-csga-text hover:text-csga-cyan transition-colors">Home</a>\n        <a href="about.html" class="mobile-nav-link text-2xl font-semibold text-csga-text hover:text-csga-cyan transition-colors">About</a>|' "$f"
+          done
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || git commit -m "Add Home link to navigation"
+          git push
