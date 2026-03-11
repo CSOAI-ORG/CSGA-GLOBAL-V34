@@ -1,0 +1,131 @@
+name: Add Meta Tags and OG Tags
+on:
+  workflow_dispatch:
+
+jobs:
+  add-meta-tags:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Add meta descriptions and OG tags to all pages
+        run: |
+          SITE_URL="https://csga-global-v34.vercel.app"
+          OG_IMAGE="${SITE_URL}/images/csga-og-default.png"
+
+          add_meta_tags() {
+            local file="$1"
+            local title="$2"
+            local description="$3"
+            local url="$4"
+
+            # Skip if og:title already exists
+            if grep -q 'og:title' "$file"; then
+              echo "Skipping $file - OG tags already present"
+              return
+            fi
+
+            # Build the meta tags block
+            META_BLOCK="    <meta name=\"description\" content=\"${description}\">
+"
+            META_BLOCK+="
+"
+            META_BLOCK+="    <!-- Open Graph / Social Media -->
+"
+            META_BLOCK+="    <meta property=\"og:type\" content=\"website\">
+"
+            META_BLOCK+="    <meta property=\"og:url\" content=\"${url}\">
+"
+            META_BLOCK+="    <meta property=\"og:title\" content=\"${title}\">
+"
+            META_BLOCK+="    <meta property=\"og:description\" content=\"${description}\">
+"
+            META_BLOCK+="    <meta property=\"og:image\" content=\"${OG_IMAGE}\">
+"
+            META_BLOCK+="    <meta property=\"og:site_name\" content=\"CSGA Global\">
+"
+            META_BLOCK+="
+"
+            META_BLOCK+="    <!-- Twitter Card -->
+"
+            META_BLOCK+="    <meta name=\"twitter:card\" content=\"summary_large_image\">
+"
+            META_BLOCK+="    <meta name=\"twitter:title\" content=\"${title}\">
+"
+            META_BLOCK+="    <meta name=\"twitter:description\" content=\"${description}\">
+"
+            META_BLOCK+="    <meta name=\"twitter:image\" content=\"${OG_IMAGE}\">"
+
+            # Insert after the last <meta charset> or <meta name="viewport"> line
+            sed -i "/<meta name=\"viewport\"/a\\\n${META_BLOCK}" "$file"
+
+            echo "Added meta tags to $file"
+          }
+
+          # Index / Homepage
+          add_meta_tags "index.html" \
+            "CSGA Global | Cyber Security Global Alliance" \
+            "CSGA Global unites cybersecurity leaders, AI governance experts, and policymakers to build cyber resilience and trust worldwide." \
+            "${SITE_URL}/"
+
+          # About
+          add_meta_tags "about.html" \
+            "About CSGA | Cyber Security Global Alliance" \
+            "Learn about CSGA Global's mission to advance international cybersecurity cooperation, AI governance, and digital trust frameworks." \
+            "${SITE_URL}/about"
+
+          # Contact
+          add_meta_tags "contact.html" \
+            "Contact CSGA Global | Get in Touch" \
+            "Reach out to CSGA Global for partnership inquiries, membership information, and cybersecurity collaboration opportunities." \
+            "${SITE_URL}/contact"
+
+          # Council
+          add_meta_tags "council.html" \
+            "CSGA Advisory Council | Leadership & Governance" \
+            "Meet the CSGA Global Advisory Council providing strategic direction on cybersecurity policy, AI ethics, and international digital security." \
+            "${SITE_URL}/council"
+
+          # Education
+          add_meta_tags "education.html" \
+            "Cybersecurity Education | CSGA Global Training Programs" \
+            "Explore CSGA Global education initiatives including cybersecurity training, certification pathways, and professional development programs." \
+            "${SITE_URL}/education"
+
+          # Events
+          add_meta_tags "events.html" \
+            "Events | CSGA Global Conferences & Summits" \
+            "Discover upcoming CSGA Global events, cybersecurity summits, AI governance conferences, and networking opportunities." \
+            "${SITE_URL}/events"
+
+          # Career Pathways
+          add_meta_tags "career-pathways.html" \
+            "Cybersecurity Career Pathways | CSGA Global" \
+            "Navigate your cybersecurity career with CSGA Global's career pathways, mentorship programs, and professional development resources." \
+            "${SITE_URL}/career-pathways"
+
+          # COBOL Bridge
+          add_meta_tags "cobol-bridge.html" \
+            "COBOL Bridge | AI-Powered Legacy Modernization" \
+            "COBOL Bridge by CSGA Global offers AI-powered tools for modernizing legacy COBOL systems with secure, scalable migration solutions." \
+            "${SITE_URL}/cobol-bridge"
+
+          # CSOAI
+          add_meta_tags "csoai.html" \
+            "CSOAI | Chief Security Officer AI Platform" \
+            "CSOAI provides AI-driven cybersecurity intelligence, threat analysis, and security operations tools for enterprise security leaders." \
+            "${SITE_URL}/csoai"
+
+          # Dashboard
+          add_meta_tags "dashboard.html" \
+            "Dashboard | CSGA Global Platform Tools" \
+            "Access CSGA Global's suite of cybersecurity tools, analytics dashboards, and AI-powered security management platforms." \
+            "${SITE_URL}/dashboard"
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || git commit -m "Add meta descriptions, Open Graph, and Twitter Card tags to all pages"
+          git push
